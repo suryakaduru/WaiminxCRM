@@ -1,32 +1,92 @@
 name: waiminxcrm
 
-# EC2 deployment compose.
-# Image is pulled from GHCR; set IMAGE in .env to pin a tag, otherwise defaults to :latest.
+# Production deployment — split services.
+# All config comes from .env (env_file). Edit .env to change anything.
+#
+# Services:
+#   db     — Postgres 16 (dedicated container, persisted volume)
+#   redis  — Redis 7 (queue + cache, persisted volume for BullMQ jobs)
+#   server — Twenty API/web (runs DB migrations + cron registration)
+#   worker — Twenty background worker (queue processor)
+#
+# Image: upstream twentycrm/twenty:latest. Waimin branding can be added
+# later by building a thin image on top (FROM twentycrm/twenty + COPY branded assets).
 
 services:
-  server:
-    image: ${IMAGE:-ghcr.io/suryakaduru/waiminxcrm-app:latest}
-    pull_policy: always
+  db:
+    image: postgres:16
+    restart: always
     volumes:
-      - server-local-data:/app/packages/twenty-server/.local-storage
-      - server-db-data:/var/lib/postgresql/data
-    ports:
-      - "3000:3000"
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${PG_DATABASE_NAME}
+      POSTGRES_USER: ${PG_DATABASE_USER}
+      POSTGRES_PASSWORD: ${PG_DATABASE_PASSWORD}
+    healthcheck:
+      test: pg_isready -U ${PG_DATABASE_USER} -d postgres
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7
+    restart: always
+    command: ["redis-server", "--maxmemory-policy", "noeviction", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  server:
+    image: ${IMAGE:-twentycrm/twenty:latest}
+    restart: always
+    pull_policy: always
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file:
+      - .env
     environment:
       NODE_PORT: 3000
-      SERVER_URL: ${SERVER_URL:-http://localhost:3000}
-      STORAGE_TYPE: ${STORAGE_TYPE:-local}
-      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
-      FALLBACK_ENCRYPTION_KEY: ${FALLBACK_ENCRYPTION_KEY}
-      APP_SECRET: ${APP_SECRET:-}
+      PG_DATABASE_URL: postgres://${PG_DATABASE_USER}:${PG_DATABASE_PASSWORD}@db:5432/${PG_DATABASE_NAME}
+      REDIS_URL: redis://redis:6379
+    volumes:
+      - server-local-data:/app/packages/twenty-server/.local-storage
+    ports:
+      - "3000:3000"
     healthcheck:
       test: curl --fail http://localhost:3000/healthz
       interval: 15s
       timeout: 5s
-      retries: 40
-      start_period: 240s
+      retries: 20
+      start_period: 120s
+
+  worker:
+    image: ${IMAGE:-twentycrm/twenty:latest}
     restart: always
+    pull_policy: always
+    command: ["yarn", "worker:prod"]
+    depends_on:
+      db:
+        condition: service_healthy
+      server:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      PG_DATABASE_URL: postgres://${PG_DATABASE_USER}:${PG_DATABASE_PASSWORD}@db:5432/${PG_DATABASE_NAME}
+      REDIS_URL: redis://redis:6379
+      DISABLE_DB_MIGRATIONS: "true"
+      DISABLE_CRON_JOBS_REGISTRATION: "true"
+    volumes:
+      - server-local-data:/app/packages/twenty-server/.local-storage
 
 volumes:
+  db-data:
+  redis-data:
   server-local-data:
-  server-db-data:
