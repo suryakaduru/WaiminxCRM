@@ -1,24 +1,21 @@
-name: Waimin Build & Publish Server Image
+name: Waimin Build & Publish Server Image (source build)
 
-# Builds a thin branded overlay on twentycrm/twenty:latest and pushes to GHCR.
-# Use this image in deploy/.env for production split-services compose.
+# Builds the Waimin-branded server+frontend image FROM SOURCE using the existing
+# upstream Dockerfile's `twenty` target. The frontend bundle is compiled with
+# the waimin branch's branded TSX files (Logo.tsx, SignInUp.tsx, FooterNote.tsx,
+# index.html, waimin-logo.png), so every UI element is properly branded — no
+# overlay/sed needed.
+#
+# Output: ghcr.io/<owner>/waiminxcrm-server:waimin (also :latest, :sha-<sha>)
 
 on:
   push:
     branches: [waimin]
-    paths:
-      - 'packages/twenty-docker/waimin-server/**'
-      - 'packages/twenty-front/index.html'
-      - 'packages/twenty-front/public/images/waimin-logo.png'
-      - 'packages/twenty-front/src/modules/auth/**'
-      - 'packages/twenty-front/src/pages/auth/**'
-      - '.github/workflows/waimin-build-server.yaml'
+    paths-ignore:
+      - 'deploy/**'
+      - '**.md'
+      - '.cursor/**'
   workflow_dispatch:
-    inputs:
-      upstream_tag:
-        description: 'Upstream twentycrm/twenty tag to base on'
-        required: false
-        default: 'latest'
 
 env:
   REGISTRY: ghcr.io
@@ -59,13 +56,12 @@ jobs:
             type=raw,value=waimin
             type=sha,prefix=sha-
 
-      - name: Build and push
+      - name: Build and push (server + branded frontend, from source)
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: packages/twenty-docker/waimin-server/Dockerfile
-          build-args: |
-            UPSTREAM_TAG=${{ github.event.inputs.upstream_tag || 'latest' }}
+          file: packages/twenty-docker/twenty/Dockerfile
+          target: twenty
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
