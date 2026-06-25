@@ -1,0 +1,32 @@
+name: waiminxcrm
+
+# EC2 deployment compose.
+# Image is pulled from GHCR; set IMAGE in .env to pin a tag, otherwise defaults to :latest.
+
+services:
+  server:
+    image: ${IMAGE:-ghcr.io/suryakaduru/waiminxcrm-app:latest}
+    pull_policy: always
+    volumes:
+      - server-local-data:/app/packages/twenty-server/.local-storage
+      - server-db-data:/var/lib/postgresql/data
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_PORT: 3000
+      SERVER_URL: ${SERVER_URL:-http://localhost:3000}
+      STORAGE_TYPE: ${STORAGE_TYPE:-local}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      FALLBACK_ENCRYPTION_KEY: ${FALLBACK_ENCRYPTION_KEY}
+      APP_SECRET: ${APP_SECRET:-}
+    healthcheck:
+      test: curl --fail http://localhost:3000/healthz
+      interval: 15s
+      timeout: 5s
+      retries: 40
+      start_period: 240s
+    restart: always
+
+volumes:
+  server-local-data:
+  server-db-data:

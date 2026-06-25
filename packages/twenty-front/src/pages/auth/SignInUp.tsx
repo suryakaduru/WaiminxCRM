@@ -48,6 +48,26 @@ const StyledLoaderContainer = styled.div`
   width: 100%;
 `;
 
+const StyledAuthBackground = styled.div`
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at 20% 0%,
+      rgba(201, 232, 236, 0.65) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 80% 100%,
+      rgba(201, 232, 236, 0.5) 0%,
+      transparent 60%
+    ),
+    linear-gradient(180deg, #f6fbfc 0%, #eaf5f7 100%);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+`;
+
 const StandardContent = ({
   workspacePublicData,
   signInUpForm,
@@ -130,7 +150,7 @@ export const SignInUp = () => {
     }
 
     if (isGlobalScope) {
-      return t`Welcome to Twenty`;
+      return t`Welcome to Waimin`;
     }
 
     const workspaceName = workspacePublicData?.displayName;
@@ -209,19 +229,23 @@ export const SignInUp = () => {
 
   if (signInUpStep === SignInUpStep.EmailVerification) {
     return (
-      <ModalContent isVerticallyCentered isHorizontallyCentered>
-        <EmailVerificationSent email={searchParams.get('email')} />
-      </ModalContent>
+      <StyledAuthBackground>
+        <ModalContent isVerticallyCentered isHorizontallyCentered>
+          <EmailVerificationSent email={searchParams.get('email')} />
+        </ModalContent>
+      </StyledAuthBackground>
     );
   }
 
   return (
-    <StandardContent
-      workspacePublicData={workspacePublicData}
-      signInUpForm={signInUpForm}
-      signInUpStep={signInUpStep}
-      title={title}
-      onClickOnLogo={onClickOnLogo}
-    />
+    <StyledAuthBackground>
+      <StandardContent
+        workspacePublicData={workspacePublicData}
+        signInUpForm={signInUpForm}
+        signInUpStep={signInUpStep}
+        title={title}
+        onClickOnLogo={onClickOnLogo}
+      />
+    </StyledAuthBackground>
   );
 };

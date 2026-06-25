@@ -16,12 +16,21 @@ type LogoProps = {
 };
 
 const StyledContainer = styled.div`
-  height: ${themeCssVariables.spacing[12]};
-  margin-bottom: ${themeCssVariables.spacing[4]};
+  height: 140px;
+  margin-bottom: ${themeCssVariables.spacing[6]};
   margin-top: ${themeCssVariables.spacing[4]};
 
   position: relative;
-  width: ${themeCssVariables.spacing[12]};
+  width: 140px;
+`;
+
+const StyledPrimaryLogoImage = styled.div`
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 16px;
+  height: 100%;
+  width: 100%;
 `;
 
 const StyledSecondaryLogo = styled.img`
@@ -57,7 +66,7 @@ export const Logo = ({
   onClick,
 }: LogoProps) => {
   const { redirectToDefaultDomain } = useRedirectToDefaultDomain();
-  const defaultPrimaryLogoUrl = `${window.location.origin}/images/icons/android/android-launchericon-192-192.png`;
+  const defaultPrimaryLogoUrl = `${window.location.origin}/images/waimin-logo.png`;
 
   const primaryLogoUrl = getImageAbsoluteURI({
     imageUrl: primaryLogo ?? defaultPrimaryLogoUrl,
@@ -80,7 +89,7 @@ export const Logo = ({
           to={AppPath.SignInUp}
           onClick={redirectToDefaultDomain}
         >
-          <StyledPrimaryLogo
+          <StyledPrimaryLogoImage
             style={{ backgroundImage: `url(${primaryLogoUrl})` }}
           />
         </UndecoratedLink>
@@ -89,11 +98,12 @@ export const Logo = ({
           style={{ backgroundImage: `url(${primaryLogoUrl})` }}
         />
       )}
-      {isDefined(secondaryLogoUrl) ? (
+      {!isUsingDefaultLogo && isDefined(secondaryLogoUrl) ? (
         <StyledSecondaryLogoContainer>
           <StyledSecondaryLogo src={secondaryLogoUrl} />
         </StyledSecondaryLogoContainer>
       ) : (
+        !isUsingDefaultLogo &&
         isDefined(placeholder) && (
           <StyledSecondaryLogoContainer>
             <Avatar
