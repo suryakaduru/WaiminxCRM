@@ -27,6 +27,79 @@ export class XeroController {
     private readonly xeroConnectionService: XeroConnectionService,
   ) {}
 
+  @Get('debug/invoices')
+  @UseGuards(PublicEndpointGuard, NoPermissionGuard)
+  async debugInvoices(
+    @Query('workspaceId') workspaceId: string | undefined,
+    @Query('tenantId') tenantId: string | undefined,
+    @Query('limit') limit: string | undefined,
+  ) {
+    if (!workspaceId) {
+      throw new BadRequestException('Missing workspaceId query parameter');
+    }
+
+    const connections = await this.xeroConnectionService.listByWorkspace(
+      workspaceId,
+    );
+    const connection = tenantId
+      ? connections.find((row) => row.tenantId === tenantId)
+      : connections[0];
+
+    if (!connection) {
+      throw new NotFoundException(
+        `No Xero connection for workspace ${workspaceId}`,
+      );
+    }
+
+    const accessToken = await this.xeroConnectionService.getValidAccessToken(
+      connection,
+    );
+    const safeLimit = Math.min(Number(limit ?? '10') || 10, 100);
+
+    const response = await fetch(
+      `https://api.xero.com/api.xro/2.0/Invoices?page=1&pageSize=${safeLimit}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Xero-Tenant-Id': connection.tenantId,
+          Accept: 'application/json',
+        },
+      },
+    );
+
+    if (!response.ok) {
+      const text = await response.text();
+
+      this.logger.warn(`Xero invoices fetch failed: ${response.status} ${text}`);
+      throw new BadRequestException(
+        `Xero API returned ${response.status}: ${text}`,
+      );
+    }
+
+    const data = (await response.json()) as {
+      Invoices?: Array<Record<string, unknown>>;
+    };
+
+    return {
+      tenantId: connection.tenantId,
+      tenantName: connection.tenantName,
+      count: data.Invoices?.length ?? 0,
+      invoices: (data.Invoices ?? []).map((invoice) => ({
+        invoiceID: invoice.InvoiceID,
+        invoiceNumber: invoice.InvoiceNumber,
+        type: invoice.Type,
+        status: invoice.Status,
+        date: invoice.DateString ?? invoice.Date,
+        dueDate: invoice.DueDateString ?? invoice.DueDate,
+        contactName: (invoice.Contact as { Name?: string } | undefined)?.Name,
+        total: invoice.Total,
+        amountDue: invoice.AmountDue,
+        amountPaid: invoice.AmountPaid,
+        currencyCode: invoice.CurrencyCode,
+      })),
+    };
+  }
+
   @Get('status')
   @UseGuards(PublicEndpointGuard, NoPermissionGuard)
   async status(@Query('workspaceId') workspaceId: string | undefined) {

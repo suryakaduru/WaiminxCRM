@@ -7,6 +7,9 @@ import { type EncryptedString } from 'src/engine/core-modules/secret-encryption/
 import { type PlaintextString } from 'src/engine/core-modules/secret-encryption/branded-strings/plaintext-string.type';
 import { SecretEncryptionService } from 'src/engine/core-modules/secret-encryption/secret-encryption.service';
 import { XeroConnectionEntity } from 'src/engine/core-modules/xero-integration/entities/xero-connection.entity';
+import { XeroOAuthService } from 'src/engine/core-modules/xero-integration/services/xero-oauth.service';
+
+const TOKEN_REFRESH_BUFFER_MS = 60 * 1000;
 
 type SaveConnectionInput = {
   workspaceId: string;
@@ -28,7 +31,51 @@ export class XeroConnectionService {
     @InjectRepository(XeroConnectionEntity)
     private readonly xeroConnectionRepository: Repository<XeroConnectionEntity>,
     private readonly secretEncryptionService: SecretEncryptionService,
+    private readonly xeroOAuthService: XeroOAuthService,
   ) {}
+
+  async findByWorkspaceAndTenant(
+    workspaceId: string,
+    tenantId: string,
+  ): Promise<XeroConnectionEntity | null> {
+    return this.xeroConnectionRepository.findOne({
+      where: { workspaceId, tenantId },
+    });
+  }
+
+  async getValidAccessToken(connection: XeroConnectionEntity): Promise<string> {
+    const expiresAt = connection.accessTokenExpiresAt.getTime();
+
+    if (expiresAt > Date.now() + TOKEN_REFRESH_BUFFER_MS) {
+      return this.decryptAccessToken(connection);
+    }
+
+    const refreshToken = this.decryptRefreshToken(connection);
+    const refreshed = await this.xeroOAuthService.refreshAccessToken(
+      refreshToken,
+    );
+
+    connection.refreshTokenCiphertext = this.secretEncryptionService.encryptVersioned(
+      refreshed.refresh_token as PlaintextString,
+      { workspaceId: connection.workspaceId },
+    );
+    connection.accessTokenCiphertext = this.secretEncryptionService.encryptVersioned(
+      refreshed.access_token as PlaintextString,
+      { workspaceId: connection.workspaceId },
+    );
+    connection.accessTokenExpiresAt = new Date(
+      Date.now() + refreshed.expires_in * 1000,
+    );
+    connection.scopes = refreshed.scope;
+
+    await this.xeroConnectionRepository.save(connection);
+
+    this.logger.log(
+      `Refreshed Xero access token for workspace ${connection.workspaceId} tenant ${connection.tenantId}`,
+    );
+
+    return refreshed.access_token;
+  }
 
   async saveConnection(input: SaveConnectionInput): Promise<XeroConnectionEntity> {
     const refreshTokenCiphertext = this.secretEncryptionService.encryptVersioned(

@@ -83,6 +83,35 @@ export class XeroOAuthService {
     return entry;
   }
 
+  async refreshAccessToken(refreshToken: string): Promise<XeroTokenResponse> {
+    const clientId = this.twentyConfigService.get('XERO_CLIENT_ID');
+    const clientSecret = this.twentyConfigService.get('XERO_CLIENT_SECRET');
+
+    const body = new URLSearchParams({
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken,
+    });
+
+    const basic = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+
+    const response = await fetch(XERO_TOKEN_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Basic ${basic}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: body.toString(),
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+
+      throw new Error(`Xero token refresh failed: ${response.status} ${text}`);
+    }
+
+    return (await response.json()) as XeroTokenResponse;
+  }
+
   async exchangeCodeForTokens(code: string): Promise<XeroTokenResponse> {
     const clientId = this.twentyConfigService.get('XERO_CLIENT_ID');
     const clientSecret = this.twentyConfigService.get('XERO_CLIENT_SECRET');
