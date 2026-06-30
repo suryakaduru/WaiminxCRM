@@ -21,4 +21,19 @@ export const AUTH_MODAL_CONFIG: {
     overlay: 'transparent',
     showScrollWrapper: false,
   },
+  [AppPath.SignInUp]: {
+    size: 'fullscreen',
+    overlay: 'transparent',
+    showScrollWrapper: false,
+  },
+  [AppPath.Invite]: {
+    size: 'fullscreen',
+    overlay: 'transparent',
+    showScrollWrapper: false,
+  },
+  [AppPath.ResetPassword]: {
+    size: 'fullscreen',
+    overlay: 'transparent',
+    showScrollWrapper: false,
+  },
 };

@@ -1831,6 +1831,52 @@ export class ConfigVariables {
   })
   @IsOptional()
   APP_REGISTRY_TOKEN: string;
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.XERO_INTEGRATION,
+    description: 'Enable or disable the Xero accounting integration',
+    type: ConfigVariableType.BOOLEAN,
+  })
+  @IsOptional()
+  XERO_INTEGRATION_ENABLED = false;
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.XERO_INTEGRATION,
+    isSensitive: false,
+    description: 'Client ID for the Xero OAuth 2.0 app',
+    type: ConfigVariableType.STRING,
+  })
+  @ValidateIf((env) => env.XERO_INTEGRATION_ENABLED)
+  XERO_CLIENT_ID: string;
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.XERO_INTEGRATION,
+    isSensitive: true,
+    description: 'Client secret for the Xero OAuth 2.0 app',
+    type: ConfigVariableType.STRING,
+  })
+  @ValidateIf((env) => env.XERO_INTEGRATION_ENABLED)
+  XERO_CLIENT_SECRET: string;
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.XERO_INTEGRATION,
+    isSensitive: false,
+    description: 'OAuth 2.0 redirect URI registered with the Xero app',
+    type: ConfigVariableType.STRING,
+  })
+  @ValidateIf((env) => env.XERO_INTEGRATION_ENABLED)
+  XERO_REDIRECT_URI: string = 'http://localhost:3000/auth/xero/callback';
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.XERO_INTEGRATION,
+    isSensitive: false,
+    description:
+      'Space-separated OAuth scopes requested from Xero (offline_access required)',
+    type: ConfigVariableType.STRING,
+  })
+  @IsOptional()
+  XERO_SCOPES: string =
+    'openid profile email offline_access accounting.transactions.read accounting.contacts.read accounting.reports.read accounting.settings.read';
 }
 
 export const validate = (config: Record<string, unknown>): ConfigVariables => {
