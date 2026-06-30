@@ -328,6 +328,12 @@ const SettingsExperience = lazy(() =>
   ),
 );
 
+const SettingsXero = lazy(() =>
+  import('~/pages/settings/integrations/SettingsXero').then((module) => ({
+    default: module.SettingsXero,
+  })),
+);
+
 const SettingsAccounts = lazy(() =>
   import('~/pages/settings/accounts/SettingsAccounts').then((module) => ({
     default: module.SettingsAccounts,
@@ -603,6 +609,11 @@ export const SettingsRoutes = ({ isAdminPageEnabled }: SettingsRoutesProps) => (
         element={<SettingsTwoFactorAuthenticationMethod />}
       />
       <Route path={SettingsPath.Experience} element={<SettingsExperience />} />
+      <Route path={SettingsPath.Integrations} element={<SettingsXero />} />
+      <Route
+        path={`${SettingsPath.Integrations}/xero`}
+        element={<SettingsXero />}
+      />
       <Route
         element={
           <SettingsProtectedRouteWrapper

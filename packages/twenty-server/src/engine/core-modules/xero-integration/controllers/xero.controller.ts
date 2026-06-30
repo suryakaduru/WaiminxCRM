@@ -1,9 +1,11 @@
 import {
   BadRequestException,
   Controller,
+  Delete,
   Get,
   Logger,
   NotFoundException,
+  Param,
   Query,
   Res,
   UseGuards,
@@ -24,6 +26,49 @@ export class XeroController {
     private readonly xeroOAuthService: XeroOAuthService,
     private readonly xeroConnectionService: XeroConnectionService,
   ) {}
+
+  @Get('status')
+  @UseGuards(PublicEndpointGuard, NoPermissionGuard)
+  async status(@Query('workspaceId') workspaceId: string | undefined) {
+    if (!workspaceId) {
+      throw new BadRequestException('Missing workspaceId query parameter');
+    }
+
+    const connections = await this.xeroConnectionService.listByWorkspace(
+      workspaceId,
+    );
+
+    return {
+      enabled: this.xeroOAuthService.isEnabled(),
+      connections: connections.map((connection) => ({
+        tenantId: connection.tenantId,
+        tenantName: connection.tenantName,
+        tenantType: connection.tenantType,
+        scopes: connection.scopes,
+        accessTokenExpiresAt: connection.accessTokenExpiresAt,
+        createdAt: connection.createdAt,
+        updatedAt: connection.updatedAt,
+      })),
+    };
+  }
+
+  @Delete('connections/:tenantId')
+  @UseGuards(PublicEndpointGuard, NoPermissionGuard)
+  async disconnect(
+    @Param('tenantId') tenantId: string,
+    @Query('workspaceId') workspaceId: string | undefined,
+  ) {
+    if (!workspaceId) {
+      throw new BadRequestException('Missing workspaceId query parameter');
+    }
+
+    await this.xeroConnectionService.deleteByWorkspaceAndTenant(
+      workspaceId,
+      tenantId,
+    );
+
+    return { ok: true };
+  }
 
   @Get('connect')
   @UseGuards(PublicEndpointGuard, NoPermissionGuard)
