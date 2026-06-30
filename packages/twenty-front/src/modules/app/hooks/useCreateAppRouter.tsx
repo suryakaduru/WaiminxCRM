@@ -100,6 +100,12 @@ const StandalonePageLayoutPage = lazy(() =>
   })),
 );
 
+const FinanceDashboard = lazy(() =>
+  import('~/pages/finance/FinanceDashboard').then((module) => ({
+    default: module.FinanceDashboard,
+  })),
+);
+
 const NotFound = lazy(() =>
   import('~/pages/not-found/NotFound').then((module) => ({
     default: module.NotFound,
@@ -231,6 +237,14 @@ export const useCreateAppRouter = (
             element={
               <LazyRoute>
                 <StandalonePageLayoutPage />
+              </LazyRoute>
+            }
+          />
+          <Route
+            path={AppPath.FinanceDashboard}
+            element={
+              <LazyRoute>
+                <FinanceDashboard />
               </LazyRoute>
             }
           />
