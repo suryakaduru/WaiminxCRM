@@ -10,6 +10,8 @@ const XERO_CONNECTIONS_URL = 'https://api.xero.com/connections';
 
 type StateEntry = {
   expiresAt: number;
+  workspaceId: string;
+  userId: string | null;
 };
 
 type XeroTokenResponse = {
@@ -41,7 +43,10 @@ export class XeroOAuthService {
     return this.twentyConfigService.get('XERO_INTEGRATION_ENABLED');
   }
 
-  buildAuthorizeUrl(): { url: string; state: string } {
+  buildAuthorizeUrl(args: {
+    workspaceId: string;
+    userId: string | null;
+  }): { url: string; state: string } {
     const clientId = this.twentyConfigService.get('XERO_CLIENT_ID');
     const redirectUri = this.twentyConfigService.get('XERO_REDIRECT_URI');
     const scopes = this.twentyConfigService.get('XERO_SCOPES');
@@ -52,7 +57,7 @@ export class XeroOAuthService {
 
     const state = randomBytes(24).toString('hex');
 
-    this.rememberState(state);
+    this.rememberState(state, args.workspaceId, args.userId);
 
     const params = new URLSearchParams({
       response_type: 'code',
@@ -65,17 +70,17 @@ export class XeroOAuthService {
     return { url: `${XERO_AUTHORIZE_URL}?${params.toString()}`, state };
   }
 
-  consumeState(state: string): boolean {
+  consumeState(state: string): StateEntry | null {
     this.purgeExpiredStates();
     const entry = this.pendingStates.get(state);
 
     if (!entry || entry.expiresAt < Date.now()) {
-      return false;
+      return null;
     }
 
     this.pendingStates.delete(state);
 
-    return true;
+    return entry;
   }
 
   async exchangeCodeForTokens(code: string): Promise<XeroTokenResponse> {
@@ -126,8 +131,16 @@ export class XeroOAuthService {
     return (await response.json()) as XeroTenant[];
   }
 
-  private rememberState(state: string): void {
-    this.pendingStates.set(state, { expiresAt: Date.now() + STATE_TTL_MS });
+  private rememberState(
+    state: string,
+    workspaceId: string,
+    userId: string | null,
+  ): void {
+    this.pendingStates.set(state, {
+      expiresAt: Date.now() + STATE_TTL_MS,
+      workspaceId,
+      userId,
+    });
     this.purgeExpiredStates();
   }
 
