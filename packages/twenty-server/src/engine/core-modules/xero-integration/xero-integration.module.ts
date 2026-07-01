@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { TokenModule } from 'src/engine/core-modules/auth/token/token.module';
 import { JwtModule } from 'src/engine/core-modules/jwt/jwt.module';
 import { SecretEncryptionModule } from 'src/engine/core-modules/secret-encryption/secret-encryption.module';
 import { TwentyConfigModule } from 'src/engine/core-modules/twenty-config/twenty-config.module';
@@ -18,6 +19,7 @@ import { WorkspaceCacheModule } from 'src/engine/workspace-cache/workspace-cache
     TwentyConfigModule,
     SecretEncryptionModule,
     JwtModule,
+    TokenModule,
     WorkspaceCacheModule,
     WorkspaceCacheStorageModule,
     PermissionsModule,
