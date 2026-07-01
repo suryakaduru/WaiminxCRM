@@ -12,11 +12,17 @@ import {
 } from '@nestjs/common';
 
 import { Response } from 'express';
+import { PermissionFlagType } from 'twenty-shared/constants';
 
-import { NoPermissionGuard } from 'src/engine/guards/no-permission.guard';
-import { PublicEndpointGuard } from 'src/engine/guards/public-endpoint.guard';
+import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 import { XeroConnectionService } from 'src/engine/core-modules/xero-integration/services/xero-connection.service';
 import { XeroOAuthService } from 'src/engine/core-modules/xero-integration/services/xero-oauth.service';
+import { AuthWorkspace } from 'src/engine/decorators/auth/auth-workspace.decorator';
+import { JwtAuthGuard } from 'src/engine/guards/jwt-auth.guard';
+import { NoPermissionGuard } from 'src/engine/guards/no-permission.guard';
+import { PublicEndpointGuard } from 'src/engine/guards/public-endpoint.guard';
+import { SettingsPermissionGuard } from 'src/engine/guards/settings-permission.guard';
+import { WorkspaceAuthGuard } from 'src/engine/guards/workspace-auth.guard';
 
 @Controller('auth/xero')
 export class XeroController {
@@ -27,19 +33,62 @@ export class XeroController {
     private readonly xeroConnectionService: XeroConnectionService,
   ) {}
 
+  @Get('status')
+  @UseGuards(
+    JwtAuthGuard,
+    WorkspaceAuthGuard,
+    SettingsPermissionGuard(PermissionFlagType.WORKSPACE),
+  )
+  async status(@AuthWorkspace() workspace: WorkspaceEntity) {
+    const connections = await this.xeroConnectionService.listByWorkspace(
+      workspace.id,
+    );
+
+    return {
+      enabled: this.xeroOAuthService.isEnabled(),
+      connections: connections.map((connection) => ({
+        tenantId: connection.tenantId,
+        tenantName: connection.tenantName,
+        tenantType: connection.tenantType,
+        scopes: connection.scopes,
+        accessTokenExpiresAt: connection.accessTokenExpiresAt,
+        createdAt: connection.createdAt,
+        updatedAt: connection.updatedAt,
+      })),
+    };
+  }
+
+  @Delete('connections/:tenantId')
+  @UseGuards(
+    JwtAuthGuard,
+    WorkspaceAuthGuard,
+    SettingsPermissionGuard(PermissionFlagType.WORKSPACE),
+  )
+  async disconnect(
+    @Param('tenantId') tenantId: string,
+    @AuthWorkspace() workspace: WorkspaceEntity,
+  ) {
+    await this.xeroConnectionService.deleteByWorkspaceAndTenant(
+      workspace.id,
+      tenantId,
+    );
+
+    return { ok: true };
+  }
+
   @Get('debug/invoices')
-  @UseGuards(PublicEndpointGuard, NoPermissionGuard)
+  @UseGuards(
+    JwtAuthGuard,
+    WorkspaceAuthGuard,
+    SettingsPermissionGuard(PermissionFlagType.WORKSPACE),
+  )
   async debugInvoices(
-    @Query('workspaceId') workspaceId: string | undefined,
+    @AuthWorkspace() workspace: WorkspaceEntity,
     @Query('tenantId') tenantId: string | undefined,
     @Query('limit') limit: string | undefined,
   ) {
-    if (!workspaceId) {
-      throw new BadRequestException('Missing workspaceId query parameter');
-    }
-
     const connections = await this.xeroConnectionService.listByWorkspace(
-      workspaceId,
+      workspace.id,
     );
     const connection = tenantId
       ? connections.find((row) => row.tenantId === tenantId)
@@ -47,7 +96,7 @@ export class XeroController {
 
     if (!connection) {
       throw new NotFoundException(
-        `No Xero connection for workspace ${workspaceId}`,
+        `No Xero connection for this workspace`,
       );
     }
 
@@ -100,72 +149,23 @@ export class XeroController {
     };
   }
 
-  @Get('status')
-  @UseGuards(PublicEndpointGuard, NoPermissionGuard)
-  async status(@Query('workspaceId') workspaceId: string | undefined) {
-    if (!workspaceId) {
-      throw new BadRequestException('Missing workspaceId query parameter');
-    }
-
-    const connections = await this.xeroConnectionService.listByWorkspace(
-      workspaceId,
-    );
-
-    return {
-      enabled: this.xeroOAuthService.isEnabled(),
-      connections: connections.map((connection) => ({
-        tenantId: connection.tenantId,
-        tenantName: connection.tenantName,
-        tenantType: connection.tenantType,
-        scopes: connection.scopes,
-        accessTokenExpiresAt: connection.accessTokenExpiresAt,
-        createdAt: connection.createdAt,
-        updatedAt: connection.updatedAt,
-      })),
-    };
-  }
-
-  @Delete('connections/:tenantId')
-  @UseGuards(PublicEndpointGuard, NoPermissionGuard)
-  async disconnect(
-    @Param('tenantId') tenantId: string,
-    @Query('workspaceId') workspaceId: string | undefined,
-  ) {
-    if (!workspaceId) {
-      throw new BadRequestException('Missing workspaceId query parameter');
-    }
-
-    await this.xeroConnectionService.deleteByWorkspaceAndTenant(
-      workspaceId,
-      tenantId,
-    );
-
-    return { ok: true };
-  }
-
   @Get('connect')
-  @UseGuards(PublicEndpointGuard, NoPermissionGuard)
-  connect(
-    @Query('workspaceId') workspaceId: string | undefined,
-    @Query('userId') userId: string | undefined,
-    @Res() res: Response,
-  ) {
+  @UseGuards(
+    JwtAuthGuard,
+    WorkspaceAuthGuard,
+    SettingsPermissionGuard(PermissionFlagType.WORKSPACE),
+  )
+  connect(@AuthWorkspace() workspace: WorkspaceEntity) {
     if (!this.xeroOAuthService.isEnabled()) {
       throw new NotFoundException('Xero integration is not enabled');
     }
 
-    if (!workspaceId) {
-      throw new BadRequestException(
-        'Missing workspaceId query parameter on /auth/xero/connect',
-      );
-    }
-
     const { url } = this.xeroOAuthService.buildAuthorizeUrl({
-      workspaceId,
-      userId: userId ?? null,
+      workspaceId: workspace.id,
+      userId: null,
     });
 
-    return res.redirect(url);
+    return { authorizeUrl: url };
   }
 
   @Get('callback')
@@ -231,7 +231,7 @@ export class XeroController {
         '<html><body style="font-family:system-ui;padding:48px;text-align:center;">' +
           '<h1>Xero connected ✓</h1>' +
           `<p>${tenants.length} tenant(s) saved to workspace.</p>` +
-          '<p><a href="/finance">Open Finance Dashboard</a></p>' +
+          '<p><a href="/settings/integrations">Back to settings</a></p>' +
           '</body></html>',
       );
   }

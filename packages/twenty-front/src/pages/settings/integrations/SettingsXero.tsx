@@ -1,17 +1,17 @@
-import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
+import { tokenPairState } from '@/auth/states/tokenPairState';
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
 import { SettingsPageLayout } from '@/settings/components/layout/SettingsPageLayout';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
+import { xeroFetch } from '@/xero-integration/utils/xero-api';
 import { styled } from '@linaria/react';
 import { Trans, useLingui } from '@lingui/react/macro';
 import { useCallback, useEffect, useState } from 'react';
 import { SettingsPath } from 'twenty-shared/types';
-import { getSettingsPath, isDefined } from 'twenty-shared/utils';
+import { getSettingsPath } from 'twenty-shared/utils';
 import { H2Title } from 'twenty-ui/display';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
-import { REACT_APP_SERVER_BASE_URL } from '~/config';
 
 type XeroConnection = {
   tenantId: string;
@@ -71,7 +71,7 @@ const StyledEmpty = styled.p`
   margin: 0;
 `;
 
-const StyledDisabledBanner = styled.div`
+const StyledBanner = styled.div`
   background: ${themeCssVariables.background.tertiary};
   border-radius: ${themeCssVariables.border.radius.md};
   color: ${themeCssVariables.font.color.secondary};
@@ -94,30 +94,20 @@ const formatDate = (value: string) => {
 
 export const SettingsXero = () => {
   const { t } = useLingui();
-  const currentWorkspace = useAtomStateValue(currentWorkspaceState);
-  const workspaceId = currentWorkspace?.id;
+  const tokenPair = useAtomStateValue(tokenPairState);
   const [status, setStatus] = useState<XeroStatus | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const fetchStatus = useCallback(async () => {
-    if (!isDefined(workspaceId)) {
-      return;
-    }
-
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await fetch(
-        `${REACT_APP_SERVER_BASE_URL}/auth/xero/status?workspaceId=${workspaceId}`,
+      const data = await xeroFetch<XeroStatus>(
+        '/auth/xero/status',
+        tokenPair,
       );
-
-      if (!response.ok) {
-        throw new Error(`Status request failed: ${response.status}`);
-      }
-
-      const data = (await response.json()) as XeroStatus;
 
       setStatus(data);
     } catch (err) {
@@ -125,30 +115,34 @@ export const SettingsXero = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [workspaceId]);
+  }, [tokenPair]);
 
   useEffect(() => {
     void fetchStatus();
   }, [fetchStatus]);
 
-  const handleConnect = () => {
-    if (!isDefined(workspaceId)) {
-      return;
+  const handleConnect = async () => {
+    try {
+      const { authorizeUrl } = await xeroFetch<{ authorizeUrl: string }>(
+        '/auth/xero/connect',
+        tokenPair,
+      );
+
+      window.location.href = authorizeUrl;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to start Xero flow');
     }
-    window.location.href = `${REACT_APP_SERVER_BASE_URL}/auth/xero/connect?workspaceId=${workspaceId}`;
   };
 
   const handleDisconnect = async (tenantId: string) => {
-    if (!isDefined(workspaceId)) {
-      return;
+    try {
+      await xeroFetch(`/auth/xero/connections/${tenantId}`, tokenPair, {
+        method: 'DELETE',
+      });
+      await fetchStatus();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to disconnect');
     }
-
-    await fetch(
-      `${REACT_APP_SERVER_BASE_URL}/auth/xero/connections/${tenantId}?workspaceId=${workspaceId}`,
-      { method: 'DELETE' },
-    );
-
-    await fetchStatus();
   };
 
   return (
@@ -171,19 +165,19 @@ export const SettingsXero = () => {
           />
 
           {status && !status.enabled && (
-            <StyledDisabledBanner>
+            <StyledBanner>
               <Trans>
                 Xero integration is not enabled on this server. Set
                 XERO_INTEGRATION_ENABLED=true and provide XERO_CLIENT_ID +
                 XERO_CLIENT_SECRET in the server env.
               </Trans>
-            </StyledDisabledBanner>
+            </StyledBanner>
           )}
 
           {error && (
-            <StyledDisabledBanner>
+            <StyledBanner>
               <Trans>Failed to load Xero status: {error}</Trans>
-            </StyledDisabledBanner>
+            </StyledBanner>
           )}
 
           <StyledActions>
@@ -191,8 +185,8 @@ export const SettingsXero = () => {
               variant="primary"
               accent="blue"
               title={t`Connect Xero`}
-              onClick={handleConnect}
-              disabled={!isDefined(workspaceId) || status?.enabled === false}
+              onClick={() => void handleConnect()}
+              disabled={status?.enabled === false}
             />
             <Button
               variant="secondary"
