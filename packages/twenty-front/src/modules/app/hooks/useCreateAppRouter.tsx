@@ -106,6 +106,18 @@ const FinanceDashboard = lazy(() =>
   })),
 );
 
+const FinanceWeeklyPlanner = lazy(() =>
+  import('~/pages/finance/FinanceWeeklyPlanner').then((module) => ({
+    default: module.FinanceWeeklyPlanner,
+  })),
+);
+
+const FinanceBanks = lazy(() =>
+  import('~/pages/finance/FinanceBanks').then((module) => ({
+    default: module.FinanceBanks,
+  })),
+);
+
 const NotFound = lazy(() =>
   import('~/pages/not-found/NotFound').then((module) => ({
     default: module.NotFound,
@@ -245,6 +257,22 @@ export const useCreateAppRouter = (
             element={
               <LazyRoute>
                 <FinanceDashboard />
+              </LazyRoute>
+            }
+          />
+          <Route
+            path={AppPath.FinanceWeeklyPlanner}
+            element={
+              <LazyRoute>
+                <FinanceWeeklyPlanner />
+              </LazyRoute>
+            }
+          />
+          <Route
+            path={AppPath.FinanceBanks}
+            element={
+              <LazyRoute>
+                <FinanceBanks />
               </LazyRoute>
             }
           />

@@ -1,7 +1,7 @@
 import { useLingui } from '@lingui/react/macro';
 import { useNavigate } from 'react-router-dom';
 import { AppPath, SettingsPath } from 'twenty-shared/types';
-import { IconCoins, IconHelpCircle, IconSettings } from 'twenty-ui/display';
+import { IconMoneybag, IconCalendarDue, IconCoins, IconHelpCircle, IconSettings } from 'twenty-ui/display';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
 
 import { currentWorkspaceMemberState } from '@/auth/states/currentWorkspaceMemberState';
@@ -53,6 +53,16 @@ export const NavigationDrawerOtherSection = () => {
           label={t`Finance`}
           Icon={IconCoins}
           onClick={() => navigate(AppPath.FinanceDashboard)}
+        />
+        <NavigationDrawerItem
+          label={t`Weekly Planner`}
+          Icon={IconCalendarDue}
+          onClick={() => navigate(AppPath.FinanceWeeklyPlanner)}
+        />
+        <NavigationDrawerItem
+          label={t`Bank Accounts`}
+          Icon={IconMoneybag}
+          onClick={() => navigate(AppPath.FinanceBanks)}
         />
         <NavigationDrawerItem
           label={t`Settings`}

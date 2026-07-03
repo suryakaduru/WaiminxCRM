@@ -26,6 +26,8 @@ export enum AppPath {
   PageLayoutPage = '/page/:pageLayoutId',
 
   FinanceDashboard = '/finance',
+  FinanceWeeklyPlanner = '/finance/weekly-planner',
+  FinanceBanks = '/finance/banks',
 
   Settings = `settings`,
   SettingsCatchAll = `/${Settings}/*`,

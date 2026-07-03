@@ -4,9 +4,51 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { xeroFetch } from '@/xero-integration/utils/xero-api';
 import { styled } from '@linaria/react';
 import { Trans, useLingui } from '@lingui/react/macro';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AppPath } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
+import { FinanceRemindersSettings } from './FinanceRemindersSettings';
+
+type AgingRow = {
+  currencyCode: string;
+  current: number;
+  d1_30: number;
+  d31_60: number;
+  d61_90: number;
+  d90_plus: number;
+  total: number;
+  count: number;
+};
+
+type AgingResponse = {
+  asOf: string;
+  receivable: AgingRow[];
+  payable: AgingRow[];
+};
+
+type CashRow = { currencyCode: string; bankCount: number; balance: number };
+
+type CashResponse = { asOf: string; byCurrency: CashRow[] };
+
+type BankAccount = {
+  id: string;
+  bankName: string;
+  accountLabel: string | null;
+  currencyCode: string;
+  balance: string;
+  source: string;
+};
+
+type SyncCursor = {
+  tenantId: string;
+  entityType: 'invoices' | 'contacts' | 'bankAccounts';
+  status: 'idle' | 'running' | 'error';
+  lastSyncedAt: string | null;
+  lastError: string | null;
+  recordsSyncedLastRun: number;
+};
 
 const StyledContainer = styled.div`
   display: flex;
@@ -18,16 +60,22 @@ const StyledContainer = styled.div`
   width: 100%;
 `;
 
-const StyledHeader = styled.div`
+const StyledHeader = styled.header`
+  display: flex;
+  gap: ${themeCssVariables.spacing[4]};
+  justify-content: space-between;
+`;
+
+const StyledHeadings = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
+  gap: ${themeCssVariables.spacing[1]};
 `;
 
 const StyledTitle = styled.h1`
   color: ${themeCssVariables.font.color.primary};
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.01em;
   margin: 0;
 `;
@@ -36,70 +84,135 @@ const StyledSubtitle = styled.p`
   color: ${themeCssVariables.font.color.tertiary};
   font-size: 14px;
   margin: 0;
+  max-width: 720px;
 `;
 
-const StyledSectionTitle = styled.h2`
-  color: ${themeCssVariables.font.color.secondary};
+const StyledSyncRow = styled.div`
+  align-items: center;
+  display: flex;
+  gap: ${themeCssVariables.spacing[3]};
+`;
+
+const StyledPill = styled.span`
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 500;
+  gap: 6px;
+  padding: 4px 10px;
+
+  &::before {
+    background: currentColor;
+    border-radius: 50%;
+    content: '';
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+  }
+`;
+
+const StyledPrimaryButton = styled.button`
+  background: #2563eb;
+  border: none;
+  border-radius: ${themeCssVariables.border.radius.sm};
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[4]};
+
+  &:hover { background: #1d4ed8; }
+  &:disabled { opacity: 0.6; cursor: not-allowed; }
+`;
+
+const StyledSecondaryButton = styled.button`
+  background: ${themeCssVariables.background.primary};
+  border: 1px solid ${themeCssVariables.border.color.medium};
+  border-radius: ${themeCssVariables.border.radius.sm};
+  color: ${themeCssVariables.font.color.primary};
+  cursor: pointer;
   font-size: 13px;
+  padding: ${themeCssVariables.spacing[2]} ${themeCssVariables.spacing[3]};
+
+  &:hover { background: ${themeCssVariables.background.secondary}; }
+`;
+
+const StyledKPIGrid = styled.section`
+  display: grid;
+  gap: ${themeCssVariables.spacing[4]};
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+`;
+
+const StyledKPI = styled.div`
+  background: ${themeCssVariables.background.primary};
+  border: 1px solid ${themeCssVariables.border.color.medium};
+  border-radius: ${themeCssVariables.border.radius.md};
+  display: flex;
+  flex-direction: column;
+  gap: ${themeCssVariables.spacing[1]};
+  padding: ${themeCssVariables.spacing[4]};
+`;
+
+const StyledKPILabel = styled.span`
+  color: ${themeCssVariables.font.color.tertiary};
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.04em;
-  margin: 0;
   text-transform: uppercase;
+`;
+
+const StyledKPIValue = styled.span`
+  color: ${themeCssVariables.font.color.primary};
+  font-size: 22px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+`;
+
+const StyledKPIHint = styled.span`
+  color: ${themeCssVariables.font.color.tertiary};
+  font-size: 12px;
 `;
 
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
-  gap: ${themeCssVariables.spacing[4]};
+  gap: ${themeCssVariables.spacing[3]};
 `;
 
-const StyledGrid = styled.div`
-  display: grid;
-  gap: ${themeCssVariables.spacing[4]};
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+const StyledSectionHeader = styled.div`
+  align-items: baseline;
+  display: flex;
+  gap: ${themeCssVariables.spacing[3]};
+  justify-content: space-between;
+`;
+
+const StyledSectionTitle = styled.h2`
+  color: ${themeCssVariables.font.color.primary};
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+`;
+
+const StyledSectionDescription = styled.p`
+  color: ${themeCssVariables.font.color.tertiary};
+  font-size: 12px;
+  margin: 0;
+  max-width: 640px;
 `;
 
 const StyledCard = styled.div`
   background: ${themeCssVariables.background.primary};
   border: 1px solid ${themeCssVariables.border.color.medium};
   border-radius: ${themeCssVariables.border.radius.md};
-  display: flex;
-  flex-direction: column;
-  gap: ${themeCssVariables.spacing[2]};
-  padding: ${themeCssVariables.spacing[4]};
-`;
-
-const StyledCardLabel = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-`;
-
-const StyledCardValue = styled.span`
-  color: ${themeCssVariables.font.color.primary};
-  font-size: 22px;
-  font-weight: 500;
-`;
-
-const StyledCardHint = styled.span`
-  color: ${themeCssVariables.font.color.tertiary};
-  font-size: 12px;
-`;
-
-const StyledBanner = styled.div`
-  background: ${themeCssVariables.background.secondary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
-  color: ${themeCssVariables.font.color.secondary};
-  font-size: 13px;
-  padding: ${themeCssVariables.spacing[3]} ${themeCssVariables.spacing[4]};
+  overflow: hidden;
 `;
 
 const StyledTable = styled.table`
   border-collapse: collapse;
   width: 100%;
+
+  & thead { background: ${themeCssVariables.background.secondary}; }
 
   & th,
   & td {
@@ -111,46 +224,44 @@ const StyledTable = styled.table`
 
   & th {
     color: ${themeCssVariables.font.color.tertiary};
-    font-weight: 500;
-    text-transform: uppercase;
     font-size: 11px;
-    letter-spacing: 0.04em;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
-  & td {
-    color: ${themeCssVariables.font.color.primary};
+  & tr:last-child td { border-bottom: none; }
+
+  & td.num,
+  & th.num {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
   }
 `;
 
-type Invoice = {
-  invoiceID: string;
-  invoiceNumber: string;
-  type: 'ACCREC' | 'ACCPAY';
-  status: string;
-  date: string;
-  dueDate: string;
-  contactName: string;
-  total: number;
-  amountDue: number;
-  amountPaid: number;
-  currencyCode: string;
-};
+const StyledBankGrid = styled.div`
+  display: grid;
+  gap: ${themeCssVariables.spacing[3]};
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  padding: ${themeCssVariables.spacing[4]};
+`;
 
-type DebugResponse = {
-  tenantId: string;
-  tenantName: string | null;
-  count: number;
-  invoices: Invoice[];
-};
+const StyledBankBlock = styled.div`
+  border: 1px solid ${themeCssVariables.border.color.light};
+  border-radius: ${themeCssVariables.border.radius.sm};
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: ${themeCssVariables.spacing[3]};
+`;
 
-const BANK_CARDS = [
-  { label: 'BNZ', hint: 'Manual entry — coming soon' },
-  { label: 'Wise', hint: 'Auto-sync (Phase 2)' },
-  { label: 'Statrys', hint: 'Auto-sync (Phase 2)' },
-  { label: 'UOB', hint: 'Manual entry — coming soon' },
-];
+const StyledEmpty = styled.div`
+  color: ${themeCssVariables.font.color.tertiary};
+  padding: ${themeCssVariables.spacing[8]};
+  text-align: center;
+`;
 
-const formatMoney = (amount: number, currency = 'USD'): string => {
+const fmt = (amount: number, currency: string): string => {
   try {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -162,226 +273,571 @@ const formatMoney = (amount: number, currency = 'USD'): string => {
   }
 };
 
-const formatDate = (value: string): string => {
-  try {
-    return new Date(value).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-    });
-  } catch {
-    return value;
-  }
+const formatRelative = (iso: string | null): string => {
+  if (!iso) return 'never';
+  const diffMs = Date.now() - new Date(iso).getTime();
+  const mins = Math.round(diffMs / 60000);
+
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins}m ago`;
+  const hours = Math.round(mins / 60);
+
+  if (hours < 24) return `${hours}h ago`;
+
+  return `${Math.round(hours / 24)}d ago`;
+};
+
+const syncTone = (
+  lastSyncedAt: string | null,
+  hasError: boolean,
+): 'ok' | 'warn' | 'err' => {
+  if (hasError) return 'err';
+  if (!lastSyncedAt) return 'warn';
+  const ageMin = (Date.now() - new Date(lastSyncedAt).getTime()) / 60000;
+
+  if (ageMin > 60) return 'warn';
+
+  return 'ok';
+};
+
+const AgingBar = ({ row }: { row: AgingRow }) => {
+  const buckets = [
+    { v: row.current, c: '#10b981' },
+    { v: row.d1_30, c: '#facc15' },
+    { v: row.d31_60, c: '#f97316' },
+    { v: row.d61_90, c: '#ef4444' },
+    { v: row.d90_plus, c: '#7f1d1d' },
+  ];
+  const total = row.total || 1;
+
+  return (
+    <div style={{ display: 'flex', height: 8, borderRadius: 4, overflow: 'hidden' }}>
+      {buckets.map((b, i) => (
+        <div
+          key={i}
+          title={fmt(b.v, row.currencyCode)}
+          style={{ background: b.c, flex: b.v / total }}
+        />
+      ))}
+    </div>
+  );
 };
 
 export const FinanceDashboard = () => {
   const { t } = useLingui();
+  const navigate = useNavigate();
   const tokenPair = useAtomStateValue(tokenPairState);
-  const [data, setData] = useState<DebugResponse | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [aging, setAging] = useState<AgingResponse | null>(null);
+  const [cash, setCash] = useState<CashResponse | null>(null);
+  const [banks, setBanks] = useState<BankAccount[]>([]);
+  const [syncCursors, setSyncCursors] = useState<SyncCursor[]>([]);
+  const [isSyncing, setIsSyncing] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!isDefined(tokenPair?.accessOrWorkspaceAgnosticToken?.token)) {
-      return;
+  const loadAll = useCallback(async () => {
+    if (!isDefined(tokenPair?.accessOrWorkspaceAgnosticToken?.token)) return;
+    try {
+      setError(null);
+      const [a, c, b, s] = await Promise.all([
+        xeroFetch<AgingResponse>('/finance/aging', tokenPair),
+        xeroFetch<CashResponse>('/finance/cash-position', tokenPair),
+        xeroFetch<BankAccount[]>('/finance/bank-accounts', tokenPair),
+        xeroFetch<{ cursors: SyncCursor[] }>(
+          '/finance/xero/sync/status',
+          tokenPair,
+        ),
+      ]);
+
+      setAging(a);
+      setCash(c);
+      setBanks(b);
+      setSyncCursors(s.cursors);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
     }
-
-    setIsLoading(true);
-    setError(null);
-
-    xeroFetch<DebugResponse>(
-      '/auth/xero/debug/invoices?limit=100',
-      tokenPair,
-    )
-      .then((json) => setData(json))
-      .catch((err) =>
-        setError(err instanceof Error ? err.message : 'Unknown error'),
-      )
-      .finally(() => setIsLoading(false));
   }, [tokenPair]);
 
-  const invoices = data?.invoices ?? [];
-  const currency = invoices[0]?.currencyCode ?? 'USD';
+  useEffect(() => {
+    void loadAll();
+  }, [loadAll]);
 
-  const accountsReceivable = invoices
-    .filter((inv) => inv.type === 'ACCREC' && inv.status === 'AUTHORISED')
-    .reduce((sum, inv) => sum + (inv.amountDue ?? 0), 0);
+  const handleSync = async () => {
+    if (!tokenPair) return;
+    setIsSyncing(true);
+    try {
+      await xeroFetch('/finance/xero/sync', tokenPair, { method: 'POST' });
+      await loadAll();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Sync failed');
+    } finally {
+      setIsSyncing(false);
+    }
+  };
 
-  const accountsPayable = invoices
-    .filter((inv) => inv.type === 'ACCPAY' && inv.status === 'AUTHORISED')
-    .reduce((sum, inv) => sum + (inv.amountDue ?? 0), 0);
+  // Group banks by bank name (a bank has multiple currency accounts)
+  const banksByBank = new Map<string, BankAccount[]>();
 
-  const netForecast = accountsReceivable - accountsPayable;
+  for (const account of banks) {
+    const list = banksByBank.get(account.bankName) ?? [];
 
-  const totalCash = '—';
+    list.push(account);
+    banksByBank.set(account.bankName, list);
+  }
 
-  const recentInvoices = [...invoices]
-    .sort(
-      (a, b) =>
-        new Date(b.date).getTime() - new Date(a.date).getTime(),
-    )
-    .slice(0, 8);
+  const lastSyncedAt =
+    syncCursors
+      .map((c) => c.lastSyncedAt)
+      .filter(Boolean)
+      .sort()
+      .pop() ?? null;
+  const hasSyncError = syncCursors.some((c) => c.status === 'error');
+  const tone = syncTone(lastSyncedAt, hasSyncError);
 
-  const hasXeroData = isDefined(data) && data.count > 0;
+  // Top-level KPIs (per currency roll-up).
+  const arTotal = new Map<string, number>();
+  const apTotal = new Map<string, number>();
+  const arOverdue = new Map<string, number>();
+
+  aging?.receivable.forEach((r) => {
+    arTotal.set(r.currencyCode, r.total);
+    arOverdue.set(
+      r.currencyCode,
+      r.d1_30 + r.d31_60 + r.d61_90 + r.d90_plus,
+    );
+  });
+  aging?.payable.forEach((r) => apTotal.set(r.currencyCode, r.total));
+
+  const currencies = Array.from(
+    new Set([
+      ...(cash?.byCurrency.map((c) => c.currencyCode) ?? []),
+      ...arTotal.keys(),
+      ...apTotal.keys(),
+    ]),
+  ).sort();
+
+  // Default to the currency with the most activity (cash + A/R + A/P),
+  // so all-zero currencies don't hide the real numbers.
+  const activityOf = (ccy: string) =>
+    (cash?.byCurrency.find((c) => c.currencyCode === ccy)?.balance ?? 0) +
+    (arTotal.get(ccy) ?? 0) +
+    (apTotal.get(ccy) ?? 0);
+  const busiestCurrency = [...currencies].sort(
+    (a, b) => activityOf(b) - activityOf(a),
+  )[0];
+  const primaryCurrency = selectedCurrency ?? busiestCurrency ?? 'NZD';
+  const primaryCash =
+    cash?.byCurrency.find((c) => c.currencyCode === primaryCurrency)?.balance ??
+    0;
+  const primaryAr = arTotal.get(primaryCurrency) ?? 0;
+  const primaryAp = apTotal.get(primaryCurrency) ?? 0;
+  const primaryOverdue = arOverdue.get(primaryCurrency) ?? 0;
+
+  // Currencies that have invoice activity (A/R or A/P) but NO bank account.
+  // Without a matching bank, the planner can't show a real cash runway for them.
+  const bankCurrencies = new Set(
+    cash?.byCurrency.map((c) => c.currencyCode) ?? [],
+  );
+  const invoiceCurrencies = new Set<string>([
+    ...arTotal.keys(),
+    ...apTotal.keys(),
+  ]);
+  const missingBankCurrencies = [...invoiceCurrencies].filter(
+    (ccy) => !bankCurrencies.has(ccy),
+  );
 
   return (
     <>
       <PageTitle title={t`Finance Dashboard | Waimin`} />
       <StyledContainer>
         <StyledHeader>
-          <StyledTitle>
-            <Trans>Finance Dashboard</Trans>
-          </StyledTitle>
-          <StyledSubtitle>
-            {hasXeroData ? (
+          <StyledHeadings>
+            <StyledTitle>
+              <Trans>Finance Dashboard</Trans>
+            </StyledTitle>
+            <StyledSubtitle>
               <Trans>
-                Live data from {data?.tenantName ?? 'Xero'} · {data?.count}{' '}
-                invoices loaded
+                Live snapshot of your cash, receivables and payables. Data comes
+                from Xero (invoices, contacts) and manual bank balances. Use
+                this to answer "how are we doing right now?" — for "what should
+                we pay Friday?" open the Weekly Planner.
               </Trans>
-            ) : (
-              <Trans>
-                Real-time cash position, receivables, payables and bank
-                balances.
-              </Trans>
-            )}
-          </StyledSubtitle>
+            </StyledSubtitle>
+          </StyledHeadings>
+          <StyledSyncRow>
+            <StyledPill
+              style={{
+                background:
+                  tone === 'ok'
+                    ? 'rgba(16,185,129,0.12)'
+                    : tone === 'warn'
+                      ? 'rgba(234,179,8,0.15)'
+                      : 'rgba(220,38,38,0.12)',
+                color:
+                  tone === 'ok'
+                    ? '#059669'
+                    : tone === 'warn'
+                      ? '#a16207'
+                      : '#b91c1c',
+              }}
+            >
+              <Trans>Xero {formatRelative(lastSyncedAt)}</Trans>
+            </StyledPill>
+            <StyledSecondaryButton onClick={handleSync} disabled={isSyncing}>
+              {isSyncing ? <Trans>Syncing…</Trans> : <Trans>Sync now</Trans>}
+            </StyledSecondaryButton>
+            <StyledPrimaryButton
+              onClick={() => navigate(AppPath.FinanceWeeklyPlanner)}
+            >
+              <Trans>Open Weekly Planner →</Trans>
+            </StyledPrimaryButton>
+          </StyledSyncRow>
         </StyledHeader>
 
         {error && (
-          <StyledBanner>
-            <Trans>
-              Could not load Xero data: {error}. Connect Xero in Settings →
-              Integrations.
-            </Trans>
-          </StyledBanner>
+          <StyledCard style={{ padding: 16, color: '#b91c1c' }}>{error}</StyledCard>
         )}
 
-        {isLoading && !data && (
-          <StyledBanner>
-            <Trans>Loading Xero data…</Trans>
-          </StyledBanner>
+        {missingBankCurrencies.length > 0 && (
+          <StyledCard
+            style={{
+              padding: '14px 18px',
+              background: 'rgba(234,179,8,0.10)',
+              borderColor: 'rgba(234,179,8,0.4)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 16,
+            }}
+          >
+            <div style={{ fontSize: 13, color: '#854d0e' }}>
+              <strong>
+                <Trans>Missing bank accounts</Trans>
+              </strong>
+              <div style={{ marginTop: 2 }}>
+                <Trans>
+                  You have invoices in {missingBankCurrencies.join(', ')} but no
+                  bank account in {missingBankCurrencies.length > 1 ? 'those currencies' : 'that currency'}.
+                  Add one so the Weekly Planner can show your real cash position.
+                </Trans>
+              </div>
+            </div>
+            <StyledPrimaryButton onClick={() => navigate(AppPath.FinanceBanks)}>
+              <Trans>Add bank →</Trans>
+            </StyledPrimaryButton>
+          </StyledCard>
         )}
 
         <StyledSection>
-          <StyledSectionTitle>
-            <Trans>Cash position</Trans>
-          </StyledSectionTitle>
-          <StyledGrid>
-            <StyledCard>
-              <StyledCardLabel>
-                <Trans>Total cash</Trans>
-              </StyledCardLabel>
-              <StyledCardValue>{totalCash}</StyledCardValue>
-              <StyledCardHint>
-                <Trans>Sum across banks (Phase 2)</Trans>
-              </StyledCardHint>
-            </StyledCard>
-            <StyledCard>
-              <StyledCardLabel>
-                <Trans>Accounts receivable</Trans>
-              </StyledCardLabel>
-              <StyledCardValue>
-                {hasXeroData ? formatMoney(accountsReceivable, currency) : '—'}
-              </StyledCardValue>
-              <StyledCardHint>
-                <Trans>Outstanding from customers</Trans>
-              </StyledCardHint>
-            </StyledCard>
-            <StyledCard>
-              <StyledCardLabel>
-                <Trans>Accounts payable</Trans>
-              </StyledCardLabel>
-              <StyledCardValue>
-                {hasXeroData ? formatMoney(accountsPayable, currency) : '—'}
-              </StyledCardValue>
-              <StyledCardHint>
-                <Trans>Owed to suppliers</Trans>
-              </StyledCardHint>
-            </StyledCard>
-            <StyledCard>
-              <StyledCardLabel>
-                <Trans>Net position (A/R − A/P)</Trans>
-              </StyledCardLabel>
-              <StyledCardValue>
-                {hasXeroData ? formatMoney(netForecast, currency) : '—'}
-              </StyledCardValue>
-              <StyledCardHint>
-                <Trans>Receivables minus payables</Trans>
-              </StyledCardHint>
-            </StyledCard>
-          </StyledGrid>
+          <StyledSectionHeader>
+            <div>
+              <StyledSectionTitle style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Trans>At a glance</Trans>
+                {currencies.length > 0 && (
+                  <select
+                    value={primaryCurrency}
+                    onChange={(e) => setSelectedCurrency(e.target.value)}
+                    style={{
+                      background: themeCssVariables.background.secondary,
+                      border: `1px solid ${themeCssVariables.border.color.medium}`,
+                      borderRadius: themeCssVariables.border.radius.sm,
+                      color: themeCssVariables.font.color.primary,
+                      fontSize: 13,
+                      padding: '2px 6px',
+                    }}
+                  >
+                    {currencies.map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                )}
+              </StyledSectionTitle>
+              <StyledSectionDescription>
+                <Trans>
+                  Headline numbers in your primary currency. Full multi-currency
+                  breakdown is below.
+                </Trans>
+              </StyledSectionDescription>
+            </div>
+          </StyledSectionHeader>
+          <StyledKPIGrid>
+            <StyledKPI>
+              <StyledKPILabel>
+                <Trans>Cash on hand</Trans>
+              </StyledKPILabel>
+              <StyledKPIValue>{fmt(primaryCash, primaryCurrency)}</StyledKPIValue>
+              <StyledKPIHint>
+                <Trans>Sum of your bank balances</Trans>
+              </StyledKPIHint>
+            </StyledKPI>
+            <StyledKPI>
+              <StyledKPILabel>
+                <Trans>Money owed to you</Trans>
+              </StyledKPILabel>
+              <StyledKPIValue>{fmt(primaryAr, primaryCurrency)}</StyledKPIValue>
+              <StyledKPIHint>
+                <Trans>Unpaid customer invoices (A/R)</Trans>
+              </StyledKPIHint>
+            </StyledKPI>
+            <StyledKPI>
+              <StyledKPILabel>
+                <Trans>You owe</Trans>
+              </StyledKPILabel>
+              <StyledKPIValue>{fmt(primaryAp, primaryCurrency)}</StyledKPIValue>
+              <StyledKPIHint>
+                <Trans>Unpaid supplier bills (A/P)</Trans>
+              </StyledKPIHint>
+            </StyledKPI>
+            <StyledKPI>
+              <StyledKPILabel>
+                <Trans>Overdue receivables</Trans>
+              </StyledKPILabel>
+              <StyledKPIValue style={{ color: primaryOverdue > 0 ? '#b91c1c' : undefined }}>
+                {fmt(primaryOverdue, primaryCurrency)}
+              </StyledKPIValue>
+              <StyledKPIHint>
+                <Trans>Chase these first</Trans>
+              </StyledKPIHint>
+            </StyledKPI>
+          </StyledKPIGrid>
         </StyledSection>
 
         <StyledSection>
-          <StyledSectionTitle>
-            <Trans>Bank balances</Trans>
-          </StyledSectionTitle>
-          <StyledGrid>
-            {BANK_CARDS.map((card) => (
-              <StyledCard key={card.label}>
-                <StyledCardLabel>{card.label}</StyledCardLabel>
-                <StyledCardValue>—</StyledCardValue>
-                <StyledCardHint>{card.hint}</StyledCardHint>
+          <StyledSectionHeader>
+            <div>
+              <StyledSectionTitle>
+                <Trans>Cash by currency</Trans>
+              </StyledSectionTitle>
+              <StyledSectionDescription>
+                <Trans>
+                  One card per currency. Update balances on the Bank Accounts
+                  page.
+                </Trans>
+              </StyledSectionDescription>
+            </div>
+            <StyledSecondaryButton
+              onClick={() => navigate(AppPath.FinanceBanks)}
+            >
+              <Trans>Manage banks →</Trans>
+            </StyledSecondaryButton>
+          </StyledSectionHeader>
+          <StyledKPIGrid>
+            {cash?.byCurrency.length ? (
+              cash.byCurrency.map((row) => (
+                <StyledKPI key={row.currencyCode}>
+                  <StyledKPILabel>{row.currencyCode}</StyledKPILabel>
+                  <StyledKPIValue>{fmt(row.balance, row.currencyCode)}</StyledKPIValue>
+                  <StyledKPIHint>
+                    <Trans>{row.bankCount} account(s)</Trans>
+                  </StyledKPIHint>
+                </StyledKPI>
+              ))
+            ) : (
+              <StyledCard style={{ gridColumn: '1 / -1' }}>
+                <StyledEmpty>
+                  <p style={{ marginBottom: 8 }}>
+                    <Trans>No bank balances yet.</Trans>
+                  </p>
+                  <StyledPrimaryButton onClick={() => navigate(AppPath.FinanceBanks)}>
+                    + <Trans>Add your first bank</Trans>
+                  </StyledPrimaryButton>
+                </StyledEmpty>
               </StyledCard>
-            ))}
-          </StyledGrid>
+            )}
+          </StyledKPIGrid>
         </StyledSection>
 
-        {recentInvoices.length > 0 && (
-          <StyledSection>
-            <StyledSectionTitle>
-              <Trans>Recent invoices</Trans>
-            </StyledSectionTitle>
-            <StyledCard>
-              <StyledTable>
-                <thead>
-                  <tr>
-                    <th>
-                      <Trans>Date</Trans>
-                    </th>
-                    <th>
-                      <Trans>Number</Trans>
-                    </th>
-                    <th>
-                      <Trans>Type</Trans>
-                    </th>
-                    <th>
-                      <Trans>Contact</Trans>
-                    </th>
-                    <th>
-                      <Trans>Status</Trans>
-                    </th>
-                    <th style={{ textAlign: 'right' }}>
-                      <Trans>Total</Trans>
-                    </th>
-                    <th style={{ textAlign: 'right' }}>
-                      <Trans>Due</Trans>
-                    </th>
+        <StyledSection>
+          <StyledSectionHeader>
+            <div>
+              <StyledSectionTitle>
+                <Trans>Banks</Trans>
+              </StyledSectionTitle>
+              <StyledSectionDescription>
+                <Trans>
+                  Each bank grouped with its currency accounts. Real banks often
+                  hold multiple currencies — track them separately here.
+                </Trans>
+              </StyledSectionDescription>
+            </div>
+          </StyledSectionHeader>
+          <StyledCard>
+            {banksByBank.size === 0 ? (
+              <StyledEmpty>
+                <Trans>Add banks on the Bank Accounts page.</Trans>
+              </StyledEmpty>
+            ) : (
+              <StyledBankGrid>
+                {Array.from(banksByBank.entries()).map(([bankName, accounts]) => (
+                  <StyledBankBlock key={bankName}>
+                    <strong>{bankName}</strong>
+                    {accounts.map((account) => (
+                      <div
+                        key={account.id}
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          fontSize: 13,
+                        }}
+                      >
+                        <span>
+                          {account.currencyCode}
+                          {account.accountLabel ? ` · ${account.accountLabel}` : ''}
+                        </span>
+                        <span style={{ fontVariantNumeric: 'tabular-nums' }}>
+                          {fmt(Number(account.balance), account.currencyCode)}
+                        </span>
+                      </div>
+                    ))}
+                  </StyledBankBlock>
+                ))}
+              </StyledBankGrid>
+            )}
+          </StyledCard>
+        </StyledSection>
+
+        <StyledSection>
+          <StyledSectionHeader>
+            <div>
+              <StyledSectionTitle>
+                <Trans>A/R aging — who owes you</Trans>
+              </StyledSectionTitle>
+              <StyledSectionDescription>
+                <Trans>
+                  Customer invoices grouped by how overdue they are. Green =
+                  not-yet-due, red = 90+ days overdue. Chase the red first.
+                </Trans>
+              </StyledSectionDescription>
+            </div>
+          </StyledSectionHeader>
+          <StyledCard>
+            <StyledTable>
+              <thead>
+                <tr>
+                  <th>
+                    <Trans>CCY</Trans>
+                  </th>
+                  <th style={{ width: '25%' }}>
+                    <Trans>Aging distribution</Trans>
+                  </th>
+                  <th className="num">
+                    <Trans>Current</Trans>
+                  </th>
+                  <th className="num">1–30</th>
+                  <th className="num">31–60</th>
+                  <th className="num">61–90</th>
+                  <th className="num">90+</th>
+                  <th className="num">
+                    <Trans>Total</Trans>
+                  </th>
+                  <th className="num">#</th>
+                </tr>
+              </thead>
+              <tbody>
+                {aging?.receivable.map((row) => (
+                  <tr key={row.currencyCode}>
+                    <td>
+                      <strong>{row.currencyCode}</strong>
+                    </td>
+                    <td>
+                      <AgingBar row={row} />
+                    </td>
+                    <td className="num">{fmt(row.current, row.currencyCode)}</td>
+                    <td className="num">{fmt(row.d1_30, row.currencyCode)}</td>
+                    <td className="num">{fmt(row.d31_60, row.currencyCode)}</td>
+                    <td className="num">{fmt(row.d61_90, row.currencyCode)}</td>
+                    <td className="num">{fmt(row.d90_plus, row.currencyCode)}</td>
+                    <td className="num">
+                      <strong>{fmt(row.total, row.currencyCode)}</strong>
+                    </td>
+                    <td className="num">{row.count}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {recentInvoices.map((invoice) => (
-                    <tr key={invoice.invoiceID}>
-                      <td>{formatDate(invoice.date)}</td>
-                      <td>{invoice.invoiceNumber || '—'}</td>
-                      <td>{invoice.type === 'ACCREC' ? 'Sales' : 'Bill'}</td>
-                      <td>{invoice.contactName || '—'}</td>
-                      <td>{invoice.status}</td>
-                      <td style={{ textAlign: 'right' }}>
-                        {formatMoney(invoice.total ?? 0, invoice.currencyCode)}
-                      </td>
-                      <td style={{ textAlign: 'right' }}>
-                        {formatMoney(
-                          invoice.amountDue ?? 0,
-                          invoice.currencyCode,
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </StyledTable>
-            </StyledCard>
-          </StyledSection>
-        )}
+                ))}
+                {aging?.receivable.length === 0 && (
+                  <tr>
+                    <td colSpan={9}>
+                      <StyledEmpty>
+                        <Trans>No receivables.</Trans>
+                      </StyledEmpty>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </StyledTable>
+          </StyledCard>
+        </StyledSection>
+
+        <StyledSection>
+          <StyledSectionHeader>
+            <div>
+              <StyledSectionTitle>
+                <Trans>A/P aging — what you owe</Trans>
+              </StyledSectionTitle>
+              <StyledSectionDescription>
+                <Trans>
+                  Supplier bills grouped by how overdue they are. Red totals =
+                  suppliers waiting on payment. Prioritise these in the Weekly
+                  Planner.
+                </Trans>
+              </StyledSectionDescription>
+            </div>
+          </StyledSectionHeader>
+          <StyledCard>
+            <StyledTable>
+              <thead>
+                <tr>
+                  <th>
+                    <Trans>CCY</Trans>
+                  </th>
+                  <th style={{ width: '25%' }}>
+                    <Trans>Aging distribution</Trans>
+                  </th>
+                  <th className="num">
+                    <Trans>Current</Trans>
+                  </th>
+                  <th className="num">1–30</th>
+                  <th className="num">31–60</th>
+                  <th className="num">61–90</th>
+                  <th className="num">90+</th>
+                  <th className="num">
+                    <Trans>Total</Trans>
+                  </th>
+                  <th className="num">#</th>
+                </tr>
+              </thead>
+              <tbody>
+                {aging?.payable.map((row) => (
+                  <tr key={row.currencyCode}>
+                    <td>
+                      <strong>{row.currencyCode}</strong>
+                    </td>
+                    <td>
+                      <AgingBar row={row} />
+                    </td>
+                    <td className="num">{fmt(row.current, row.currencyCode)}</td>
+                    <td className="num">{fmt(row.d1_30, row.currencyCode)}</td>
+                    <td className="num">{fmt(row.d31_60, row.currencyCode)}</td>
+                    <td className="num">{fmt(row.d61_90, row.currencyCode)}</td>
+                    <td className="num">{fmt(row.d90_plus, row.currencyCode)}</td>
+                    <td className="num">
+                      <strong>{fmt(row.total, row.currencyCode)}</strong>
+                    </td>
+                    <td className="num">{row.count}</td>
+                  </tr>
+                ))}
+                {aging?.payable.length === 0 && (
+                  <tr>
+                    <td colSpan={9}>
+                      <StyledEmpty>
+                        <Trans>No payables.</Trans>
+                      </StyledEmpty>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </StyledTable>
+          </StyledCard>
+        </StyledSection>
+
+        <FinanceRemindersSettings />
       </StyledContainer>
     </>
   );
