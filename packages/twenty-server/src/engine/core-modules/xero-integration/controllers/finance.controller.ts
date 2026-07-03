@@ -12,8 +12,6 @@ import {
   UseGuards,
 } from '@nestjs/common';
 
-import { PermissionFlagType } from 'twenty-shared/constants';
-
 import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 import { XeroConnectionService } from 'src/engine/core-modules/xero-integration/services/xero-connection.service';
 import { FinanceAnalyticsService } from 'src/engine/core-modules/xero-integration/services/finance-analytics.service';
@@ -26,14 +24,10 @@ import { AuthWorkspace } from 'src/engine/decorators/auth/auth-workspace.decorat
 import { AuthUser } from 'src/engine/decorators/auth/auth-user.decorator';
 import { UserEntity } from 'src/engine/core-modules/user/user.entity';
 import { JwtAuthGuard } from 'src/engine/guards/jwt-auth.guard';
-import { SettingsPermissionGuard } from 'src/engine/guards/settings-permission.guard';
+
 import { WorkspaceAuthGuard } from 'src/engine/guards/workspace-auth.guard';
 
-const guards = [
-  JwtAuthGuard,
-  WorkspaceAuthGuard,
-  SettingsPermissionGuard(PermissionFlagType.WORKSPACE),
-];
+const guards = [JwtAuthGuard, WorkspaceAuthGuard];
 
 @Controller('finance')
 @UseGuards(...guards)
