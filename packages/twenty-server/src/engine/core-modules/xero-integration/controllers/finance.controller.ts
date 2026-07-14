@@ -87,6 +87,61 @@ export class FinanceController {
     return { asOf: new Date().toISOString(), byCurrency };
   }
 
+  // Consolidated cash across every currency, converted to NZD at live rates.
+  // Saves the accountant the manual weekly conversion for reporting.
+  @Get('cash-position/nzd')
+  async cashPositionNzd(@AuthWorkspace() workspace: WorkspaceEntity) {
+    const base = 'NZD';
+    const byCurrency = await this.analytics.getCashPosition(workspace.id);
+
+    let totalNzd = 0;
+    let hasErrors = false;
+
+    const breakdown = await Promise.all(
+      byCurrency.map(async (row) => {
+        try {
+          const fx = await this.wiseSync.getRate(
+            workspace.id,
+            row.currencyCode,
+            base,
+          );
+          const nzd = row.balance * fx.rate;
+
+          totalNzd += nzd;
+
+          return {
+            currencyCode: row.currencyCode,
+            balance: row.balance,
+            rate: fx.rate,
+            nzd,
+            provider: fx.provider,
+            converted: true,
+          };
+        } catch {
+          // One unavailable rate shouldn't break the whole total.
+          hasErrors = true;
+
+          return {
+            currencyCode: row.currencyCode,
+            balance: row.balance,
+            rate: null,
+            nzd: null,
+            provider: null,
+            converted: false,
+          };
+        }
+      }),
+    );
+
+    return {
+      base,
+      totalNzd,
+      hasErrors,
+      asOf: new Date().toISOString(),
+      breakdown,
+    };
+  }
+
   @Get('cashflow/weekly')
   weekly(
     @AuthWorkspace() workspace: WorkspaceEntity,

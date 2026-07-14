@@ -442,6 +442,10 @@ export const FinanceDashboard = () => {
   const tokenPair = useAtomStateValue(tokenPairState);
   const [aging, setAging] = useState<AgingResponse | null>(null);
   const [cash, setCash] = useState<CashResponse | null>(null);
+  const [nzdTotal, setNzdTotal] = useState<{
+    totalNzd: number;
+    hasErrors: boolean;
+  } | null>(null);
   const [banks, setBanks] = useState<BankAccount[]>([]);
   const [syncCursors, setSyncCursors] = useState<SyncCursor[]>([]);
   const [isSyncing, setIsSyncing] = useState(false);
@@ -452,7 +456,7 @@ export const FinanceDashboard = () => {
     if (!isDefined(tokenPair?.accessOrWorkspaceAgnosticToken?.token)) return;
     try {
       setError(null);
-      const [a, c, b, s] = await Promise.all([
+      const [a, c, b, s, nzd] = await Promise.all([
         xeroFetch<AgingResponse>('/finance/aging', tokenPair),
         xeroFetch<CashResponse>('/finance/cash-position', tokenPair),
         xeroFetch<BankAccount[]>('/finance/bank-accounts', tokenPair),
@@ -460,12 +464,17 @@ export const FinanceDashboard = () => {
           '/finance/xero/sync/status',
           tokenPair,
         ),
+        xeroFetch<{ totalNzd: number; hasErrors: boolean }>(
+          '/finance/cash-position/nzd',
+          tokenPair,
+        ).catch(() => null),
       ]);
 
       setAging(a);
       setCash(c);
       setBanks(b);
       setSyncCursors(s.cursors);
+      setNzdTotal(nzd);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     }
@@ -659,6 +668,23 @@ export const FinanceDashboard = () => {
             </StyledKPIHint>
           </StyledHeroMetric>
           <StyledHeroSplit>
+            {isDefined(nzdTotal) && (
+              <StyledHeroSub>
+                <StyledHeroLabel>
+                  <Trans>Total cash (all currencies → NZD)</Trans>
+                </StyledHeroLabel>
+                <StyledHeroSubValue style={{ color: '#2563eb' }}>
+                  {fmt(nzdTotal.totalNzd, 'NZD')}
+                </StyledHeroSubValue>
+                <StyledKPIHint>
+                  {nzdTotal.hasErrors ? (
+                    <Trans>Live rate · some currencies could not be converted</Trans>
+                  ) : (
+                    <Trans>Live mid-market rate · for weekly reporting</Trans>
+                  )}
+                </StyledKPIHint>
+              </StyledHeroSub>
+            )}
             <StyledHeroSub>
               <StyledHeroLabel>
                 <Trans>Cash on hand</Trans>
