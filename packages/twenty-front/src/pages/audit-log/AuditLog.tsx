@@ -169,22 +169,72 @@ const StyledEmpty = styled.div`
   text-align: center;
 `;
 
-const formatDiff = (
-  diff: AuditLogRow['diff'],
-): string => {
+// System/bookkeeping fields hidden from the Changes view. Also filtered at
+// capture, but repeated here so historical rows (logged before that) read clean.
+const NOISE_DIFF_FIELDS = new Set([
+  'updatedBy',
+  'createdBy',
+  'updatedAt',
+  'createdAt',
+  'searchVector',
+  'position',
+]);
+
+const MAX_VALUE_LENGTH = 80;
+
+// bodyV2 -> "Body", firstName -> "First name"
+const humanizeField = (field: string): string =>
+  field
+    .replace(/V2$/, '')
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/^./, (char) => char.toUpperCase())
+    .trim();
+
+// Turn any stored value (string, actor object, rich text, composite) into a
+// short human string.
+const readableValue = (value: unknown): string => {
+  if (value === null || value === undefined || value === '') return '∅';
+
+  if (typeof value === 'string' || typeof value === 'number') {
+    return truncate(String(value));
+  }
+
+  if (typeof value === 'boolean') return value ? 'Yes' : 'No';
+
+  if (typeof value === 'object') {
+    const object = value as Record<string, unknown>;
+
+    // Rich text -> its markdown; actor/label objects -> their name.
+    if (typeof object.markdown === 'string')
+      return truncate(object.markdown) || '∅';
+    if (typeof object.name === 'string') return truncate(object.name);
+    if (typeof object.label === 'string') return truncate(object.label);
+
+    const parts = Object.values(object).filter(
+      (part): part is string => typeof part === 'string' && part.trim() !== '',
+    );
+
+    if (parts.length > 0) return truncate(parts.join(', '));
+  }
+
+  return truncate(JSON.stringify(value));
+};
+
+const truncate = (text: string): string =>
+  text.length > MAX_VALUE_LENGTH ? `${text.slice(0, MAX_VALUE_LENGTH)}…` : text;
+
+const formatDiff = (diff: AuditLogRow['diff']): string => {
   if (!isDefined(diff)) return '';
 
-  return Object.entries(diff)
-    .map(([field, change]) => {
-      const before = change?.before;
-      const after = change?.after;
+  const lines = Object.entries(diff)
+    .filter(([field]) => !NOISE_DIFF_FIELDS.has(field))
+    .map(
+      ([field, change]) =>
+        `${humanizeField(field)}: ${readableValue(change?.before)} → ${readableValue(change?.after)}`,
+    )
+    .slice(0, 10);
 
-      if (before === undefined) return `${field}: → ${JSON.stringify(after)}`;
-
-      return `${field}: ${JSON.stringify(before)} → ${JSON.stringify(after)}`;
-    })
-    .slice(0, 8)
-    .join('\n');
+  return lines.join('\n');
 };
 
 export const AuditLog = () => {
