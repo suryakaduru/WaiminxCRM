@@ -23,6 +23,29 @@ const actionFromEventName = (eventName: string): string => {
   return eventName;
 };
 
+// System/bookkeeping fields that change on every write and add no audit value.
+// Dropped from the stored diff so "Changes" shows only meaningful edits.
+const NOISE_DIFF_FIELDS = new Set([
+  'updatedBy',
+  'createdBy',
+  'updatedAt',
+  'createdAt',
+  'searchVector',
+  'position',
+]);
+
+const cleanDiff = (
+  diff: Record<string, unknown> | undefined,
+): Record<string, unknown> | null => {
+  if (!diff || typeof diff !== 'object') return null;
+
+  const cleaned = Object.fromEntries(
+    Object.entries(diff).filter(([field]) => !NOISE_DIFF_FIELDS.has(field)),
+  );
+
+  return Object.keys(cleaned).length > 0 ? cleaned : null;
+};
+
 // Best-effort human label for the affected record, pulled from the event diff.
 const recordNameFromDiff = (diff: unknown): string | null => {
   if (!diff || typeof diff !== 'object') return null;
@@ -73,10 +96,11 @@ export class CreateAuditLogFromInternalEvent {
 
       // Postgres sink (Waimin audit trail). Independent of ClickHouse below —
       // this is the source of truth for the in-app activity log.
-      const diff =
+      const rawDiff =
         'diff' in eventProperties
           ? (eventProperties.diff as Record<string, unknown> | undefined)
           : undefined;
+      const diff = cleanDiff(rawDiff);
 
       await this.auditLogService.record({
         workspaceId: workspaceEventBatch.workspaceId,
@@ -84,8 +108,8 @@ export class CreateAuditLogFromInternalEvent {
         action: actionFromEventName(workspaceEventBatch.name),
         objectName: workspaceEventBatch.objectMetadata.nameSingular,
         recordId: eventData.recordId,
-        recordName: recordNameFromDiff(diff),
-        diff: diff ?? null,
+        recordName: recordNameFromDiff(rawDiff),
+        diff,
         context: eventData.workspaceMemberId
           ? { workspaceMemberId: eventData.workspaceMemberId }
           : null,

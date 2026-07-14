@@ -7,11 +7,12 @@ import { WaiminAuditLogEntity } from 'src/engine/core-modules/audit-log/entities
 import { AuditLogPurgeCronJob } from 'src/engine/core-modules/audit-log/jobs/audit-log-purge-cron.job';
 import { AuditLogService } from 'src/engine/core-modules/audit-log/services/audit-log.service';
 import { PermissionsModule } from 'src/engine/metadata-modules/permissions/permissions.module';
+import { UserEntity } from 'src/engine/core-modules/user/user.entity';
 import { WorkspaceCacheStorageModule } from 'src/engine/workspace-cache-storage/workspace-cache-storage.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([WaiminAuditLogEntity]),
+    TypeOrmModule.forFeature([WaiminAuditLogEntity, UserEntity]),
     // JwtAuthGuard on the controller needs AccessTokenService (TokenModule)
     // and WorkspaceCacheStorageService. PermissionsModule provides the
     // AUDIT_LOGS flag check.

@@ -1,10 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { Between, LessThan, Repository } from 'typeorm';
+import { isDefined } from 'twenty-shared/utils';
+
+import { Between, In, LessThan, Repository } from 'typeorm';
 import { type QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
 import { WaiminAuditLogEntity } from 'src/engine/core-modules/audit-log/entities/waimin-audit-log.entity';
+import { UserEntity } from 'src/engine/core-modules/user/user.entity';
 
 export type AuditLogInput = {
   workspaceId: string;
@@ -38,6 +41,8 @@ export class AuditLogService {
   constructor(
     @InjectRepository(WaiminAuditLogEntity)
     private readonly auditLogRepository: Repository<WaiminAuditLogEntity>,
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
   ) {}
 
   // Fire-and-forget write. Auditing must never break the action being audited,
@@ -94,6 +99,35 @@ export class AuditLogService {
       take: limit,
       skip: offset,
     });
+
+    // Resolve actor UUIDs to human names so the viewer shows "Jane Doe",
+    // not a raw userId. userEmail is already stored for auth events.
+    const userIds = [
+      ...new Set(
+        rows
+          .filter((row) => !row.userEmail && isDefined(row.userId))
+          .map((row) => row.userId as string),
+      ),
+    ];
+
+    if (userIds.length > 0) {
+      const users = await this.userRepository.find({
+        where: { id: In(userIds) },
+      });
+      const nameByUserId = new Map(
+        users.map((user) => [
+          user.id,
+          [user.firstName, user.lastName].filter(Boolean).join(' ').trim() ||
+            user.email,
+        ]),
+      );
+
+      for (const row of rows) {
+        if (!row.userEmail && isDefined(row.userId)) {
+          row.userEmail = nameByUserId.get(row.userId) ?? null;
+        }
+      }
+    }
 
     return { rows, total };
   }

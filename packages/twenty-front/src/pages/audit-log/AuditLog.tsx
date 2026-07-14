@@ -278,7 +278,9 @@ export const AuditLog = () => {
           />
         </StyledFilters>
 
-        {error !== null && <StyledEmpty>{error}</StyledEmpty>}
+        {error !== null && rows.length === 0 && (
+          <StyledEmpty>{error}</StyledEmpty>
+        )}
 
         <StyledTableWrapper>
           <StyledTable>
@@ -313,7 +315,12 @@ export const AuditLog = () => {
                     <StyledBadge>{row.action}</StyledBadge>
                   </StyledTd>
                   <StyledTd>{row.objectName ?? '—'}</StyledTd>
-                  <StyledTd>{row.recordName ?? row.recordId ?? '—'}</StyledTd>
+                  <StyledTd>
+                    {row.recordName ??
+                      (isDefined(row.recordId)
+                        ? `${row.recordId.slice(0, 8)}…`
+                        : '—')}
+                  </StyledTd>
                   <StyledTd>
                     <StyledDiff>{formatDiff(row.diff)}</StyledDiff>
                   </StyledTd>
