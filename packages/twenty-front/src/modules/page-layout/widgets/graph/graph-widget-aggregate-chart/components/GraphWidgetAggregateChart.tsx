@@ -1,6 +1,6 @@
 import { formatNumberChartTrend } from '@/page-layout/widgets/graph/graph-widget-aggregate-chart/utils/formatNumberChartTrend';
 import { styled } from '@linaria/react';
-import { useContext } from 'react';
+import { type CSSProperties, useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import {
   H1Title,
@@ -14,6 +14,7 @@ type GraphWidgetAggregateChartProps = {
   trendPercentage?: number;
   prefix?: string;
   suffix?: string;
+  color?: string;
 };
 
 const StyledTrendPercentageValue = styled.span`
@@ -39,6 +40,7 @@ const StyledTrendIconContainer = styled.div`
 
 const StyledH1TitleWrapper = styled.div`
   > h2 {
+    color: var(--aggregate-color, ${themeCssVariables.font.color.primary}) !important;
     font-size: ${themeCssVariables.font.size.xxl};
     margin: 0;
   }
@@ -49,6 +51,7 @@ export const GraphWidgetAggregateChart = ({
   trendPercentage,
   prefix,
   suffix,
+  color,
 }: GraphWidgetAggregateChartProps) => {
   const { theme } = useContext(ThemeContext);
 
@@ -60,7 +63,13 @@ export const GraphWidgetAggregateChart = ({
 
   return (
     <StyledContainer>
-      <StyledH1TitleWrapper>
+      <StyledH1TitleWrapper
+        style={
+          isDefined(color)
+            ? ({ '--aggregate-color': color } as CSSProperties)
+            : undefined
+        }
+      >
         <H1Title title={displayValue} fontColor={H1TitleFontColor.Primary} />
       </StyledH1TitleWrapper>
       {isDefined(trendPercentage) && (

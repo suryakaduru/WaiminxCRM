@@ -1,5 +1,6 @@
 import { CHART_SETTINGS_HEADINGS } from '@/side-panel/pages/page-layout/constants/ChartSettingsHeadings';
 import { CHART_DATA_SOURCE_SETTING } from '@/side-panel/pages/page-layout/constants/settings/ChartDataSourceSetting';
+import { COLORS_SETTING } from '@/side-panel/pages/page-layout/constants/settings/ColorsSetting';
 import { DATA_DISPLAY_AGGREGATE_SETTING } from '@/side-panel/pages/page-layout/constants/settings/DataDisplayAggregateSetting';
 import { FILTER_SETTING } from '@/side-panel/pages/page-layout/constants/settings/FilterSetting';
 import { PREFIX_SETTING } from '@/side-panel/pages/page-layout/constants/settings/PrefixSetting';
@@ -17,6 +18,6 @@ export const AGGREGATE_CHART_SETTINGS: ChartSettingsGroup[] = [
   },
   {
     heading: CHART_SETTINGS_HEADINGS.STYLE,
-    items: [PREFIX_SETTING, SUFFIX_SETTING],
+    items: [COLORS_SETTING, PREFIX_SETTING, SUFFIX_SETTING],
   },
 ];

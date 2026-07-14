@@ -91,6 +91,11 @@ export class AggregateChartConfigurationDTO implements AggregateChartConfigurati
   @IsOptional()
   suffix?: string;
 
+  @Field(() => String, { nullable: true })
+  @IsString()
+  @IsOptional()
+  color?: string;
+
   @Field(() => RatioAggregateConfigDTO, { nullable: true })
   @ValidateNested()
   @Type(() => RatioAggregateConfigDTO)

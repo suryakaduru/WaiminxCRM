@@ -2,7 +2,10 @@ import { WidgetSkeletonLoader } from '@/page-layout/widgets/components/WidgetSke
 import { useGraphWidgetAggregateQuery } from '@/page-layout/widgets/graph/hooks/useGraphWidgetAggregateQuery';
 import { assertAggregateChartWidgetOrThrow } from '@/page-layout/widgets/graph/utils/assertAggregateChartWidget';
 import { useCurrentWidget } from '@/page-layout/widgets/hooks/useCurrentWidget';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useContext } from 'react';
+import { isDefined } from 'twenty-shared/utils';
+import { type ThemeColor } from 'twenty-ui/theme';
+import { ThemeContext } from 'twenty-ui/theme-constants';
 
 const GraphWidgetAggregateChart = lazy(() =>
   import('@/page-layout/widgets/graph/graph-widget-aggregate-chart/components/GraphWidgetAggregateChart').then(
@@ -14,6 +17,7 @@ const GraphWidgetAggregateChart = lazy(() =>
 
 export const GraphWidgetAggregateChartRenderer = () => {
   const widget = useCurrentWidget();
+  const { theme } = useContext(ThemeContext);
 
   assertAggregateChartWidgetOrThrow(widget);
 
@@ -21,6 +25,14 @@ export const GraphWidgetAggregateChartRenderer = () => {
     objectMetadataItemId: widget.objectMetadataId,
     configuration: widget.configuration,
   });
+
+  // Configured color is stored as a theme color name (e.g. "blue"); "auto"
+  // or unset keeps the default primary text color.
+  const colorName = widget.configuration.color;
+  const resolvedColor =
+    isDefined(colorName) && colorName !== 'auto'
+      ? theme.color[colorName as ThemeColor]
+      : undefined;
 
   if (loading) {
     return <WidgetSkeletonLoader />;
@@ -32,6 +44,7 @@ export const GraphWidgetAggregateChartRenderer = () => {
         value={value ?? '-'}
         prefix={widget.configuration.prefix ?? undefined}
         suffix={widget.configuration.suffix ?? undefined}
+        color={resolvedColor}
       />
     </Suspense>
   );
