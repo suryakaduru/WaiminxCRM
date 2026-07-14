@@ -201,15 +201,15 @@ export class WiseSyncService {
     }
   }
 
-  // Free fallback when Wise isn't connected or errors.
+  // Free fallback when Wise isn't connected or errors. Uses open.er-api.com
+  // (no API key, 160+ currencies incl. MYR/INR/HKD). exchangerate.host was
+  // dropped — it now requires a paid access key and silently returns no rates.
   private async fetchFallbackRate(
     source: string,
     target: string,
   ): Promise<{ rate: number; provider: string; asOf: string } | null> {
     try {
-      const res = await fetch(
-        `https://api.exchangerate.host/latest?base=${source}&symbols=${target}`,
-      );
+      const res = await fetch(`https://open.er-api.com/v6/latest/${source}`);
 
       if (!res.ok) return null;
 
@@ -220,8 +220,8 @@ export class WiseSyncService {
 
       return {
         rate,
-        provider: 'exchangerate.host',
-        asOf: data.date ?? new Date().toISOString(),
+        provider: 'open.er-api.com',
+        asOf: data.time_last_update_utc ?? new Date().toISOString(),
       };
     } catch (error) {
       this.logger.warn(`Fallback rate lookup failed: ${String(error)}`);
