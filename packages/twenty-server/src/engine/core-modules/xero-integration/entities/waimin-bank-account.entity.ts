@@ -9,6 +9,11 @@ import {
 
 export type WaiminBankSource = 'manual' | 'xero' | 'wise' | 'statrys';
 
+// Routing role for the recommended bank-transfer engine. BNZ is the main
+// account (fallback + top-up source), Wise/Statrys handle international
+// transfers, UOB handles domestic expenses.
+export type WaiminBankRole = 'main' | 'international' | 'expense' | 'other';
+
 @Entity({ name: 'waiminBankAccount', schema: 'core' })
 @Index('IDX_WAIMIN_BANK_ACCOUNT_WORKSPACE', ['workspaceId'])
 @Index('IDX_WAIMIN_BANK_ACCOUNT_CURRENCY', ['workspaceId', 'currencyCode'])
@@ -36,6 +41,9 @@ export class WaiminBankAccountEntity {
 
   @Column({ type: 'varchar', default: 'manual' })
   source: WaiminBankSource;
+
+  @Column({ type: 'varchar', default: 'other' })
+  bankRole: WaiminBankRole;
 
   @Column({ type: 'varchar', nullable: true })
   xeroAccountId: string | null;

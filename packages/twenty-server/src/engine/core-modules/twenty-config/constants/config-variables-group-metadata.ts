@@ -140,4 +140,11 @@ export const CONFIG_VARIABLES_GROUP_METADATA: Record<
     isHiddenOnLoad: true,
     isHiddenInAdminPanel: true,
   },
+  [ConfigVariablesGroup.XERO_INTEGRATION]: {
+    position: 2200,
+    description:
+      'Configure the Xero accounting integration used by the Waimin finance module (OAuth credentials and sync).',
+    isHiddenOnLoad: true,
+    isHiddenInAdminPanel: false,
+  },
 };

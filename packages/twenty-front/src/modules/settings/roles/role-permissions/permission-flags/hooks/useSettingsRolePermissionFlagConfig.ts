@@ -6,6 +6,7 @@ import {
   IconCode,
   IconCreditCard,
   IconHierarchy,
+  IconHistory,
   IconKey,
   IconLayoutSidebarRightCollapse,
   IconLockOpen,
@@ -154,6 +155,15 @@ export const useSettingsRolePermissionFlagConfig = ({
         Icon: IconSparkles,
         isRelevantForAgents: true,
         isRelevantForApiKeys: true,
+        isRelevantForUsers: true,
+      },
+      {
+        key: PermissionFlagType.AUDIT_LOGS,
+        name: t`Audit Logs`,
+        description: t`View the workspace activity audit trail`,
+        Icon: IconHistory,
+        isRelevantForAgents: false,
+        isRelevantForApiKeys: false,
         isRelevantForUsers: true,
       },
     ];

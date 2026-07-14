@@ -29,6 +29,11 @@ msgstr " must be one of {ratingValues} values"
 msgid "—"
 msgstr "—"
 
+#. js-lingui-id: Xv4RL6
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "— optional —"
+msgstr "— optional —"
+
 #. js-lingui-id: ypz2+E
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
 msgid ": Empty"
@@ -74,6 +79,11 @@ msgstr ": Today{timeZoneAbbreviationSuffix}"
 msgid ". The change will be applied the {beautifiedRenewDate}."
 msgstr ". The change will be applied the {beautifiedRenewDate}."
 
+#. js-lingui-id: YIDRsn
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "…"
+msgstr "…"
+
 #. js-lingui-id: 4tCM3o
 #: src/modules/views/components/ViewBarFilterDropdownAnyFieldSearchButtonMenuItem.tsx
 msgid "· {objectFilterDropdownSearchInput}"
@@ -96,12 +106,12 @@ msgid "(selected: {selectedIconKey})"
 msgstr "(selected: {selectedIconKey})"
 
 #. js-lingui-id: ZBGbuw
-#: src/pages/settings/security/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepOutputDetail.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -168,6 +178,12 @@ msgstr "{0, plural, one {You do not have permission to access the {fieldsList} f
 msgid "{0} - Config"
 msgstr "{0} - Config"
 
+#. js-lingui-id: btO9EA
+#. placeholder {0}: row.bankCount
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "{0} account(s)"
+msgstr "{0} account(s)"
+
 #. js-lingui-id: stCODw
 #. placeholder {0}: appObject.fields.length
 #: src/modules/settings/applications/hooks/useComputeObjectAndFieldsContentForApplication.ts
@@ -185,6 +201,12 @@ msgstr "{0} layout"
 #: src/modules/layout-customization/components/LayoutCustomizationBar.tsx
 msgid "{0} layout edition"
 msgstr "{0} layout edition"
+
+#. js-lingui-id: LSuMte
+#. placeholder {0}: records.length
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
+msgid "{0} of {totalCount}"
+msgstr "{0} of {totalCount}"
 
 #. js-lingui-id: peiknr
 #. placeholder {0}: activeVisibleFieldLabels.length
@@ -461,11 +483,6 @@ msgstr "{permissionLabel} Permission removed"
 msgid "{positionLabel} record holds priority"
 msgstr "{positionLabel} record holds priority"
 
-#. js-lingui-id: Sxx5Hr
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "{recordCount} of {totalCount} records"
-msgstr "{recordCount} of {totalCount} records"
-
 #. js-lingui-id: 5d0hY6
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
@@ -567,6 +584,22 @@ msgstr "{workspaceMemberName} will be unassigned from the following role:"
 #: src/pages/settings/layout/SettingsLayoutViewDetail.tsx
 msgid "#"
 msgstr "#"
+
+#. js-lingui-id: cw6eUV
+#: src/pages/auth/SignInUp.tsx
+msgid "© Waimin · wai-min.com"
+msgstr "© Waimin · wai-min.com"
+
+#. js-lingui-id: 2ygf/L
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "← Back"
+msgstr "← Back"
+
+#. js-lingui-id: 6lMQjH
+#: src/pages/finance/FinanceBanks.tsx
+msgid "↻ Sync Wise"
+msgstr "↻ Sync Wise"
 
 #. js-lingui-id: n9nj+X
 #. placeholder {0}: aiChatThreadPendingDelete?.threadTitle ?? ''
@@ -718,6 +751,11 @@ msgstr "500 Error - {duration}ms"
 msgid "7d"
 msgstr "7d"
 
+#. js-lingui-id: gR4WtD
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "a currency goes negative"
+msgstr "a currency goes negative"
+
 #. js-lingui-id: 43TqJC
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
 msgid "A display name for this provider"
@@ -747,6 +785,16 @@ msgstr "A shared environment where you will be able to manage your customer rela
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "A verification email has been sent to"
 msgstr "A verification email has been sent to"
+
+#. js-lingui-id: yqbblo
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "A/P aging — what you owe"
+msgstr "A/P aging — what you owe"
+
+#. js-lingui-id: aRb3br
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "A/R aging — who owes you"
+msgstr "A/R aging — who owes you"
 
 #. js-lingui-id: DqlQy+
 #: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldMaxValuesForm.tsx
@@ -866,6 +914,11 @@ msgstr "Account added successfully. Sync started."
 msgid "Account Deletion"
 msgstr "Account Deletion"
 
+#. js-lingui-id: FbnkwO
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Account label (optional)"
+msgstr "Account label (optional)"
+
 #. js-lingui-id: bPwFdf
 #: src/pages/settings/accounts/SettingsNewAccount.tsx
 #: src/pages/settings/accounts/SettingsAccountsEmails.tsx
@@ -928,6 +981,7 @@ msgstr "Actions users can perform on this object"
 #: src/pages/settings/ai/components/SettingsAiUsageTab.tsx
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
 #: src/modules/settings/security/components/SSO/SettingsSecuritySSORowDropdownMenu.tsx
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
 #: src/modules/settings/data-model/objects/components/SettingsObjectInactiveMenuDropDown.tsx
 #: src/modules/settings/data-model/object-details/components/SettingsObjectFieldDisabledActionDropdown.tsx
 #: src/modules/settings/admin-panel/ai/components/SettingsAdminAI.tsx
@@ -948,6 +1002,8 @@ msgstr "Activating..."
 #: src/pages/settings/profile/SettingsProfile.tsx
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
 #: src/modules/settings/domains/components/SettingsWorkspaceDomainCard.tsx
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
@@ -959,6 +1015,11 @@ msgstr "Active"
 #: src/pages/settings/api-webhooks/SettingsApiWebhooks.tsx
 msgid "Active API keys created by you or your team."
 msgstr "Active API keys created by you or your team."
+
+#. js-lingui-id: HGOB83
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Active from (first due)"
+msgstr "Active from (first due)"
 
 #. js-lingui-id: A7Ks+i
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralStats.tsx
@@ -1027,6 +1088,23 @@ msgstr "Add account"
 msgid "Add Approved Access Domain"
 msgstr "Add Approved Access Domain"
 
+#. js-lingui-id: NNv4Ob
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Add bank →"
+msgstr "Add bank →"
+
+#. js-lingui-id: jpNk2r
+#: src/pages/finance/FinanceBanks.tsx
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Add bank account"
+msgstr "Add bank account"
+
+#. js-lingui-id: 5tnHxS
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Add banks on the Bank Accounts page."
+msgstr "Add banks on the Bank Accounts page."
+
 #. js-lingui-id: Qi4JMf
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionEmailBase.tsx
 msgid "Add BCC"
@@ -1058,6 +1136,11 @@ msgstr "Add custom endpoints, private gateways, or additional regions."
 #: src/modules/settings/admin-panel/ai/components/SettingsAdminAiProviderListCard.tsx
 msgid "Add Custom Provider"
 msgstr "Add Custom Provider"
+
+#. js-lingui-id: uL7inB
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Add each bank + currency combo you hold (e.g. BNZ NZD, UOB HKD, UOB MYR, Wise USD)."
+msgstr "Add each bank + currency combo you hold (e.g. BNZ NZD, UOB HKD, UOB MYR, Wise USD)."
 
 #. js-lingui-id: +Gf1IN
 #: src/modules/settings/workspace/components/SettingsWorkspaceEmailGroupSection.tsx
@@ -1134,6 +1217,12 @@ msgstr "Add Item"
 #: src/modules/navigation-menu-item/edit/side-panel/components/SidePanelNavigationMenuItemEditPage.tsx
 msgid "Add item to folder"
 msgstr "Add item to folder"
+
+#. js-lingui-id: KC7HEx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Add Mandatory Payment"
+msgstr "Add Mandatory Payment"
 
 #. js-lingui-id: gaZXkv
 #: src/modules/side-panel/utils/getSidePanelSubPageTitle.ts
@@ -1226,6 +1315,12 @@ msgstr "Add Public Domain"
 msgid "Add relation"
 msgstr "Add relation"
 
+#. js-lingui-id: Yayg31
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Add Reminder"
+msgstr "Add Reminder"
+
 #. js-lingui-id: 32bGrY
 #: src/modules/workflow/workflow-steps/workflow-actions/if-else-action/components/WorkflowEditActionIfElseBody.tsx
 msgid "Add route"
@@ -1295,6 +1390,11 @@ msgstr "Add to Favorite"
 msgid "Add Twenty as a Model Context Protocol (MCP) server. Paste this config into Claude Desktop, Cursor, Cline, Continue, Zed, or any other MCP-aware client."
 msgstr "Add Twenty as a Model Context Protocol (MCP) server. Paste this config into Claude Desktop, Cursor, Cline, Continue, Zed, or any other MCP-aware client."
 
+#. js-lingui-id: /R+u1y
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Add unexpected cash movements Xero doesn't know about yet — an urgent supplier invoice, emergency transfer, or a customer paying early/late. These flow straight into the position above for {friday}."
+msgstr "Add unexpected cash movements Xero doesn't know about yet — an urgent supplier invoice, emergency transfer, or a customer paying early/late. These flow straight into the position above for {friday}."
+
 #. js-lingui-id: XnwceV
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationRedirectURIsInput.tsx
 msgid "Add URI"
@@ -1332,6 +1432,11 @@ msgstr "Add widget below"
 #: src/modules/object-record/record-table/empty-state/utils/getEmptyStateTitle.ts
 msgid "Add your first {objectLabel}"
 msgstr "Add your first {objectLabel}"
+
+#. js-lingui-id: bO6J8k
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Add your first bank"
+msgstr "Add your first bank"
 
 #. js-lingui-id: vLO+NG
 #: src/modules/ui/layout/show-page/components/ShowPageSummaryCard.tsx
@@ -1518,6 +1623,12 @@ msgstr "Agents"
 msgid "Aggregate Chart"
 msgstr "Aggregate Chart"
 
+#. js-lingui-id: v5xnow
+#: src/pages/finance/FinanceDashboard.tsx
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Aging distribution"
+msgstr "Aging distribution"
+
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/members/roles/SettingsRoleAddObjectLevel.tsx
 #: src/pages/settings/logic-functions/SettingsLogicFunctionDetail.tsx
@@ -1525,12 +1636,12 @@ msgstr "Aggregate Chart"
 #: src/pages/settings/ai/SettingsSkillForm.tsx
 #: src/pages/settings/ai/SettingsAiUsageUserDetail.tsx
 #: src/pages/settings/ai/SettingsAiPrompts.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/side-panel/pages/workflow/action/components/SidePanelWorkflowSelectAction.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useSettingsRolePermissionFlagConfig.ts
@@ -1694,6 +1805,11 @@ msgstr "All App Registrations"
 msgid "All application registrations across the platform, including orphaned marketplace apps"
 msgstr "All application registrations across the platform, including orphaned marketplace apps"
 
+#. js-lingui-id: oneztz
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "All currencies"
+msgstr "All currencies"
+
 #. js-lingui-id: 1kLn6M
 #: src/modules/activities/calendar/components/CalendarEventRow.tsx
 msgid "All day"
@@ -1730,7 +1846,7 @@ msgid "All lines"
 msgstr "All lines"
 
 #. js-lingui-id: c3lkKf
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "All Members"
 msgstr "All Members"
 
@@ -1745,8 +1861,8 @@ msgid "All objects"
 msgstr "All objects"
 
 #. js-lingui-id: aFE/OW
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsTableHeader.tsx
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 #: src/modules/settings/developers/components/WebhookEntitySelect.tsx
 #: src/modules/settings/developers/components/WebhookEntitySelect.tsx
 msgid "All Objects"
@@ -1893,6 +2009,17 @@ msgstr "Already in navbar"
 msgid "Amber"
 msgstr "Amber"
 
+#. js-lingui-id: hehnjM
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Amount"
+msgstr "Amount"
+
 #. js-lingui-id: s46CyD
 #: src/modules/object-record/record-field/ui/form-types/components/FormCurrencyFieldInput.tsx
 msgid "Amount Micros"
@@ -1978,11 +2105,6 @@ msgstr "An internal error occurred while validating your changes. Please contact
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectAboutForm.tsx
 msgid "An object with this name already exists"
 msgstr "An object with this name already exists"
-
-#. js-lingui-id: byKna+
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "An unexpected error occurred. Please try again."
-msgstr "An unexpected error occurred. Please try again."
 
 #. js-lingui-id: HZFm5R
 #: src/utils/date-utils.ts
@@ -2180,12 +2302,12 @@ msgid "Application installed successfully."
 msgstr "Application installed successfully."
 
 #. js-lingui-id: LllWIc
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 msgid "Application Logs"
 msgstr "Application Logs"
 
 #. js-lingui-id: l/T809
-#: src/pages/settings/applications/components/SettingsApplicationDetailTitle.tsx
+#: src/pages/settings/applications/SettingsAvailableApplicationDetails.tsx
 msgid "Application not listed on the marketplace. It was shared via a direct link"
 msgstr "Application not listed on the marketplace. It was shared via a direct link"
 
@@ -2356,6 +2478,11 @@ msgstr "Are you sure? Your current information will not be saved."
 msgid "As it will be displayed in the workspace"
 msgstr "As it will be displayed in the workspace"
 
+#. js-lingui-id: Ir3DTR
+#: src/pages/finance/FinanceBanks.tsx
+msgid "As of"
+msgstr "As of"
+
 #. js-lingui-id: 54PdN4
 #: src/modules/side-panel/pages/page-layout/utils/getSortLabelSuffixForFieldType.ts
 #: src/modules/side-panel/pages/page-layout/utils/getSortLabelSuffixForFieldType.ts
@@ -2391,10 +2518,26 @@ msgstr "Ask, search or make anything..."
 msgid "Assign {roleTargetName}?"
 msgstr "Assign {roleTargetName}?"
 
+#. js-lingui-id: pQlR0P
+#. placeholder {0}: unassigned.length
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Assign a \"Pay from\" bank to every selected bill before committing ({0} missing)."
+msgstr "Assign a \"Pay from\" bank to every selected bill before committing ({0} missing)."
+
+#. js-lingui-id: rAcNTw
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Assign banks, top up, commit"
+msgstr "Assign banks, top up, commit"
+
 #. js-lingui-id: nerbkq
 #: src/modules/settings/roles/components/SettingsRolesList.tsx
 msgid "Assign roles to specify access permissions"
 msgstr "Assign roles to specify access permissions"
+
+#. js-lingui-id: ITczKe
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Assign To"
+msgstr "Assign To"
 
 #. js-lingui-id: krsgB0
 #: src/modules/settings/roles/role-assignment/constants/RoleTargetConfig.ts
@@ -2483,6 +2626,7 @@ msgstr "at 1 minute past the hour"
 
 #. js-lingui-id: ooA+hm
 #: src/pages/settings/ai/components/SettingsAiOverviewTab.tsx
+#: src/pages/finance/FinanceDashboard.tsx
 msgid "At a glance"
 msgstr "At a glance"
 
@@ -2539,20 +2683,15 @@ msgid "Audit logs"
 msgstr "Audit logs"
 
 #. js-lingui-id: EPEFrH
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
+#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
 msgid "Audit Logs"
 msgstr "Audit Logs"
 
-#. js-lingui-id: X0+U3u
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "Audit logs are available with an Enterprise subscription. Please upgrade to access this feature."
-msgstr "Audit logs are available with an Enterprise subscription. Please upgrade to access this feature."
-
-#. js-lingui-id: rNQ4RB
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "Audit logs require ClickHouse to be configured. Please contact your administrator to set up ClickHouse."
-msgstr "Audit logs require ClickHouse to be configured. Please contact your administrator to set up ClickHouse."
+#. js-lingui-id: WlRN59
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
+msgid "Audit logs require ClickHouse to be configured. Please contact your administrator."
+msgstr "Audit logs require ClickHouse to be configured. Please contact your administrator."
 
 #. js-lingui-id: kIuOL4
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerWebhookForm.tsx
@@ -2614,6 +2753,11 @@ msgstr "Authorized URL copied to clipboard"
 msgid "Authorizing..."
 msgstr "Authorizing..."
 
+#. js-lingui-id: lOgh++
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Auto-assign banks"
+msgstr "Auto-assign banks"
+
 #. js-lingui-id: 2zJkmL
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelDetails.tsx
 msgid "Auto-creation"
@@ -2623,6 +2767,11 @@ msgstr "Auto-creation"
 #: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/hooks/useWorkflowAiAgentPermissionActions.ts
 msgid "Auto-generated role for {agentDisplayName}"
 msgstr "Auto-generated role for {agentDisplayName}"
+
+#. js-lingui-id: 6nvats
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Automated Reminders"
+msgstr "Automated Reminders"
 
 #. js-lingui-id: YRT7ZW
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelDetails.tsx
@@ -2713,6 +2862,49 @@ msgstr "Background"
 msgid "Background Colors"
 msgstr "Background Colors"
 
+#. js-lingui-id: fsBGk0
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Balance"
+msgstr "Balance"
+
+#. js-lingui-id: kjrXYb
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Bank"
+msgstr "Bank"
+
+#. js-lingui-id: UXz2/a
+#: src/pages/finance/FinanceBanks.tsx
+#: src/modules/navigation/components/NavigationDrawerOtherSection.tsx
+msgid "Bank Accounts"
+msgstr "Bank Accounts"
+
+#. js-lingui-id: XBvDLQ
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Bank Accounts | Waimin"
+msgstr "Bank Accounts | Waimin"
+
+#. js-lingui-id: ROPK7D
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Bank name"
+msgstr "Bank name"
+
+#. js-lingui-id: kyMDOh
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Bank name and currency required"
+msgstr "Bank name and currency required"
+
+#. js-lingui-id: 01akL3
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Banks"
+msgstr "Banks"
+
+#. js-lingui-id: qR3i3y
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Banks & commit"
+msgstr "Banks & commit"
+
 #. js-lingui-id: EbQe8o
 #: src/modules/settings/billing/components/SettingsBillingCreditsSection.tsx
 msgid "Base Credits"
@@ -2728,6 +2920,11 @@ msgstr "Base URL"
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
 msgid "Base URL is required"
 msgstr "Base URL is required"
+
+#. js-lingui-id: Bl0aLy
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Based on each bank's role — international payments route to Wise / Statrys, expenses to UOB / BNZ, BNZ is the fallback. \"Auto-assign banks\" fills the Pay-from column for selected bills. When a bank can't cover its assigned total, top up from BNZ:"
+msgstr "Based on each bank's role — international payments route to Wise / Statrys, expenses to UOB / BNZ, BNZ is the fallback. \"Auto-assign banks\" fills the Pay-from column for selected bills. When a bank can't cover its assigned total, top up from BNZ:"
 
 #. js-lingui-id: /xLNEx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsEmailDetail.tsx
@@ -2782,6 +2979,11 @@ msgstr "between minute {start} and {end}"
 msgid "between the {startOrdinal} and {endOrdinal} of the month"
 msgstr "between the {startOrdinal} and {endOrdinal} of the month"
 
+#. js-lingui-id: tayO0A
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "bill(s) selected for {friday}."
+msgstr "bill(s) selected for {friday}."
+
 #. js-lingui-id: R+w/Va
 #: src/pages/settings/billing/SettingsUsageUserDetail.tsx
 #: src/pages/settings/billing/SettingsUsage.tsx
@@ -2804,6 +3006,16 @@ msgstr "Billing history"
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
 msgid "Billing interval"
 msgstr "Billing interval"
+
+#. js-lingui-id: b492j0
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Bills due but not included in your Friday payment run."
+msgstr "Bills due but not included in your Friday payment run."
+
+#. js-lingui-id: 0RE/C2
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Bills you have selected to pay this Friday. Review your selection before saving."
+msgstr "Bills you have selected to pay this Friday. Review your selection before saving."
 
 #. js-lingui-id: K1172m
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistSection.tsx
@@ -2947,10 +3159,10 @@ msgstr "Bundled with {applicationName}"
 msgid "by {author}"
 msgstr "by {author}"
 
-#. js-lingui-id: 8Pfllj
+#. js-lingui-id: GfVFhM
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "By using Twenty, you agree to the"
-msgstr "By using Twenty, you agree to the"
+msgid "By using Waimin, you agree to the"
+msgstr "By using Waimin, you agree to the"
 
 #. js-lingui-id: Yx41df
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -3085,6 +3297,10 @@ msgstr "Can't scan? Copy the"
 #. js-lingui-id: dEgA5A
 #: src/pages/settings/applications/components/SettingsApplicationConnectScopePickerModal.tsx
 #: src/pages/settings/admin-panel/SettingsAdminApplicationRegistrationDangerZone.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/ui/layout/modal/components/ConfirmationModal.tsx
 #: src/modules/ui/feedback/snack-bar-manager/components/SnackBar.tsx
 #: src/modules/spreadsheet-import/steps/components/ImportDataStep.tsx
@@ -3215,6 +3431,26 @@ msgstr "Captcha (anti-bot check) is still loading, try again"
 msgid "Card"
 msgstr "Card"
 
+#. js-lingui-id: UZAUPA
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Cash by currency"
+msgstr "Cash by currency"
+
+#. js-lingui-id: xvBb3T
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Cash on hand"
+msgstr "Cash on hand"
+
+#. js-lingui-id: D+Vyav
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Cash you have + money coming in − bills you've ticked = balance left. Red border means you'd go negative."
+msgstr "Cash you have + money coming in − bills you've ticked = balance left. Red border means you'd go negative."
+
+#. js-lingui-id: 9lUIrD
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Cash, incoming & adjustments"
+msgstr "Cash, incoming & adjustments"
+
 #. js-lingui-id: M1RLfx
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Catalan"
@@ -3241,6 +3477,12 @@ msgstr "CC"
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
 msgid "Cc/Bcc"
 msgstr "Cc/Bcc"
+
+#. js-lingui-id: 9SJ3LZ
+#: src/pages/finance/FinanceDashboard.tsx
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "CCY"
+msgstr "CCY"
 
 #. js-lingui-id: tHntRt
 #: src/modules/page-layout/widgets/standalone-rich-text/components/DashboardEditorSideMenu.tsx
@@ -3310,6 +3552,11 @@ msgstr "Changing visibility requires reconnecting this OAuth connection. You wil
 msgid "Chart"
 msgstr "Chart"
 
+#. js-lingui-id: sUPCA+
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Chase these first"
+msgstr "Chase these first"
+
 #. js-lingui-id: AHZflp
 #: src/modules/navigation/components/MainNavigationDrawerTabsRow.tsx
 msgid "Chat"
@@ -3359,6 +3606,11 @@ msgstr "Check verification"
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "Check your Emails"
 msgstr "Check your Emails"
+
+#. js-lingui-id: 5IXWmO
+#: src/pages/auth/SignInUp.tsx
+msgid "Check your inbox"
+msgstr "Check your inbox"
 
 #. js-lingui-id: hXXBiE
 #: src/modules/settings/profile/hooks/useUpdateEmail.ts
@@ -3445,6 +3697,7 @@ msgid "City"
 msgstr "City"
 
 #. js-lingui-id: xCJdfg
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
 #: src/modules/ui/input/components/internal/date/components/DateTimePicker.tsx
 #: src/modules/ui/input/components/internal/date/components/DatePicker.tsx
 msgid "Clear"
@@ -3502,7 +3755,6 @@ msgid "ClickHouse is required for audit logs. Contact your administrator."
 msgstr "ClickHouse is required for audit logs. Contact your administrator."
 
 #. js-lingui-id: CTdw8/
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
 #: src/pages/settings/ai/components/SettingsAiUsageTab.tsx
 #: src/modules/settings/usage/components/SettingsUsageAnalyticsSection.tsx
 msgid "ClickHouse Not Configured"
@@ -3583,12 +3835,12 @@ msgid "Code your function"
 msgstr "Code your function"
 
 #. js-lingui-id: H86f9p
-#: src/pages/settings/security/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepOutputDetail.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -3702,6 +3954,17 @@ msgstr "Commas and dot"
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 msgid "Comment"
 msgstr "Comment"
+
+#. js-lingui-id: 4ozVlM
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Commit payment run"
+msgstr "Commit payment run"
+
+#. js-lingui-id: KjcP+i
+#. placeholder {1}: total.toFixed(0)
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Commit this payment run? This deducts {selectedCount} bill(s) totalling about {1} from the chosen bank balances and marks the bills paid. This cannot be undone from the app."
+msgstr "Commit this payment run? This deducts {selectedCount} bill(s) totalling about {1} from the chosen bank balances and marks the bills paid. This cannot be undone from the app."
 
 #. js-lingui-id: chL5IG
 #: src/pages/settings/community/SettingsCommunity.tsx
@@ -3831,6 +4094,11 @@ msgstr "Configure date, time, number, timezone, and calendar start day"
 msgid "Configure fallback login methods for users with SSO bypass permissions"
 msgstr "Configure fallback login methods for users with SSO bypass permissions"
 
+#. js-lingui-id: zXzR4W
+#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
+msgid "Configure how long audit logs are retained"
+msgstr "Configure how long audit logs are retained"
+
 #. js-lingui-id: OLqG0t
 #: src/modules/settings/data-model/object-details/components/tabs/ObjectSettings.tsx
 msgid "Configure how this object appears in search results"
@@ -3845,6 +4113,11 @@ msgstr "Configure how we should display your events in your calendar"
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "Configure IMAP settings to receive and sync your emails."
 msgstr "Configure IMAP settings to receive and sync your emails."
+
+#. js-lingui-id: jdS1B6
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Configure recurring finance tasks like Payroll, GST, or Rent. They will automatically appear in your native task list before they are due."
+msgstr "Configure recurring finance tasks like Payroll, GST, or Rent. They will automatically appear in your native task list before they are due."
 
 #. js-lingui-id: gk/8eh
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -3934,6 +4207,11 @@ msgstr "Connect {appName} to your account"
 msgid "Connect {providerDisplayName}"
 msgstr "Connect {providerDisplayName}"
 
+#. js-lingui-id: Ax3hQw
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Connect & Sync"
+msgstr "Connect & Sync"
+
 #. js-lingui-id: D8ATlr
 #: src/modules/settings/accounts/components/SettingsNewAccountSection.tsx
 msgid "Connect a new account to your workspace"
@@ -3949,6 +4227,12 @@ msgstr "Connect AI assistants like Claude or Cursor to your workspace via the Mo
 msgid "Connect via IMAP/SMTP"
 msgstr "Connect via IMAP/SMTP"
 
+#. js-lingui-id: LDBTig
+#: src/pages/finance/FinanceBanks.tsx
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Connect Wise"
+msgstr "Connect Wise"
+
 #. js-lingui-id: Zgi9Fd
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx
 msgid "Connect with Google"
@@ -3959,10 +4243,20 @@ msgstr "Connect with Google"
 msgid "Connect with Microsoft"
 msgstr "Connect with Microsoft"
 
+#. js-lingui-id: HI5GVL
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Connect Xero"
+msgstr "Connect Xero"
+
 #. js-lingui-id: iZWbGJ
 #: src/modules/settings/playground/components/SettingsMcpSetup.tsx
 msgid "Connect your AI assistant"
 msgstr "Connect your AI assistant"
+
+#. js-lingui-id: lzxFHs
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Connect your Xero organisation to sync invoices, bills, payments and contacts into Waimin."
+msgstr "Connect your Xero organisation to sync invoices, bills, payments and contacts into Waimin."
 
 #. js-lingui-id: QHcLEN
 #: src/pages/settings/applications/SettingsApplicationConnectionDetail.tsx
@@ -3974,6 +4268,16 @@ msgstr "Connected"
 #: src/pages/settings/accounts/SettingsAccounts.tsx
 msgid "Connected accounts"
 msgstr "Connected accounts"
+
+#. js-lingui-id: +XnA4c
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Connected organisations"
+msgstr "Connected organisations"
+
+#. js-lingui-id: JrFTcr
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Connecting…"
+msgstr "Connecting…"
 
 #. js-lingui-id: exyUec
 #: src/pages/settings/applications/SettingsApplicationConnectionDetail.tsx
@@ -4383,6 +4687,11 @@ msgstr "create"
 msgid "Create"
 msgstr "Create"
 
+#. js-lingui-id: QLFQ/7
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Create a <0>Read-Only</0> API token in your Wise account settings and paste it here. We will securely store this token and use it to sync your multi-currency balances automatically."
+msgstr "Create a <0>Read-Only</0> API token in your Wise account settings and paste it here. We will securely store this token and use it to sync your multi-currency balances automatically."
+
 #. js-lingui-id: 8aATyU
 #: src/modules/ai/components/suggested-prompts/default-suggested-prompts.ts
 msgid "Create a dashboard"
@@ -4675,6 +4984,9 @@ msgid "currencies"
 msgstr "currencies"
 
 #. js-lingui-id: Q2lUR2
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/CurrencyFieldInput.tsx
 msgid "Currency"
 msgstr "Currency"
@@ -4685,11 +4997,18 @@ msgid "Currency Code"
 msgstr "Currency Code"
 
 #. js-lingui-id: Hp1l6f
+#: src/pages/finance/FinanceDashboard.tsx
+#: src/pages/finance/FinanceDashboard.tsx
 #: src/modules/settings/billing/components/internal/SubscriptionInfoRowContainer.tsx
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
 msgid "Current"
 msgstr "Current"
+
+#. js-lingui-id: PxMcud
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Current balance"
+msgstr "Current balance"
 
 #. js-lingui-id: nSK0mT
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
@@ -4776,9 +5095,25 @@ msgid "Custom View"
 msgstr "Custom View"
 
 #. js-lingui-id: 876pfE
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
 msgid "Customer"
 msgstr "Customer"
+
+#. js-lingui-id: JGRkiO
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Customer invoices (A/R) with a due date on or before {friday}. Only what customers are supposed to have paid you."
+msgstr "Customer invoices (A/R) with a due date on or before {friday}. Only what customers are supposed to have paid you."
+
+#. js-lingui-id: JTFZGn
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Customer invoices grouped by how overdue they are. Green = not-yet-due, red = 90+ days overdue. Chase the red first."
+msgstr "Customer invoices grouped by how overdue they are. Green = not-yet-due, red = 90+ days overdue. Chase the red first."
+
+#. js-lingui-id: x7F7Vp
+#: src/pages/auth/SignInUp.tsx
+msgid "Customer pipeline + deal tracking"
+msgstr "Customer pipeline + deal tracking"
 
 #. js-lingui-id: MNGIVW
 #: src/modules/settings/data-model/object-details/components/tabs/ObjectFields.tsx
@@ -5111,6 +5446,11 @@ msgstr "Debug Info"
 msgid "Decide which Sub-address fields you want to display"
 msgstr "Decide which Sub-address fields you want to display"
 
+#. js-lingui-id: vudAcT
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Deducts selected bills from bank balances and marks them paid"
+msgstr "Deducts selected bills from bank balances and marks them paid"
+
 #. js-lingui-id: Bn9+El
 #: src/modules/ai/hooks/useAiModelOptions.ts
 msgid "default"
@@ -5247,6 +5587,9 @@ msgstr "delete"
 #: src/pages/settings/ai/components/SettingsAgentEvalsTab.tsx
 #: src/pages/settings/ai/components/SettingsAgentEvalsTab.tsx
 #: src/pages/settings/admin-panel/SettingsAdminApplicationRegistrationDangerZone.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/workflow/workflow-steps/filters/components/WorkflowStepFilterOptionsDropdown.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowStepFooter.tsx
 #: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
@@ -5277,6 +5620,13 @@ msgstr "delete"
 #: src/modules/activities/files/components/AttachmentDropdown.tsx
 msgid "Delete"
 msgstr "Delete"
+
+#. js-lingui-id: sQ1H60
+#. placeholder {0}: row.bankName
+#. placeholder {1}: row.currencyCode
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Delete {0} · {1}?"
+msgstr "Delete {0} · {1}?"
 
 #. js-lingui-id: EsGY/k
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx
@@ -5418,6 +5768,16 @@ msgstr "Delete this index?"
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 msgid "Delete this integration"
 msgstr "Delete this integration"
+
+#. js-lingui-id: brQhBs
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Delete this mandatory payment?"
+msgstr "Delete this mandatory payment?"
+
+#. js-lingui-id: KlCAJz
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Delete this reminder?"
+msgstr "Delete this reminder?"
 
 #. js-lingui-id: c0vHQI
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettings.tsx
@@ -5568,11 +5928,11 @@ msgid "Detail per workspace"
 msgstr "Detail per workspace"
 
 #. js-lingui-id: URmyfc
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/pages/settings/layout/components/SettingsLayoutDetailScaffold.tsx
 #: src/pages/settings/applications/SettingsApplicationConnectionDetail.tsx
 #: src/pages/settings/applications/tabs/SettingsApplicationFrontComponentSettingsTab.tsx
 #: src/pages/settings/applications/tabs/SettingsApplicationCommandMenuItemSettingsTab.tsx
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/modules/ai/components/RoutingDebugDisplay.tsx
 msgid "Details"
 msgstr "Details"
@@ -5599,6 +5959,7 @@ msgstr "Developers links"
 
 #. js-lingui-id: MRB7nI
 #: src/pages/settings/layout/SettingsLayoutViewDetail.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
 msgid "Direction"
 msgstr "Direction"
 
@@ -5608,6 +5969,7 @@ msgid "Disabled"
 msgstr "Disabled"
 
 #. js-lingui-id: +K0AvT
+#: src/pages/settings/integrations/SettingsXero.tsx
 #: src/pages/settings/applications/SettingsApplicationConnectionDetail.tsx
 #: src/pages/settings/applications/SettingsApplicationConnectionDetail.tsx
 msgid "Disconnect"
@@ -5808,6 +6170,13 @@ msgstr "Drop fields here"
 msgid "Drop file here..."
 msgstr "Drop file here..."
 
+#. js-lingui-id: Gpfctt
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Due"
+msgstr "Due"
+
 #. js-lingui-id: euc6Ns
 #: src/modules/side-panel/pages/page-layout/components/RegularTabSettingsContent.tsx
 msgid "Duplicate"
@@ -5903,6 +6272,11 @@ msgstr "e.g. my-workspace"
 msgid "e.g. OpenAI EU"
 msgstr "e.g. OpenAI EU"
 
+#. js-lingui-id: VnXHun
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "e.g. Urgent supplier invoice"
+msgstr "e.g. Urgent supplier invoice"
+
 #. js-lingui-id: p5P8NB
 #: src/pages/settings/ai/components/SettingsAiOverviewTab.tsx
 msgid "E.g., \"We are a B2B SaaS company. Always use formal language...\""
@@ -5913,6 +6287,16 @@ msgstr "E.g., \"We are a B2B SaaS company. Always use formal language...\""
 msgid "e.g., summary, status, count"
 msgstr "e.g., summary, status, count"
 
+#. js-lingui-id: 5Qc7QM
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Each bank grouped with its currency accounts. Real banks often hold multiple currencies — track them separately here."
+msgstr "Each bank grouped with its currency accounts. Real banks often hold multiple currencies — track them separately here."
+
+#. js-lingui-id: AbRg4R
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Each bank's balance after the bills, mandatory payments and adjustments you assigned to it. Change a bill's \"Pay from\" bank and that bank's projection moves."
+msgstr "Each bank's balance after the bills, mandatory payments and adjustments you assigned to it. Change a bill's \"Pay from\" bank and that bank's projection moves."
+
 #. js-lingui-id: npNQJR
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
 msgid "Each index speeds up reads on the fields it covers, but slows down every insert and update, and uses disk space. Only add an index when you know which queries it serves."
@@ -5922,6 +6306,11 @@ msgstr "Each index speeds up reads on the fields it covers, but slows down every
 #: src/modules/side-panel/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 msgid "Each slice represents"
 msgstr "Each slice represents"
+
+#. js-lingui-id: 9EKdZL
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Each Xero organisation authorized for this workspace."
+msgstr "Each Xero organisation authorized for this workspace."
 
 #. js-lingui-id: tOkc8o
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -5944,6 +6333,9 @@ msgid "eddy@gmail.com, @apple.com"
 msgstr "eddy@gmail.com, @apple.com"
 
 #. js-lingui-id: ePK91l
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
 #: src/modules/side-panel/hooks/useSidePanelMenu.ts
 #: src/modules/settings/roles/role-permissions/object-level-permissions/field-permissions/components/SettingsRolePermissionsObjectLevelObjectFieldPermissionTable.tsx
@@ -5974,6 +6366,11 @@ msgstr "Edit Account"
 #: src/modules/command-menu-item/edit/components/CommandMenuItemEditButton.tsx
 msgid "Edit actions"
 msgstr "Edit actions"
+
+#. js-lingui-id: H+y9X2
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Edit bank account"
+msgstr "Edit bank account"
 
 #. js-lingui-id: DMIYL8
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useSettingsRolePermissionFlagConfig.ts
@@ -6016,6 +6413,11 @@ msgstr "Edit iFrame"
 msgid "Edit link"
 msgstr "Edit link"
 
+#. js-lingui-id: 3nb8vf
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Edit Mandatory Payment"
+msgstr "Edit Mandatory Payment"
+
 #. js-lingui-id: IaSCqp
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useActionRolePermissionFlagConfig.ts
 msgid "Edit own profile information"
@@ -6042,6 +6444,11 @@ msgstr "Edit Record Table"
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsSection.tsx
 msgid "Edit Records on All Objects"
 msgstr "Edit Records on All Objects"
+
+#. js-lingui-id: kprSMv
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Edit Reminder"
+msgstr "Edit Reminder"
 
 #. js-lingui-id: eMFB6/
 #: src/modules/views/view-picker/components/ViewPickerContentEditMode.tsx
@@ -6257,12 +6664,12 @@ msgid "Empty"
 msgstr "Empty"
 
 #. js-lingui-id: OMbipf
-#: src/pages/settings/security/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepOutputDetail.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -6281,12 +6688,12 @@ msgid "Empty Inbox"
 msgstr "Empty Inbox"
 
 #. js-lingui-id: 3hSGoJ
-#: src/pages/settings/security/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepOutputDetail.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -6316,14 +6723,10 @@ msgid "Enable model-specific features"
 msgstr "Enable model-specific features"
 
 #. js-lingui-id: IrI9pg
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
 msgid "End date"
 msgstr "End date"
-
-#. js-lingui-id: VFv2ZC
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "End Date"
-msgstr "End Date"
 
 #. js-lingui-id: Fqu/aC
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
@@ -6339,6 +6742,11 @@ msgstr "End Trial Period"
 #: src/modules/information-banner/components/billing/InformationBannerEndTrialPeriod.tsx
 msgid "End trial period to continue using Workflow or AI features."
 msgstr "End trial period to continue using Workflow or AI features."
+
+#. js-lingui-id: byp2s6
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Ending balance"
+msgstr "Ending balance"
 
 #. js-lingui-id: T3juzf
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
@@ -6375,6 +6783,11 @@ msgstr "Enjoy a 30-day free trial"
 #: src/modules/object-record/record-field/ui/form-types/components/FormRawJsonFieldInput.tsx
 msgid "Enter a JSON object"
 msgstr "Enter a JSON object"
+
+#. js-lingui-id: FX549R
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Enter a label and a positive amount for the adjustment."
+msgstr "Enter a label and a positive amount for the adjustment."
 
 #. js-lingui-id: peBb6B
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableValueInput.tsx
@@ -6535,6 +6948,11 @@ msgstr "Enter text or type '/' for commands"
 msgid "Enter text or Type '/' for commands"
 msgstr "Enter text or Type '/' for commands"
 
+#. js-lingui-id: oIn7d4
+#: src/pages/auth/SignInUp.tsx
+msgid "Enter the 6-digit code from your authenticator app."
+msgstr "Enter the 6-digit code from your authenticator app."
+
 #. js-lingui-id: XJU8BD
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
 msgid "Enter the credentials to set the connection"
@@ -6587,14 +7005,10 @@ msgstr "Enterprise"
 #. js-lingui-id: rmZVdg
 #: src/pages/settings/ai/components/SettingsAiUsageTab.tsx
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
 #: src/modules/settings/admin-panel/ai/components/SettingsAdminAI.tsx
 msgid "Enterprise feature"
 msgstr "Enterprise feature"
-
-#. js-lingui-id: Kjjkt3
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "Enterprise Feature"
-msgstr "Enterprise Feature"
 
 #. js-lingui-id: S5c4pl
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
@@ -6692,11 +7106,6 @@ msgstr "Error editing SSO Identity Provider"
 #: src/modules/error-handler/components/AppRootErrorFallback.tsx
 msgid "Error illustration"
 msgstr "Error illustration"
-
-#. js-lingui-id: UJr0dl
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "Error Loading Audit Logs"
-msgstr "Error Loading Audit Logs"
 
 #. js-lingui-id: 9e/9KK
 #: src/modules/activities/timeline-activities/rows/calendar/components/EventCardCalendarEvent.tsx
@@ -6840,16 +7249,16 @@ msgid "Evaluations"
 msgstr "Evaluations"
 
 #. js-lingui-id: 0pC/y6
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/modules/activities/calendar/components/CalendarEventDetails.tsx
 msgid "Event"
 msgstr "Event"
 
-#. js-lingui-id: ailPEn
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "Event Type"
-msgstr "Event Type"
+#. js-lingui-id: cW8SdW
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
+msgid "Event type"
+msgstr "Event type"
 
 #. js-lingui-id: poC90w
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelDetails.tsx
@@ -6966,7 +7375,7 @@ msgid "Exclude the following people and domains from my email sync. Internal con
 msgstr "Exclude the following people and domains from my email sync. Internal conversations will not be imported"
 
 #. js-lingui-id: B0clc7
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Execution ID"
 msgstr "Execution ID"
 
@@ -6996,12 +7405,12 @@ msgid "Exit Settings"
 msgstr "Exit Settings"
 
 #. js-lingui-id: 1A3EXy
-#: src/pages/settings/security/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepOutputDetail.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -7094,6 +7503,7 @@ msgid "Export ({percentageValue}%)"
 msgstr "Export ({percentageValue}%)"
 
 #. js-lingui-id: 2KAI4N
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useActionRolePermissionFlagConfig.ts
 msgid "Export CSV"
 msgstr "Export CSV"
@@ -7225,6 +7635,11 @@ msgstr "Failed to load front component: {errorMessage}"
 #: src/modules/settings/developers/hooks/useWebhookForm.ts
 msgid "Failed to load webhook"
 msgstr "Failed to load webhook"
+
+#. js-lingui-id: MucUuN
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Failed to load Xero status: {error}"
+msgstr "Failed to load Xero status: {error}"
 
 #. js-lingui-id: TZV+Pv
 #: src/modules/object-record/record-merge/hooks/useMergeRecordsActions.ts
@@ -7615,7 +8030,7 @@ msgid "Filter"
 msgstr "Filter"
 
 #. js-lingui-id: LjNPDA
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Filter by event"
 msgstr "Filter by event"
 
@@ -7625,7 +8040,7 @@ msgid "Filter by object type"
 msgstr "Filter by object type"
 
 #. js-lingui-id: gVEHcL
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Filter by record ID"
 msgstr "Filter by record ID"
 
@@ -7651,6 +8066,21 @@ msgstr "filtering"
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
 msgid "Filters"
 msgstr "Filters"
+
+#. js-lingui-id: 8V6XO3
+#: src/modules/navigation/components/NavigationDrawerOtherSection.tsx
+msgid "Finance"
+msgstr "Finance"
+
+#. js-lingui-id: UHsg3v
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Finance Dashboard"
+msgstr "Finance Dashboard"
+
+#. js-lingui-id: sGJpnV
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Finance Dashboard | Waimin"
+msgstr "Finance Dashboard | Waimin"
 
 #. js-lingui-id: JmZ/+d
 #: src/pages/onboarding/InviteTeam.tsx
@@ -7820,6 +8250,13 @@ msgstr "Free trial credits exhausted. Subscribe now to continue using AI feature
 msgid "French"
 msgstr "French"
 
+#. js-lingui-id: wtuVU4
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Frequency"
+msgstr "Frequency"
+
 #. js-lingui-id: ejVYRQ
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
 msgid "From"
@@ -7872,7 +8309,7 @@ msgid "Full tab widget"
 msgstr "Full tab widget"
 
 #. js-lingui-id: YMZBxa
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Function"
 msgstr "Function"
 
@@ -7967,11 +8404,6 @@ msgstr "GIN (full-text search and JSONB)"
 #: src/modules/settings/data-model/object-details/components/tabs/SettingsObjectSearchSection.tsx
 msgid "Global search"
 msgstr "Global search"
-
-#. js-lingui-id: sr0UJD
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "Go Back"
-msgstr "Go Back"
 
 #. js-lingui-id: Hb4Cgz
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
@@ -8165,6 +8597,11 @@ msgstr "Headless"
 #: src/pages/settings/applications/tabs/SettingsApplicationFrontComponentPreviewTab.tsx
 msgid "Headless component"
 msgstr "Headless component"
+
+#. js-lingui-id: hLe/l4
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Headline numbers in your primary currency. Full multi-currency breakdown is below."
+msgstr "Headline numbers in your primary currency. Full multi-currency breakdown is below."
 
 #. js-lingui-id: UPqS9C
 #: src/modules/settings/admin-panel/components/SettingsAdminContent.tsx
@@ -8813,6 +9250,12 @@ msgstr "Instructions"
 msgid "Instructions Editor"
 msgstr "Instructions Editor"
 
+#. js-lingui-id: nbfdhU
+#: src/pages/settings/integrations/SettingsXero.tsx
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
+msgid "Integrations"
+msgstr "Integrations"
+
 #. js-lingui-id: RGm66q
 #: src/utils/title-utils.ts
 msgid "Integrations - Settings"
@@ -8822,6 +9265,11 @@ msgstr "Integrations - Settings"
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "Interval switching has been cancelled."
 msgstr "Interval switching has been cancelled."
+
+#. js-lingui-id: b8PKL3
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Into"
+msgstr "Into"
 
 #. js-lingui-id: ggS/0k
 #: src/modules/settings/two-factor-authentication/components/DeleteTwoFactorAuthenticationMethod.tsx
@@ -8980,6 +9428,11 @@ msgstr "Invite user"
 #: src/pages/onboarding/InviteTeam.tsx
 msgid "Invite your team"
 msgstr "Invite your team"
+
+#. js-lingui-id: IuMGvq
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Invoice"
+msgstr "Invoice"
 
 #. js-lingui-id: CUvG5b
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
@@ -9222,6 +9675,11 @@ msgstr "Korean"
 #: src/pages/settings/applications/tabs/SettingsApplicationCommandMenuItemSettingsTab.tsx
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsText.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsSelect.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsRecordPicker.tsx
@@ -9229,6 +9687,11 @@ msgstr "Korean"
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsDate.tsx
 msgid "Label"
 msgstr "Label"
+
+#. js-lingui-id: T2SpXt
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Label and currency required"
+msgstr "Label and currency required"
 
 #. js-lingui-id: w8Rv8T
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
@@ -9544,7 +10007,7 @@ msgid "Less than or equal"
 msgstr "Less than or equal"
 
 #. js-lingui-id: oCHfGC
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Level"
 msgstr "Level"
 
@@ -9661,6 +10124,11 @@ msgstr "Listing"
 msgid "Listings"
 msgstr "Listings"
 
+#. js-lingui-id: qL4+JQ
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Live snapshot of your cash, receivables and payables. Data comes from Xero (invoices, contacts) and manual bank balances. Use this to answer \"how are we doing right now?\" — for \"what should we pay Friday?\" open the Weekly Planner."
+msgstr "Live snapshot of your cash, receivables and payables. Data comes from Xero (invoices, contacts) and manual bank balances. Use this to answer \"how are we doing right now?\" — for \"what should we pay Friday?\" open the Weekly Planner."
+
 #. js-lingui-id: C5bVie
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerWebhookForm.tsx
 #: src/modules/settings/logic-functions/components/triggers/SettingsLogicFunctionHttpTriggerSection.tsx
@@ -9719,8 +10187,8 @@ msgid "Loading metrics data..."
 msgstr "Loading metrics data..."
 
 #. js-lingui-id: tVSmFT
-#: src/pages/settings/security/event-logs/components/EventLogResultsTable.tsx
 #: src/modules/ui/input/components/IconPicker.tsx
+#: src/modules/settings/event-logs/components/EventLogResultsTable.tsx
 #: src/modules/object-record/record-picker/multiple-record-picker/components/MultipleRecordPickerFetchMoreLoader.tsx
 #: src/modules/activities/components/CustomResolverFetchMoreLoader.tsx
 msgid "Loading more..."
@@ -9754,6 +10222,11 @@ msgstr "Loading..."
 #: src/pages/settings/ai/SettingsAiPrompts.tsx
 msgid "Locale"
 msgstr "Locale"
+
+#. js-lingui-id: bVHUpk
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Lock as must-pay"
+msgstr "Lock as must-pay"
 
 #. js-lingui-id: B6ANJW
 #: src/modules/ai/components/suggested-prompts/default-suggested-prompts.ts
@@ -9813,6 +10286,7 @@ msgid "Logout"
 msgstr "Logout"
 
 #. js-lingui-id: w/bY7R
+#: src/pages/settings/general/SettingsGeneral.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/side-panel/pages/workflow/step/view-run/components/SidePanelWorkflowRunViewStepContent.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -9865,6 +10339,11 @@ msgstr "Manage"
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useSettingsRolePermissionFlagConfig.ts
 msgid "Manage API keys and webhooks"
 msgstr "Manage API keys and webhooks"
+
+#. js-lingui-id: HZclxY
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Manage banks →"
+msgstr "Manage banks →"
 
 #. js-lingui-id: IT5nsa
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useSettingsRolePermissionFlagConfig.ts
@@ -9945,11 +10424,26 @@ msgstr "Manage your internet accounts."
 msgid "Managed"
 msgstr "Managed"
 
+#. js-lingui-id: HJlBRm
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Mandatory payments"
+msgstr "Mandatory payments"
+
+#. js-lingui-id: eUSLfv
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Mandatory Payments"
+msgstr "Mandatory Payments"
+
 #. js-lingui-id: BWTzAb
 #: src/modules/side-panel/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 #: src/modules/side-panel/pages/page-layout/hooks/useGraphGroupBySortOptionLabels.ts
 msgid "Manual"
 msgstr "Manual"
+
+#. js-lingui-id: wbjisW
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Manual adjustments"
+msgstr "Manual adjustments"
 
 #. js-lingui-id: Zt5PUS
 #: src/pages/settings/applications/SettingsApplications.tsx
@@ -10110,7 +10604,7 @@ msgid "Merging..."
 msgstr "Merging..."
 
 #. js-lingui-id: xDAtGP
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Message"
 msgstr "Message"
 
@@ -10165,6 +10659,11 @@ msgstr "Method"
 msgid "Microsoft"
 msgstr "Microsoft"
 
+#. js-lingui-id: 9k+MQi
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Microsoft Teams alerts"
+msgstr "Microsoft Teams alerts"
+
 #. js-lingui-id: eTUF28
 #: src/modules/side-panel/pages/page-layout/constants/settings/RangeMinSetting.ts
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -10196,6 +10695,11 @@ msgstr "Minutes"
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Minutes between triggers"
 msgstr "Minutes between triggers"
+
+#. js-lingui-id: pt8f/3
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Missing bank accounts"
+msgstr "Missing bank accounts"
 
 #. js-lingui-id: URVUmK
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionEmailBase.tsx
@@ -10262,6 +10766,26 @@ msgstr "Models for this provider. Toggle to enable or disable."
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
 msgid "Monday"
 msgstr "Monday"
+
+#. js-lingui-id: gk49HO
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Money coming in by Friday"
+msgstr "Money coming in by Friday"
+
+#. js-lingui-id: tATjVL
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "money in"
+msgstr "money in"
+
+#. js-lingui-id: SBXndG
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "money out"
+msgstr "money out"
+
+#. js-lingui-id: YOjvox
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Money owed to you"
+msgstr "Money owed to you"
 
 #. js-lingui-id: 8g3Cgz
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminConnectedAccountHealthStatus.tsx
@@ -10763,11 +11287,32 @@ msgstr "New widget"
 msgid "Next"
 msgstr "Next"
 
+#. js-lingui-id: dpDeSd
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Next Due"
+msgstr "Next Due"
+
+#. js-lingui-id: tDpF6n
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Next Due Date"
+msgstr "Next Due Date"
+
 #. js-lingui-id: AxNmtI
 #: src/modules/spreadsheet-import/steps/components/SelectSheetStep/SelectSheetStep.tsx
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
 msgid "Next Step"
 msgstr "Next Step"
+
+#. js-lingui-id: aK8Msc
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Next: banks & commit →"
+msgstr "Next: banks & commit →"
+
+#. js-lingui-id: /d6m4Y
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Next: pick bills →"
+msgstr "Next: pick bills →"
 
 #. js-lingui-id: ulck7h
 #: src/modules/object-record/record-merge/utils/getPositionWordLabel.ts
@@ -10785,6 +11330,12 @@ msgstr "Ninth"
 #: src/modules/settings/admin-panel/apps/components/SettingsAdminApps.tsx
 msgid "No"
 msgstr "No"
+
+#. js-lingui-id: Zao2J8
+#. placeholder {0}: row.currencyCode
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No {0} bank — add one"
+msgstr "No {0} bank — add one"
 
 #. js-lingui-id: 7YGRoE
 #: src/modules/ui/input/components/SelectInput.tsx
@@ -10871,6 +11422,11 @@ msgstr "No application found"
 msgid "No applications available"
 msgstr "No applications available"
 
+#. js-lingui-id: o4fMVs
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "No automated reminders configured yet."
+msgstr "No automated reminders configured yet."
+
 #. js-lingui-id: tFxVHz
 #: src/modules/workflow/workflow-steps/filters/components/WorkflowStepFilterFieldSelect.tsx
 msgid "No available fields to select"
@@ -10881,10 +11437,36 @@ msgstr "No available fields to select"
 msgid "No available tabs"
 msgstr "No available tabs"
 
+#. js-lingui-id: rjks/B
+#. placeholder {0}: missingBankCurrencies.join(', ')
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No bank account for {0}"
+msgstr "No bank account for {0}"
+
+#. js-lingui-id: pX6XtM
+#: src/pages/finance/FinanceBanks.tsx
+msgid "No bank accounts yet."
+msgstr "No bank accounts yet."
+
+#. js-lingui-id: C8Ekck
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "No bank balances yet."
+msgstr "No bank balances yet."
+
+#. js-lingui-id: wXcBXC
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "no bill #"
+msgstr "no bill #"
+
 #. js-lingui-id: 8whThc
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
 msgid "No billing data is available for this workspace."
 msgstr "No billing data is available for this workspace."
+
+#. js-lingui-id: 7UqILz
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No bills selected for payment yet. Pick some from the list below."
+msgstr "No bills selected for payment yet. Pick some from the list below."
 
 #. js-lingui-id: V/RzSE
 #: src/modules/workflow/workflow-steps/workflow-actions/http-request-action/components/BodyInput.tsx
@@ -10896,6 +11478,11 @@ msgstr "No body"
 #: src/modules/object-record/record-field/ui/form-types/components/FormCallingCodeSelectInput.tsx
 msgid "No calling code"
 msgstr "No calling code"
+
+#. js-lingui-id: jj1uvn
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No cash, receipts, or payables loaded. Sync Xero and add bank balances first."
+msgstr "No cash, receipts, or payables loaded. Sync Xero and add bank balances first."
 
 #. js-lingui-id: d14J3J
 #: src/modules/ai/components/NavigationDrawerAiChatContent.tsx
@@ -10954,6 +11541,11 @@ msgstr "No currency"
 #: src/modules/navigation-menu-item/edit/side-panel/components/SidePanelNewSidebarItemViewPickerSubView.tsx
 msgid "No custom views available"
 msgstr "No custom views available"
+
+#. js-lingui-id: YWG2SK
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No customer invoices due by {friday}. Either everyone paid on time, or invoices land later."
+msgstr "No customer invoices due by {friday}. Either everyone paid on time, or invoices land later."
 
 #. js-lingui-id: plhHQt
 #: src/modules/page-layout/widgets/graph/graph-widget-pie-chart/components/PieChartCenterMetricLayer.tsx
@@ -11034,7 +11626,7 @@ msgid "No evaluations yet for this turn"
 msgstr "No evaluations yet for this turn"
 
 #. js-lingui-id: SIR5Ix
-#: src/pages/settings/security/event-logs/components/EventLogResultsTable.tsx
+#: src/modules/settings/event-logs/components/EventLogResultsTable.tsx
 msgid "No event logs found"
 msgstr "No event logs found"
 
@@ -11140,6 +11732,21 @@ msgstr "No logs were recorded for this step."
 msgid "No logs yet"
 msgstr "No logs yet"
 
+#. js-lingui-id: BVcTSk
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No main (BNZ) bank set"
+msgstr "No main (BNZ) bank set"
+
+#. js-lingui-id: IQ2ns/
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "No mandatory payments configured yet."
+msgstr "No mandatory payments configured yet."
+
+#. js-lingui-id: X18s6x
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No mandatory payments due by {friday}. Add them in Reminders settings."
+msgstr "No mandatory payments due by {friday}. Add them in Reminders settings."
+
 #. js-lingui-id: UwvrGq
 #: src/pages/settings/members/tabs/SettingsWorkspaceMembersTeamTab.tsx
 msgid "No members"
@@ -11196,6 +11803,11 @@ msgstr "No objects with views found"
 msgid "No option found"
 msgstr "No option found"
 
+#. js-lingui-id: sVM+LW
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No other bills due by {friday}."
+msgstr "No other bills due by {friday}."
+
 #. js-lingui-id: XRc1G9
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/ai/components/TerminalOutput.tsx
@@ -11211,6 +11823,11 @@ msgstr "No output available"
 #: src/pages/settings/ai/components/SettingsToolParameterTable.tsx
 msgid "No parameters"
 msgstr "No parameters"
+
+#. js-lingui-id: eElLix
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "No payables."
+msgstr "No payables."
 
 #. js-lingui-id: 5pSj4j
 #: src/modules/settings/billing/hooks/useEndSubscriptionTrialPeriod.ts
@@ -11231,6 +11848,11 @@ msgstr "No permissions configured for this application."
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelSection.tsx
 msgid "No permissions have been set for individual objects."
 msgstr "No permissions have been set for individual objects."
+
+#. js-lingui-id: AH9mlj
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "No receivables."
+msgstr "No receivables."
 
 #. js-lingui-id: V/+aTW
 #: src/modules/object-record/record-field/ui/form-types/components/FormSingleRecordPicker.tsx
@@ -11334,6 +11956,11 @@ msgstr "No system objects with views found"
 msgid "No tools were called"
 msgstr "No tools were called"
 
+#. js-lingui-id: E12WLX
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No top-ups needed — every assigned bank can cover its share, or nothing is selected yet."
+msgstr "No top-ups needed — every assigned bank can cover its share, or nothing is selected yet."
+
 #. js-lingui-id: ZCTuAQ
 #: src/modules/settings/logic-functions/components/tabs/SettingsLogicFunctionTriggersTab.tsx
 msgid "No trigger is configured for this function."
@@ -11410,6 +12037,11 @@ msgstr "No workspace selected"
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
 msgid "No workspaces found matching your search criteria."
 msgstr "No workspaces found matching your search criteria."
+
+#. js-lingui-id: XQ8tbA
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "No Xero organisations connected yet."
+msgstr "No Xero organisations connected yet."
 
 #. js-lingui-id: Ah7JCB
 #: src/modules/side-panel/pages/workflow/step/view-run/components/SidePanelWorkflowRunViewStepContent.tsx
@@ -11495,6 +12127,11 @@ msgstr "Not shared by {notSharedByFullName}"
 #: src/modules/settings/accounts/components/SettingsAccountsConnectedAccountsRowRightContainer.tsx
 msgid "Not synced"
 msgstr "Not synced"
+
+#. js-lingui-id: KiJn9B
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Note"
+msgstr "Note"
 
 #. js-lingui-id: VngD1z
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
@@ -11625,12 +12262,12 @@ msgid "Object destination"
 msgstr "Object destination"
 
 #. js-lingui-id: /clmEa
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 msgid "Object Events"
 msgstr "Object Events"
 
 #. js-lingui-id: 79D4Az
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Object ID"
 msgstr "Object ID"
 
@@ -11649,10 +12286,10 @@ msgstr "object permission"
 msgid "Object permission options"
 msgstr "Object permission options"
 
-#. js-lingui-id: UGhVPl
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "Object Type"
-msgstr "Object Type"
+#. js-lingui-id: gaqIMK
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
+msgid "Object type"
+msgstr "Object type"
 
 #. js-lingui-id: rDycBw
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
@@ -11786,6 +12423,16 @@ msgstr "On which object(s) should this trigger be available"
 msgid "Onboarding call"
 msgstr "Onboarding call"
 
+#. js-lingui-id: C9QqPD
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "One card per currency. Update balances on the Bank Accounts page."
+msgstr "One card per currency. Update balances on the Bank Accounts page."
+
+#. js-lingui-id: p4YNRD
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "One or more currencies go negative — review selection."
+msgstr "One or more currencies go negative — review selection."
+
 #. js-lingui-id: zii2Qj
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarVisibilitySettingsCard.tsx
 msgid "Only date & participants will be shared with your team."
@@ -11886,6 +12533,11 @@ msgstr "Open records in"
 msgid "Open side panel"
 msgstr "Open side panel"
 
+#. js-lingui-id: u8VPPR
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Open Weekly Planner →"
+msgstr "Open Weekly Planner →"
+
 #. js-lingui-id: OV5wZZ
 #: src/modules/navigation-menu-item/display/sections/components/NavigationDrawerOpenedSection.tsx
 msgid "Opened"
@@ -11905,6 +12557,11 @@ msgstr "Operational"
 #: src/modules/settings/data-model/fields/forms/select/hooks/useSelectSettingsFormInitialValues.ts
 msgid "Option 1"
 msgstr "Option 1"
+
+#. js-lingui-id: AWA6XY
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "optional"
+msgstr "optional"
 
 #. js-lingui-id: gUeG+X
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
@@ -12001,6 +12658,11 @@ msgstr "Organize"
 msgid "Other"
 msgstr "Other"
 
+#. js-lingui-id: Svq4ct
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Other Due Bills"
+msgstr "Other Due Bills"
+
 #. js-lingui-id: ggOXu2
 #: src/modules/settings/data-model/objects/components/SettingsDataModelObjectSummary.tsx
 msgid "Other objects"
@@ -12057,6 +12719,16 @@ msgstr "Output"
 #: src/modules/ai/components/internal/AiChatContextUsageButton.tsx
 msgid "Output tokens"
 msgstr "Output tokens"
+
+#. js-lingui-id: MIFURj
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "overdue"
+msgstr "overdue"
+
+#. js-lingui-id: DmEWyk
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Overdue receivables"
+msgstr "Overdue receivables"
 
 #. js-lingui-id: in6CUw
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
@@ -12125,10 +12797,10 @@ msgstr "page layout widget"
 msgid "Page layouts"
 msgstr "Page layouts"
 
-#. js-lingui-id: IVBjIH
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "Page Name"
-msgstr "Page Name"
+#. js-lingui-id: zQF6Kb
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
+msgid "Page name"
+msgstr "Page name"
 
 #. js-lingui-id: NRvxzv
 #: src/pages/not-found/NotFound.tsx
@@ -12136,7 +12808,7 @@ msgid "Page Not Found | Twenty"
 msgstr "Page Not Found | Twenty"
 
 #. js-lingui-id: sF+Xp9
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 msgid "Page Views"
 msgstr "Page Views"
 
@@ -12194,6 +12866,11 @@ msgstr "Password must be between 8 and 50 characters"
 msgid "Password reset link has been sent to the email"
 msgstr "Password reset link has been sent to the email"
 
+#. js-lingui-id: I4Ms0u
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Paste a Teams Incoming Webhook URL. When a reminder is due, we post a message to that Teams channel (in addition to creating a CRM task). In Teams: channel → ⋯ → Connectors → Incoming Webhook → Create → copy URL."
+msgstr "Paste a Teams Incoming Webhook URL. When a reminder is due, we post a message to that Teams channel (in addition to creating a CRM task). In Teams: channel → ⋯ → Connectors → Incoming Webhook → Create → copy URL."
+
 #. js-lingui-id: cpStVq
 #: src/modules/auth/sign-in-up/components/internal/SignInUpTwoFactorAuthenticationVerification.tsx
 msgid "Paste the code below"
@@ -12214,10 +12891,38 @@ msgstr "Paste your enterprise key here"
 msgid "Path"
 msgstr "Path"
 
+#. js-lingui-id: URAE3q
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Paused"
+msgstr "Paused"
+
+#. js-lingui-id: illYiU
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Pay date"
+msgstr "Pay date"
+
+#. js-lingui-id: 5sJuRp
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Pay from"
+msgstr "Pay from"
+
+#. js-lingui-id: qvtg1K
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Pay From Bank"
+msgstr "Pay From Bank"
+
 #. js-lingui-id: QmXBEc
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Payment issue"
 msgstr "Payment issue"
+
+#. js-lingui-id: XHtUmK
+#. placeholder {2}: res.billsPaid
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Payment run committed: {2} bill(s) paid, balances updated."
+msgstr "Payment run committed: {2} bill(s) paid, balances updated."
 
 #. js-lingui-id: CcK+Ft
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
@@ -12279,6 +12984,11 @@ msgstr "Percentage"
 #: src/modules/settings/members/components/MemberInfosTab.tsx
 msgid "Perform administrative actions or permanently delete this user"
 msgstr "Perform administrative actions or permanently delete this user"
+
+#. js-lingui-id: NtQvjo
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
+msgid "Period"
+msgstr "Period"
 
 #. js-lingui-id: wSpwGR
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
@@ -12348,6 +13058,11 @@ msgstr "Pick a view"
 msgid "Pick an object"
 msgstr "Pick an object"
 
+#. js-lingui-id: TXDPo4
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Pick bills"
+msgstr "Pick bills"
+
 #. js-lingui-id: JHXjkT
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
 msgid "Pick one or more fields. The order you select them in becomes the column order in the index — important for composite queries. For composite fields like Address, pick the specific sub-column to index."
@@ -12357,6 +13072,11 @@ msgstr "Pick one or more fields. The order you select them in becomes the column
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
 msgid "Pick the index type. BTREE covers most queries; GIN is for full-text and JSONB."
 msgstr "Pick the index type. BTREE covers most queries; GIN is for full-text and JSONB."
+
+#. js-lingui-id: h+4gMe
+#: src/pages/auth/SignInUp.tsx
+msgid "Pick the workspace you want to sign into."
+msgstr "Pick the workspace you want to sign into."
 
 #. js-lingui-id: N0+GsR
 #: src/pages/settings/profile/SettingsProfile.tsx
@@ -12412,6 +13132,12 @@ msgstr "Plain text paragraph"
 msgid "Plan"
 msgstr "Plan"
 
+#. js-lingui-id: 37/ADc
+#. placeholder {0}: new Date(savedAt).toLocaleString()
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Plan saved — {0}"
+msgstr "Plan saved — {0}"
+
 #. js-lingui-id: XduPHC
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "Plan switching has been cancelled."
@@ -12422,6 +13148,11 @@ msgstr "Plan switching has been cancelled."
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
 msgid "Planned for {formattedStartDate}"
 msgstr "Planned for {formattedStartDate}"
+
+#. js-lingui-id: Sh/aa3
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Planned Payments"
+msgstr "Planned Payments"
 
 #. js-lingui-id: VUi6Nf
 #: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
@@ -12510,6 +13241,11 @@ msgstr "Portuguese — Brazil"
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Portuguese — Portugal"
 msgstr "Portuguese — Portugal"
+
+#. js-lingui-id: +5qzKf
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Position after Friday — per currency"
+msgstr "Position after Friday — per currency"
 
 #. js-lingui-id: JQw9es
 #: src/modules/side-panel/pages/page-layout/utils/getSortLabelSuffixForFieldType.ts
@@ -12615,6 +13351,7 @@ msgid "Prioritized"
 msgstr "Prioritized"
 
 #. js-lingui-id: 1hKEom
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
 #: src/modules/settings/components/SettingsDnsRecordsTable.tsx
 msgid "Priority"
 msgstr "Priority"
@@ -12670,14 +13407,19 @@ msgstr "Profile - Settings"
 msgid "Profile Picture"
 msgstr "Profile Picture"
 
+#. js-lingui-id: s7WCei
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Projected balance per bank"
+msgstr "Projected balance per bank"
+
 #. js-lingui-id: W9uQXX
 #: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowEditActionAiAgent.tsx
 msgid "Prompt"
 msgstr "Prompt"
 
 #. js-lingui-id: l/UFPv
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Properties"
 msgstr "Properties"
 
@@ -12894,6 +13636,11 @@ msgstr "Read-only"
 msgid "Read-only {entityTypeLabel} definition shipped by this app"
 msgstr "Read-only {entityTypeLabel} definition shipped by this app"
 
+#. js-lingui-id: ufAr7N
+#: src/pages/auth/SignInUp.tsx
+msgid "Real-time finance dashboard"
+msgstr "Real-time finance dashboard"
+
 #. js-lingui-id: wUf2OL
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsAiAgentDetail.tsx
 msgid "Reasoning"
@@ -12935,6 +13682,11 @@ msgstr "Recents"
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
 msgid "Recipients"
 msgstr "Recipients"
+
+#. js-lingui-id: sUuixl
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Recommended bank transfers"
+msgstr "Recommended bank transfers"
 
 #. js-lingui-id: b2+5uV
 #: src/modules/settings/admin-panel/ai/components/SettingsAdminAI.tsx
@@ -12992,8 +13744,8 @@ msgid "Record filter rule options"
 msgstr "Record filter rule options"
 
 #. js-lingui-id: xSAYIn
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Record ID"
 msgstr "Record ID"
 
@@ -13047,6 +13799,16 @@ msgstr "Record(s) selected"
 msgid "Records"
 msgstr "Records"
 
+#. js-lingui-id: B9FiNM
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Recurring obligations (Payroll, GST, Loan, Rent, Credit Card, Trust Account, Inland Revenue) with a set amount. Any instance due by the planner's Friday shows as a locked outflow in the weekly position."
+msgstr "Recurring obligations (Payroll, GST, Loan, Rent, Credit Card, Trust Account, Inland Revenue) with a set amount. Any instance due by the planner's Friday shows as a locked outflow in the weekly position."
+
+#. js-lingui-id: 97qrCf
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Recurring obligations due on or before {friday} — payroll, GST, loan, rent, credit card, Trust Account, Inland Revenue. Always counted as outflow in the position above. Manage amounts and schedules in Reminders settings."
+msgstr "Recurring obligations due on or before {friday} — payroll, GST, loan, rent, credit card, Trust Account, Inland Revenue. Always counted as outflow in the position above. Manage amounts and schedules in Reminders settings."
+
 #. js-lingui-id: wRTiSD
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Red"
@@ -13073,7 +13835,8 @@ msgid "Redirection URI"
 msgstr "Redirection URI"
 
 #. js-lingui-id: lCF0wC
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
+#: src/pages/settings/integrations/SettingsXero.tsx
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
 msgid "Refresh"
 msgstr "Refresh"
 
@@ -13196,6 +13959,11 @@ msgstr "Remove {1} navigation menu item?"
 #: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
 msgid "Remove account"
 msgstr "Remove account"
+
+#. js-lingui-id: B8BprU
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Remove adjustment"
+msgstr "Remove adjustment"
 
 #. js-lingui-id: VjbCv0
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
@@ -13435,7 +14203,7 @@ msgid "Resource credits updated."
 msgstr "Resource credits updated."
 
 #. js-lingui-id: esl+Tv
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Resource Type"
 msgstr "Resource Type"
 
@@ -13532,6 +14300,16 @@ msgstr "Return Value"
 msgid "reverse alphabetical"
 msgstr "reverse alphabetical"
 
+#. js-lingui-id: 3v//tZ
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Review cash on hand, expected receipts, and choose which bills to pay this Friday. Save your plan then export a payment run CSV for your bank."
+msgstr "Review cash on hand, expected receipts, and choose which bills to pay this Friday. Save your plan then export a payment run CSV for your bank."
+
+#. js-lingui-id: 6pBbku
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Review money"
+msgstr "Review money"
+
 #. js-lingui-id: GXsAby
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminRevokeSigningKeyConfirmationModal.tsx
@@ -13578,6 +14356,7 @@ msgstr "role"
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/settings/members/components/MemberPermissionsTab.tsx
 #: src/modules/settings/developers/components/SettingsApiKeysTable.tsx
 msgid "Role"
@@ -13657,6 +14436,11 @@ msgstr "Rotate secret"
 msgid "Routing decision"
 msgstr "Routing decision"
 
+#. js-lingui-id: sWQabM
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Routing role"
+msgstr "Routing role"
+
 #. js-lingui-id: Sz0Ftu
 #: src/modules/ai/components/RoutingDebugDisplay.tsx
 msgid "Routing tokens"
@@ -13734,21 +14518,67 @@ msgid "Saturday"
 msgstr "Saturday"
 
 #. js-lingui-id: tfDRzk
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/settings/components/SaveAndCancelButtons/SaveButton.tsx
 msgid "Save"
 msgstr "Save"
+
+#. js-lingui-id: YTZYCZ
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Save (empty)"
+msgstr "Save (empty)"
 
 #. js-lingui-id: apLRCm
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
 msgid "Save as new view"
 msgstr "Save as new view"
 
+#. js-lingui-id: vgpfCi
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Save draft"
+msgstr "Save draft"
+
 #. js-lingui-id: 7byqGp
 #: src/modules/layout-customization/hooks/useEnterLayoutCustomizationMode.ts
 msgid "Save or cancel dashboard changes before editing the layout."
 msgstr "Save or cancel dashboard changes before editing the layout."
 
+#. js-lingui-id: vYM53+
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Save Reminder"
+msgstr "Save Reminder"
+
+#. js-lingui-id: Sqw2Ve
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Save the webhook first"
+msgstr "Save the webhook first"
+
+#. js-lingui-id: h+QSs6
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Saving with nothing ticked clears this week's plan"
+msgstr "Saving with nothing ticked clears this week's plan"
+
+#. js-lingui-id: XvjC4F
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Saving..."
+msgstr "Saving..."
+
+#. js-lingui-id: K/F6pa
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Saving…"
+msgstr "Saving…"
+
+#. js-lingui-id: g11vhE
+#: src/pages/auth/SignInUp.tsx
+msgid "Scan the QR code with your authenticator app."
+msgstr "Scan the QR code with your authenticator app."
+
 #. js-lingui-id: gmB6oO
+#: src/pages/finance/FinanceRemindersSettings.tsx
 #: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
 msgid "Schedule"
 msgstr "Schedule"
@@ -14028,6 +14858,11 @@ msgstr "Search records..."
 msgid "Search registrations..."
 msgstr "Search registrations..."
 
+#. js-lingui-id: KdKe3+
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Search supplier or bill #"
+msgstr "Search supplier or bill #"
+
 #. js-lingui-id: YIix5Y
 #: src/pages/settings/applications/tabs/SettingsApplicationDetailContentTab.tsx
 #: src/modules/settings/developers/components/WebhookEntitySelect.tsx
@@ -14110,7 +14945,6 @@ msgstr "Secret Access Key"
 
 #. js-lingui-id: a3LDKx
 #: src/pages/settings/security/SettingsSecuritySSOIdentifyProvider.tsx
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
 #: src/pages/settings/general/SettingsGeneral.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useSettingsRolePermissionFlagConfig.ts
 msgid "Security"
@@ -14408,6 +15242,11 @@ msgstr "Send Email"
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useActionRolePermissionFlagConfig.ts
 msgid "Send emails via connected accounts"
 msgstr "Send emails via connected accounts"
+
+#. js-lingui-id: eus61c
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Send test"
+msgstr "Send test"
 
 #. js-lingui-id: asU5VT
 #: src/modules/workflow/workflow-steps/workflow-actions/http-request-action/components/HttpRequestExecutionResult.tsx
@@ -14712,6 +15551,11 @@ msgstr "Sign in"
 msgid "Sign in or Create an account"
 msgstr "Sign in or Create an account"
 
+#. js-lingui-id: Ynqpiw
+#: src/pages/auth/SignInUp.tsx
+msgid "Sign in with your work email to continue."
+msgstr "Sign in with your work email to continue."
+
 #. js-lingui-id: e+RpCP
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
 msgid "Sign up"
@@ -14915,6 +15759,11 @@ msgstr "Some log data was dropped to fit the size limit ({0} entries, {1} bytes)
 msgid "Something went wrong"
 msgstr "Something went wrong"
 
+#. js-lingui-id: z+yMtp
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
+msgid "Something went wrong while loading audit logs. Please try again."
+msgstr "Something went wrong while loading audit logs. Please try again."
+
 #. js-lingui-id: yHwG3y
 #: src/modules/ui/navigation/navigation-drawer/components/NavigationDrawerItem.tsx
 #: src/modules/settings/components/SettingsCard.tsx
@@ -14937,8 +15786,8 @@ msgstr "Sorry, something went wrong"
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableColumnHeadDropdownMenu.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
 msgid "Sort"
 msgstr "Sort"
 
@@ -14969,6 +15818,8 @@ msgstr "Sorts"
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
+#: src/pages/finance/FinanceBanks.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/side-panel/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
 #: src/modules/settings/workspace/components/SettingsWorkspaceEmailGroupSection.tsx
@@ -15070,14 +15921,10 @@ msgid "Start a new enterprise subscription."
 msgstr "Start a new enterprise subscription."
 
 #. js-lingui-id: WAjFYI
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
 msgid "Start date"
 msgstr "Start date"
-
-#. js-lingui-id: D3iCkb
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "Start Date"
-msgstr "Start Date"
 
 #. js-lingui-id: s+K73L
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
@@ -15111,6 +15958,8 @@ msgstr "State"
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
 #: src/pages/settings/admin-panel/SettingsAdminInstanceStatus.tsx
 #: src/pages/settings/admin-panel/SettingsAdminIndicatorHealthStatus.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
 #: src/modules/settings/workspace/components/SettingsWorkspaceEmailingDomainsSection.tsx
 #: src/modules/settings/components/SettingsDnsRecordsTable.tsx
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
@@ -15259,8 +16108,8 @@ msgstr "Subscribe"
 
 #. js-lingui-id: ShbDuS
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
-#: src/modules/ai/components/AiChatCreditsExhaustedMessage.tsx
 #: src/modules/ai/components/AIChatNoMoreBillingCreditsBanner.tsx
+#: src/modules/ai/components/AiChatCreditsExhaustedMessage.tsx
 msgid "Subscribe Now"
 msgstr "Subscribe Now"
 
@@ -15327,11 +16176,26 @@ msgstr "Suggested"
 msgid "Sum"
 msgstr "Sum"
 
+#. js-lingui-id: jyH6qM
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Sum of your bank balances"
+msgstr "Sum of your bank balances"
+
 #. js-lingui-id: DBC3t5
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
 msgid "Sunday"
 msgstr "Sunday"
+
+#. js-lingui-id: PYTEl0
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Supplier"
+msgstr "Supplier"
+
+#. js-lingui-id: J24Nho
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Supplier bills grouped by how overdue they are. Red totals = suppliers waiting on payment. Prioritise these in the Weekly Planner."
+msgstr "Supplier bills grouped by how overdue they are. Red totals = suppliers waiting on payment. Prioritise these in the Weekly Planner."
 
 #. js-lingui-id: XYLcNv
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownDefaultComponents.tsx
@@ -15400,6 +16264,11 @@ msgstr "Sync Internal Emails"
 msgid "Sync lost with mailbox {mailboxHandle}. Please reconnect for updates:"
 msgstr "Sync lost with mailbox {mailboxHandle}. Please reconnect for updates:"
 
+#. js-lingui-id: lb/UU4
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Sync now"
+msgstr "Sync now"
+
 #. js-lingui-id: L4+l7C
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "Sync with Google"
@@ -15434,6 +16303,12 @@ msgstr "Synchronize Label and API Name"
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectAboutForm.tsx
 msgid "Synchronize Objects Labels and API Names"
 msgstr "Synchronize Objects Labels and API Names"
+
+#. js-lingui-id: ZDY7Fy
+#: src/pages/finance/FinanceDashboard.tsx
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Syncing…"
+msgstr "Syncing…"
 
 #. js-lingui-id: D+NlUC
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
@@ -15512,12 +16387,12 @@ msgid "Tab Settings"
 msgstr "Tab Settings"
 
 #. js-lingui-id: 4hJhzz
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
 #: src/pages/settings/layout/SettingsLayoutViewDetail.tsx
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
 #: src/modules/side-panel/pages/page-layout/components/record-page/SidePanelRecordPageFieldSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/FieldWidgetLayoutDropdownContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/keyboard-shortcut-menu/components/KeyboardShortcutMenuOpenContent.tsx
 msgid "Table"
@@ -15549,6 +16424,11 @@ msgstr "Task Title"
 msgid "Team"
 msgstr "Team"
 
+#. js-lingui-id: W4C8dl
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Teams webhook saved."
+msgstr "Teams webhook saved."
+
 #. js-lingui-id: lKXcJz
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
 msgid "Temporary Failure"
@@ -15576,6 +16456,11 @@ msgstr "Terms of Service"
 #: src/modules/settings/logic-functions/components/tabs/SettingsLogicFunctionCodeEditorTab.tsx
 msgid "Test"
 msgstr "Test"
+
+#. js-lingui-id: pwOF6+
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Test message sent — check your Teams channel."
+msgstr "Test message sent — check your Teams channel."
 
 #. js-lingui-id: 3nWPN6
 #: src/modules/settings/logic-functions/components/tabs/SettingsLogicFunctionTestTab.tsx
@@ -15608,6 +16493,11 @@ msgstr "Text copied to clipboard"
 #: src/modules/object-record/record-field/ui/form-types/components/FormAdvancedTextFieldInput.tsx
 msgid "Text Editor"
 msgstr "Text Editor"
+
+#. js-lingui-id: PDsrlO
+#: src/pages/finance/FinanceBanks.tsx
+msgid "That doesn't look like a Wise API token. Paste the full Read-Only token from your Wise settings."
+msgstr "That doesn't look like a Wise API token. Paste the full Read-Only token from your Wise settings."
 
 #. js-lingui-id: KJjmr/
 #: src/pages/settings/email/SettingsWorkspaceEmailGroupChannelDetail.tsx
@@ -15693,6 +16583,11 @@ msgstr ""
 "```\n"
 "\n"
 "See the [Getting Started guide](https://twenty.com/developers/extend/apps/getting-started) for the full walkthrough, and [Building Apps](https://twenty.com/developers/extend/apps/building) for the `defineApplication` / `defineEntity` APIs."
+
+#. js-lingui-id: mUoP8j
+#: src/pages/auth/SignInUp.tsx
+msgid "The CRM built for Waimin — manage customers, sales, finance and tasks from a single, focused workspace."
+msgstr "The CRM built for Waimin — manage customers, sales, finance and tasks from a single, focused workspace."
 
 #. js-lingui-id: n+CCXl
 #: src/pages/settings/ai/components/SettingsAiModelsTab.tsx
@@ -16120,6 +17015,16 @@ msgstr "This will permanently delete your two factor authentication method.<0/>S
 msgid "Thought"
 msgstr "Thought"
 
+#. js-lingui-id: zPzuVa
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Tick the bills you plan to pay, then save."
+msgstr "Tick the bills you plan to pay, then save."
+
+#. js-lingui-id: Uhw109
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Tick what to pay this Friday"
+msgstr "Tick what to pay this Friday"
+
 #. js-lingui-id: Vqn9Z1
 #: src/modules/workflow/workflow-diagram/components/WorkflowDiagramRightClickCommandMenu.tsx
 msgid "Tidy up workflow"
@@ -16155,10 +17060,10 @@ msgid "Timeout"
 msgstr "Timeout"
 
 #. js-lingui-id: 8TMaZI
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "Timestamp"
 msgstr "Timestamp"
@@ -16185,8 +17090,15 @@ msgstr "title"
 
 #. js-lingui-id: MHrjPM
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
 msgid "Title"
 msgstr "Title"
+
+#. js-lingui-id: A6m5yw
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Title and cron required"
+msgstr "Title and cron required"
 
 #. js-lingui-id: /jQctM
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionEmailBase.tsx
@@ -16218,6 +17130,11 @@ msgstr "Toggle all object permissions"
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsTableHeader.tsx
 msgid "Toggle all settings permissions"
 msgstr "Toggle all settings permissions"
+
+#. js-lingui-id: WyZ1SI
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Token expires:"
+msgstr "Token expires:"
 
 #. js-lingui-id: IHtFjq
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
@@ -16318,12 +17235,19 @@ msgstr "Tools"
 msgid "Top 10 workspaces by number of users"
 msgstr "Top 10 workspaces by number of users"
 
+#. js-lingui-id: qXScwn
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Top up from"
+msgstr "Top up from"
+
 #. js-lingui-id: A4dnvW
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
 msgid "Top Workspaces"
 msgstr "Top Workspaces"
 
 #. js-lingui-id: 72c5Qo
+#: src/pages/finance/FinanceDashboard.tsx
+#: src/pages/finance/FinanceDashboard.tsx
 #: src/modules/page-layout/widgets/graph/graph-widget-pie-chart/hooks/usePieChartCenterMetricData.ts
 msgid "Total"
 msgstr "Total"
@@ -16355,6 +17279,11 @@ msgstr "Total time"
 #: src/pages/settings/ai/components/SettingsAiUsageTab.tsx
 msgid "Track AI consumption across your workspace."
 msgstr "Track AI consumption across your workspace."
+
+#. js-lingui-id: GxO/vR
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Track balances across banks and currencies. Wise balances will sync automatically once connected. Enter other balances manually."
+msgstr "Track balances across banks and currencies. Wise balances will sync automatically once connected. Enter other balances manually."
 
 #. js-lingui-id: YT/cKI
 #: src/modules/settings/billing/components/SettingsBillingCreditsSection.tsx
@@ -16556,6 +17485,11 @@ msgstr "Two-factor authentication setup completed successfully!"
 #: src/pages/settings/ai/constants/SettingsSkillTableMetadata.ts
 #: src/pages/settings/ai/constants/SettingsAiAgentTableMetadata.ts
 #: src/pages/settings/ai/components/SettingsToolParameterTable.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowEditActionFormFieldSettings.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowOutputFieldTypeSelector.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOIdentitiesProvidersForm.tsx
@@ -16585,6 +17519,11 @@ msgstr "Type something or press \"/\" to see commands"
 #: src/modules/navigation-menu-item/edit/side-panel/components/SidePanelNewSidebarItemRecordSubPage.tsx
 msgid "Type to search records"
 msgstr "Type to search records"
+
+#. js-lingui-id: lMdXuD
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Type:"
+msgstr "Type:"
 
 #. js-lingui-id: D38O1A
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
@@ -16620,6 +17559,11 @@ msgstr "Unable to Reach Back-end"
 #: src/modules/ai/components/AiChatThreadItemMenu.tsx
 msgid "Unarchive"
 msgstr "Unarchive"
+
+#. js-lingui-id: EbMPZJ
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Unassigned"
+msgstr "Unassigned"
 
 #. js-lingui-id: EUHN7i
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableValueInput.tsx
@@ -16780,6 +17724,16 @@ msgstr "unordered"
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Unordered list with bullets"
 msgstr "Unordered list with bullets"
+
+#. js-lingui-id: PGW+6S
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Unpaid customer invoices (A/R)"
+msgstr "Unpaid customer invoices (A/R)"
+
+#. js-lingui-id: DBikY+
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Unpaid supplier bills (A/P)"
+msgstr "Unpaid supplier bills (A/P)"
 
 #. js-lingui-id: wja8aL
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
@@ -16975,6 +17929,11 @@ msgstr "Upgrade to access"
 msgid "Upgrade to Enterprise to access audit logs."
 msgstr "Upgrade to Enterprise to access audit logs."
 
+#. js-lingui-id: qkFzZV
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
+msgid "Upgrade to Enterprise to access this log type."
+msgstr "Upgrade to Enterprise to access this log type."
+
 #. js-lingui-id: +Gi3x1
 #: src/pages/settings/applications/tabs/SettingsApplicationDetailAboutTab.tsx
 #: src/pages/settings/applications/components/SettingsApplicationVersionContainer.tsx
@@ -17104,7 +18063,7 @@ msgid "Usage by User"
 msgstr "Usage by User"
 
 #. js-lingui-id: CedRjP
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 msgid "Usage Events"
 msgstr "Usage Events"
 
@@ -17159,9 +18118,6 @@ msgid "Useful for pivot/junction tables"
 msgstr "Useful for pivot/junction tables"
 
 #. js-lingui-id: 7PzzBU
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/pages/settings/profile/SettingsTwoFactorAuthenticationMethod.tsx
 #: src/pages/settings/profile/SettingsProfile.tsx
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
@@ -17174,6 +18130,9 @@ msgstr "Useful for pivot/junction tables"
 #: src/pages/settings/accounts/SettingsAccountsCalendars.tsx
 #: src/pages/settings/accounts/SettingsAccounts.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/modules/settings/accounts/components/SettingsAccountsNewImapSmtpCaldavConnection.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsEditImapSmtpCaldavConnection.tsx
 msgid "User"
@@ -17377,11 +18336,6 @@ msgstr "View AI usage breakdown"
 msgid "View all evaluations"
 msgstr "View all evaluations"
 
-#. js-lingui-id: XVf/G7
-#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
-msgid "View and filter events, page views, object changes"
-msgstr "View and filter events, page views, object changes"
-
 #. js-lingui-id: KANz0G
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
@@ -17439,11 +18393,6 @@ msgstr "View invoices"
 msgid "View Jobs"
 msgstr "View Jobs"
 
-#. js-lingui-id: 923YyC
-#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
-msgid "View Logs"
-msgstr "View Logs"
-
 #. js-lingui-id: sAPirx
 #: src/modules/object-record/record-index/components/RecordIndexEmptyStateNotShared.tsx
 msgid "View not shared"
@@ -17478,11 +18427,6 @@ msgstr "View type"
 #: src/modules/settings/billing/components/SettingsBillingCreditsSection.tsx
 msgid "View usage"
 msgstr "View usage"
-
-#. js-lingui-id: rWiqJF
-#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
-msgid "View workspace activity logs"
-msgstr "View workspace activity logs"
 
 #. js-lingui-id: 1I6UoR
 #: src/pages/settings/layout/SettingsLayoutViewDetail.tsx
@@ -17620,6 +18564,11 @@ msgstr "Watch demo"
 msgid "Watch members demo"
 msgstr "Watch members demo"
 
+#. js-lingui-id: mwpZrv
+#: src/pages/auth/SignInUp.tsx
+msgid "Water as nature intended."
+msgstr "Water as nature intended."
+
 #. js-lingui-id: 6eMAkI
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "We encountered an issue verifying"
@@ -17629,6 +18578,11 @@ msgstr "We encountered an issue verifying"
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
 msgid "We match on these fields. If a {objectLabelSingular} already exists, we update it. Otherwise, we create a new one."
 msgstr "We match on these fields. If a {objectLabelSingular} already exists, we update it. Otherwise, we create a new one."
+
+#. js-lingui-id: g1RNOY
+#: src/pages/auth/SignInUp.tsx
+msgid "We sent a verification link to your email."
+msgstr "We sent a verification link to your email."
 
 #. js-lingui-id: id6ein
 #: src/modules/ui/input/components/ImageInput.tsx
@@ -17732,6 +18686,17 @@ msgstr "Website"
 msgid "Week"
 msgstr "Week"
 
+#. js-lingui-id: 7zBLrs
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Weekly Payment Planner"
+msgstr "Weekly Payment Planner"
+
+#. js-lingui-id: Tvo4aT
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/modules/navigation/components/NavigationDrawerOtherSection.tsx
+msgid "Weekly Planner"
+msgstr "Weekly Planner"
+
 #. js-lingui-id: IAUiSh
 #: src/modules/side-panel/pages/page-layout/utils/getDateGranularityPluralLabel.ts
 msgid "weeks"
@@ -17742,10 +18707,10 @@ msgstr "weeks"
 msgid "Weight"
 msgstr "Weight"
 
-#. js-lingui-id: nTuObL
+#. js-lingui-id: 4GYbVi
 #: src/pages/auth/SignInUp.tsx
-msgid "Welcome to Twenty"
-msgstr "Welcome to Twenty"
+msgid "Welcome to Waimin"
+msgstr "Welcome to Waimin"
 
 #. js-lingui-id: t8ZvkC
 #: src/pages/auth/SignInUp.tsx
@@ -17842,6 +18807,29 @@ msgstr "Widgets"
 msgid "Will continue to the next iteration even if the current one fails"
 msgstr "Will continue to the next iteration even if the current one fails"
 
+#. js-lingui-id: fX2pXq
+#. placeholder {2}: res.synced
+#. placeholder {3}: res.currencies.join(', ')
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Wise connected — pulled {2} balance(s): {3}"
+msgstr "Wise connected — pulled {2} balance(s): {3}"
+
+#. js-lingui-id: mrZin0
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Wise connected, but no balances were found on this account."
+msgstr "Wise connected, but no balances were found on this account."
+
+#. js-lingui-id: mCK4+1
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Wise Personal API Token"
+msgstr "Wise Personal API Token"
+
+#. js-lingui-id: H569tW
+#. placeholder {4}: res.synced
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Wise synced — {4} balance(s) updated."
+msgstr "Wise synced — {4} balance(s) updated."
+
 #. js-lingui-id: bB8dFW
 #: src/modules/settings/billing/components/TrialCard.tsx
 msgid "With Credit Card"
@@ -17891,7 +18879,6 @@ msgstr "Workflows"
 #. js-lingui-id: pmUArF
 #: src/pages/settings/security/SettingsSecuritySSOIdentifyProvider.tsx
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
 #: src/pages/settings/members/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/members/SettingsWorkspaceMember.tsx
 #: src/pages/settings/members/roles/SettingsRoleAddObjectLevel.tsx
@@ -17900,6 +18887,7 @@ msgstr "Workflows"
 #: src/pages/settings/logic-functions/SettingsLogicFunctionDetail.tsx
 #: src/pages/settings/layout/SettingsLayout.tsx
 #: src/pages/settings/layout/components/SettingsLayoutDetailScaffold.tsx
+#: src/pages/settings/integrations/SettingsXero.tsx
 #: src/pages/settings/general/SettingsGeneral.tsx
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 #: src/pages/settings/emailing-domains/SettingsNewEmailingDomain.tsx
@@ -17935,11 +18923,11 @@ msgstr "Workflows"
 #: src/pages/settings/ai/SettingsSkillForm.tsx
 #: src/pages/settings/ai/SettingsAiUsageUserDetail.tsx
 #: src/pages/settings/ai/SettingsAiPrompts.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceChatThread.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/BackgroundMockNavigationDrawer.tsx
@@ -17983,8 +18971,7 @@ msgid "Workspace Domain"
 msgstr "Workspace Domain"
 
 #. js-lingui-id: J2q6WC
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
-#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 msgid "Workspace Events"
 msgstr "Workspace Events"
 
@@ -18009,13 +18996,9 @@ msgstr "Workspace lists by upgrade status"
 msgid "Workspace logo"
 msgstr "Workspace logo"
 
-#. js-lingui-id: qc38qR
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "Workspace Member"
-msgstr "Workspace Member"
-
 #. js-lingui-id: wtxjAY
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Workspace members"
 msgstr "Workspace members"
 
@@ -18096,6 +19079,33 @@ msgstr "X axis"
 #: src/modules/side-panel/pages/page-layout/utils/__tests__/shouldHideChartSetting.test.ts
 msgid "X Axis Data"
 msgstr "X Axis Data"
+
+#. js-lingui-id: YowYEl
+#: src/pages/settings/integrations/SettingsXero.tsx
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Xero"
+msgstr "Xero"
+
+#. js-lingui-id: 7s+fqd
+#. placeholder {0}: formatRelative(lastSyncedAt)
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Xero {0}"
+msgstr "Xero {0}"
+
+#. js-lingui-id: RWrvvU
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Xero accounting"
+msgstr "Xero accounting"
+
+#. js-lingui-id: 1Ubyd2
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Xero integration is not enabled on this server. Set XERO_INTEGRATION_ENABLED=true and provide XERO_CLIENT_ID + XERO_CLIENT_SECRET in the server env."
+msgstr "Xero integration is not enabled on this server. Set XERO_INTEGRATION_ENABLED=true and provide XERO_CLIENT_ID + XERO_CLIENT_SECRET in the server env."
+
+#. js-lingui-id: IOLh0v
+#: src/pages/auth/SignInUp.tsx
+msgid "Xero-ready accounting workflows"
+msgstr "Xero-ready accounting workflows"
 
 #. js-lingui-id: fplGg6
 #: src/modules/side-panel/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
@@ -18215,10 +19225,22 @@ msgstr "You do not have permission to view this widget"
 msgid "You don't have access to this object."
 msgstr "You don't have access to this object."
 
+#. js-lingui-id: mdXFUW
+#. placeholder {0}: missingBankCurrencies.join(', ')
+#. placeholder {1}: missingBankCurrencies.length > 1 ? 'those currencies' : 'that currency'
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "You have invoices in {0} but no bank account in {1}. Add one so the Weekly Planner can show your real cash position."
+msgstr "You have invoices in {0} but no bank account in {1}. Add one so the Weekly Planner can show your real cash position."
+
 #. js-lingui-id: RDAH2t
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "You have scheduled a credit pack change. Do you want to cancel it?"
 msgstr "You have scheduled a credit pack change. Do you want to cancel it?"
+
+#. js-lingui-id: 7BoTS7
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "You owe"
+msgstr "You owe"
 
 #. js-lingui-id: z8eKS7
 #: src/modules/settings/billing/hooks/useBillingWording.ts
@@ -18332,6 +19354,12 @@ msgstr "Your handler receives this object. The body holds the parsed JSON sent b
 #: src/modules/settings/logic-functions/components/triggers/SettingsLogicFunctionHttpTriggerSection.tsx
 msgid "Your handler receives this object. The body is empty because GET requests carry no payload."
 msgstr "Your handler receives this object. The body is empty because GET requests carry no payload."
+
+#. js-lingui-id: Btroti
+#. placeholder {0}: missingBankCurrencies.join(', ')
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Your invoices are in {0} but you have no matching bank balance, so \"Starting Balance\" shows zero. Add a bank account in that currency to see your true position after Friday."
+msgstr "Your invoices are in {0} but you have no matching bank balance, so \"Starting Balance\" shows zero. Add a bank account in that currency to see your true position after Friday."
 
 #. js-lingui-id: 9ivpwk
 #: src/pages/settings/profile/SettingsProfile.tsx

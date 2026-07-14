@@ -17,6 +17,7 @@ import { XeroConnectionService } from 'src/engine/core-modules/xero-integration/
 import { FinanceAnalyticsService } from 'src/engine/core-modules/xero-integration/services/finance-analytics.service';
 import { FinanceCrudService } from 'src/engine/core-modules/xero-integration/services/finance-crud.service';
 import { FinanceReminderService } from 'src/engine/core-modules/xero-integration/services/finance-reminder.service';
+import { FinanceReminderCronJob } from 'src/engine/core-modules/xero-integration/jobs/finance-reminder-cron.job';
 import { WiseSyncService } from 'src/engine/core-modules/xero-integration/services/wise-sync.service';
 import { NotificationService } from 'src/engine/core-modules/xero-integration/services/notification.service';
 import { XeroSyncService } from 'src/engine/core-modules/xero-integration/services/xero-sync.service';
@@ -40,11 +41,43 @@ export class FinanceController {
     private readonly wiseSync: WiseSyncService,
     private readonly reminderService: FinanceReminderService,
     private readonly notificationService: NotificationService,
+    private readonly reminderCron: FinanceReminderCronJob,
   ) {}
+
+  // On-demand trigger of the daily reminder dispatch (creates CRM tasks +
+  // posts Teams alerts for every reminder due now). Used to test the flow
+  // without waiting for the 8am cron.
+  @Post('reminders/run-due')
+  async runDueReminders() {
+    await this.reminderCron.handleCron();
+
+    return { ok: true, ranAt: new Date().toISOString() };
+  }
 
   @Get('aging')
   aging(@AuthWorkspace() workspace: WorkspaceEntity) {
     return this.analytics.getAging(workspace.id);
+  }
+
+  // Live mid-market FX rate (Wise, with exchangerate.host fallback), cached 60s.
+  // Estimate-only: used by the planner to show cross-currency converted amounts.
+  @Get('fx/rate')
+  async fxRate(
+    @AuthWorkspace() workspace: WorkspaceEntity,
+    @Query('source') source: string,
+    @Query('target') target: string,
+  ) {
+    if (!source || !target) {
+      throw new BadRequestException('source and target query params required');
+    }
+
+    try {
+      return await this.wiseSync.getRate(workspace.id, source, target);
+    } catch (error) {
+      throw new BadRequestException(
+        error instanceof Error ? error.message : 'Rate lookup failed',
+      );
+    }
   }
 
   @Get('cash-position')
@@ -168,6 +201,7 @@ export class FinanceController {
       currencyCode: string;
       balance: number;
       source?: 'manual' | 'xero' | 'wise' | 'statrys';
+      bankRole?: 'main' | 'international' | 'expense' | 'other';
       xeroAccountId?: string;
       sortOrder?: number;
     },
@@ -183,6 +217,7 @@ export class FinanceController {
       currencyCode: body.currencyCode,
       balance: Number(body.balance ?? 0),
       source: body.source,
+      bankRole: body.bankRole,
       xeroAccountId: body.xeroAccountId ?? null,
       sortOrder: body.sortOrder,
     });
@@ -199,6 +234,7 @@ export class FinanceController {
       currencyCode: string;
       balance: number;
       source?: 'manual' | 'xero' | 'wise' | 'statrys';
+      bankRole?: 'main' | 'international' | 'expense' | 'other';
       isActive?: boolean;
       sortOrder?: number;
     },
@@ -211,6 +247,7 @@ export class FinanceController {
       currencyCode: body.currencyCode,
       balance: Number(body.balance ?? 0),
       source: body.source,
+      bankRole: body.bankRole,
       isActive: body.isActive,
       sortOrder: body.sortOrder,
     });
@@ -222,6 +259,136 @@ export class FinanceController {
     @Param('id') id: string,
   ) {
     await this.crud.deleteBankAccount(workspace.id, id);
+
+    return { ok: true };
+  }
+
+  @Get('adjustments')
+  listAdjustments(
+    @AuthWorkspace() workspace: WorkspaceEntity,
+    @Query('friday') friday: string,
+  ) {
+    if (!friday) throw new BadRequestException('friday query param required');
+
+    return this.crud.listAdjustments(workspace.id, friday);
+  }
+
+  @Post('adjustments')
+  upsertAdjustment(
+    @AuthWorkspace() workspace: WorkspaceEntity,
+    @AuthUser() user: UserEntity,
+    @Body()
+    body: {
+      id?: string;
+      fridayDate: string;
+      direction: 'in' | 'out';
+      label: string;
+      currencyCode: string;
+      amount: number;
+      bankAccountId?: string;
+      note?: string;
+    },
+  ) {
+    if (
+      !body?.fridayDate ||
+      !body?.direction ||
+      !body?.label ||
+      !body?.currencyCode
+    ) {
+      throw new BadRequestException(
+        'fridayDate, direction, label, and currencyCode required',
+      );
+    }
+    if (body.direction !== 'in' && body.direction !== 'out') {
+      throw new BadRequestException('direction must be "in" or "out"');
+    }
+
+    return this.crud.upsertAdjustment({
+      id: body.id,
+      workspaceId: workspace.id,
+      fridayDate: body.fridayDate,
+      direction: body.direction,
+      label: body.label,
+      currencyCode: body.currencyCode,
+      amount: Number(body.amount ?? 0),
+      bankAccountId: body.bankAccountId ?? null,
+      note: body.note ?? null,
+      createdByUserId: user.id,
+    });
+  }
+
+  @Delete('adjustments/:id')
+  async deleteAdjustment(
+    @AuthWorkspace() workspace: WorkspaceEntity,
+    @Param('id') id: string,
+  ) {
+    await this.crud.deleteAdjustment(workspace.id, id);
+
+    return { ok: true };
+  }
+
+  @Get('mandatory-payments')
+  listMandatoryPayments(@AuthWorkspace() workspace: WorkspaceEntity) {
+    return this.crud.listMandatoryPayments(workspace.id);
+  }
+
+  @Post('mandatory-payments')
+  upsertMandatoryPayment(
+    @AuthWorkspace() workspace: WorkspaceEntity,
+    @Body()
+    body: {
+      id?: string;
+      type:
+        | 'payroll'
+        | 'gst'
+        | 'rent'
+        | 'loan'
+        | 'credit_card'
+        | 'trust_account'
+        | 'inland_revenue'
+        | 'bank_recon'
+        | 'custom';
+      label: string;
+      currencyCode: string;
+      amount: number;
+      frequencyCron: string;
+      nextDueDate: string;
+      bankAccountId?: string;
+      isActive?: boolean;
+    },
+  ) {
+    if (
+      !body?.type ||
+      !body?.label ||
+      !body?.currencyCode ||
+      !body?.frequencyCron ||
+      !body?.nextDueDate
+    ) {
+      throw new BadRequestException(
+        'type, label, currencyCode, frequencyCron, and nextDueDate required',
+      );
+    }
+
+    return this.crud.upsertMandatoryPayment({
+      id: body.id,
+      workspaceId: workspace.id,
+      type: body.type,
+      label: body.label,
+      currencyCode: body.currencyCode,
+      amount: Number(body.amount ?? 0),
+      frequencyCron: body.frequencyCron,
+      nextDueDate: body.nextDueDate,
+      bankAccountId: body.bankAccountId ?? null,
+      isActive: body.isActive,
+    });
+  }
+
+  @Delete('mandatory-payments/:id')
+  async deleteMandatoryPayment(
+    @AuthWorkspace() workspace: WorkspaceEntity,
+    @Param('id') id: string,
+  ) {
+    await this.crud.deleteMandatoryPayment(workspace.id, id);
 
     return { ok: true };
   }
@@ -342,9 +509,19 @@ export class FinanceController {
     body: {
       id?: string;
       title: string;
-      type: 'payroll' | 'gst' | 'rent' | 'loan' | 'bank_recon' | 'custom';
+      type:
+        | 'payroll'
+        | 'gst'
+        | 'rent'
+        | 'loan'
+        | 'credit_card'
+        | 'trust_account'
+        | 'inland_revenue'
+        | 'bank_recon'
+        | 'custom';
       frequencyCron: string;
       nextDueDate: string;
+      timezone?: string;
       isActive?: boolean;
       assigneeId?: string;
     },
@@ -360,6 +537,7 @@ export class FinanceController {
       type: body.type,
       frequencyCron: body.frequencyCron,
       nextDueDate: body.nextDueDate,
+      timezone: body.timezone,
       isActive: body.isActive,
       assigneeId: body.assigneeId,
     });

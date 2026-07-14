@@ -7,7 +7,16 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-export type FinanceReminderType = 'payroll' | 'gst' | 'rent' | 'loan' | 'bank_recon' | 'custom';
+export type FinanceReminderType =
+  | 'payroll'
+  | 'gst'
+  | 'rent'
+  | 'loan'
+  | 'credit_card'
+  | 'trust_account'
+  | 'inland_revenue'
+  | 'bank_recon'
+  | 'custom';
 
 @Entity({ name: 'waiminFinanceReminder', schema: 'core' })
 @Index('IDX_FINANCE_REMINDER_WORKSPACE_ID', ['workspaceId'])
@@ -26,6 +35,12 @@ export class WaiminFinanceReminderEntity {
 
   @Column({ type: 'varchar' })
   frequencyCron: string;
+
+  // IANA timezone the send-time is expressed in (e.g. 'Asia/Kolkata'), so the
+  // reminder fires at the chosen wall-clock time in the creator's zone —
+  // independent of the server's timezone. Recurrence is computed in this zone.
+  @Column({ type: 'varchar', default: 'UTC' })
+  timezone: string;
 
   @Column({ type: 'timestamptz' })
   nextDueDate: Date;

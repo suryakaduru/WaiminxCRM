@@ -4,12 +4,12 @@ import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomState
 import { xeroFetch } from '@/xero-integration/utils/xero-api';
 import { styled } from '@linaria/react';
 import { Trans, useLingui } from '@lingui/react/macro';
+import type { CSSProperties } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppPath } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
-import { FinanceRemindersSettings } from './FinanceRemindersSettings';
 
 type AgingRow = {
   currencyCode: string;
@@ -51,13 +51,94 @@ type SyncCursor = {
 };
 
 const StyledContainer = styled.div`
+  background: ${themeCssVariables.background.secondary};
   display: flex;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[6]};
   height: 100%;
   overflow-y: auto;
-  padding: ${themeCssVariables.spacing[6]} ${themeCssVariables.spacing[8]};
+  padding: ${themeCssVariables.spacing[6]} ${themeCssVariables.spacing[8]}
+    ${themeCssVariables.spacing[10]};
   width: 100%;
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  & > * {
+    animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  & > *:nth-child(2) { animation-delay: 0.04s; }
+  & > *:nth-child(3) { animation-delay: 0.08s; }
+  & > *:nth-child(4) { animation-delay: 0.12s; }
+  & > *:nth-child(5) { animation-delay: 0.16s; }
+  & > *:nth-child(6) { animation-delay: 0.2s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    & > * { animation: none; }
+  }
+`;
+
+const StyledHero = styled.section`
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    ${themeCssVariables.background.primary} 0%,
+    ${themeCssVariables.background.secondary} 100%
+  );
+  border: 1px solid ${themeCssVariables.border.color.light};
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 24px -12px rgba(15, 23, 42, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${themeCssVariables.spacing[6]};
+  justify-content: space-between;
+  padding: ${themeCssVariables.spacing[6]};
+  position: relative;
+`;
+
+const StyledHeroMetric = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const StyledHeroLabel = styled.span`
+  color: ${themeCssVariables.font.color.tertiary};
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+`;
+
+const StyledHeroValue = styled.span`
+  color: ${themeCssVariables.font.color.primary};
+  font-size: 40px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+`;
+
+const StyledHeroSplit = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${themeCssVariables.spacing[6]};
+`;
+
+const StyledHeroSub = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+`;
+
+const StyledHeroSubValue = styled.span`
+  color: ${themeCssVariables.font.color.secondary};
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
 `;
 
 const StyledHeader = styled.header`
@@ -146,27 +227,52 @@ const StyledKPIGrid = styled.section`
 
 const StyledKPI = styled.div`
   background: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  border: 1px solid ${themeCssVariables.border.color.light};
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
   display: flex;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[1]};
+  overflow: hidden;
   padding: ${themeCssVariables.spacing[4]};
+  position: relative;
+  transition: box-shadow 0.2s ease, transform 0.2s ease,
+    border-color 0.2s ease;
+
+  /* Accent stripe — colour supplied per card via --accent. */
+  &::before {
+    background: var(--accent, ${themeCssVariables.border.color.medium});
+    content: '';
+    height: 3px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &:hover {
+    border-color: ${themeCssVariables.border.color.medium};
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04),
+      0 12px 28px -16px rgba(15, 23, 42, 0.25);
+    transform: translateY(-2px);
+  }
 `;
 
 const StyledKPILabel = styled.span`
   color: ${themeCssVariables.font.color.tertiary};
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.04em;
+  margin-top: 4px;
   text-transform: uppercase;
 `;
 
 const StyledKPIValue = styled.span`
   color: ${themeCssVariables.font.color.primary};
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
 `;
 
 const StyledKPIHint = styled.span`
@@ -203,13 +309,20 @@ const StyledSectionDescription = styled.p`
 
 const StyledCard = styled.div`
   background: ${themeCssVariables.background.primary};
-  border: 1px solid ${themeCssVariables.border.color.medium};
-  border-radius: ${themeCssVariables.border.radius.md};
+  border: 1px solid ${themeCssVariables.border.color.light};
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
   overflow: hidden;
+`;
+
+const StyledTableScroll = styled.div`
+  overflow-x: auto;
+  width: 100%;
 `;
 
 const StyledTable = styled.table`
   border-collapse: collapse;
+  min-width: 760px;
   width: 100%;
 
   & thead { background: ${themeCssVariables.background.secondary}; }
@@ -528,6 +641,51 @@ export const FinanceDashboard = () => {
           </StyledCard>
         )}
 
+        <StyledHero>
+          <StyledHeroMetric>
+            <StyledHeroLabel>
+              <Trans>Net cash position</Trans>
+            </StyledHeroLabel>
+            <StyledHeroValue
+              style={{
+                color:
+                  primaryCash + primaryAr - primaryAp < 0 ? '#b91c1c' : undefined,
+              }}
+            >
+              {fmt(primaryCash + primaryAr - primaryAp, primaryCurrency)}
+            </StyledHeroValue>
+            <StyledKPIHint>
+              <Trans>Cash + money owed to you − money you owe</Trans>
+            </StyledKPIHint>
+          </StyledHeroMetric>
+          <StyledHeroSplit>
+            <StyledHeroSub>
+              <StyledHeroLabel>
+                <Trans>Cash on hand</Trans>
+              </StyledHeroLabel>
+              <StyledHeroSubValue>
+                {fmt(primaryCash, primaryCurrency)}
+              </StyledHeroSubValue>
+            </StyledHeroSub>
+            <StyledHeroSub>
+              <StyledHeroLabel>
+                <Trans>Incoming (A/R)</Trans>
+              </StyledHeroLabel>
+              <StyledHeroSubValue style={{ color: '#059669' }}>
+                {fmt(primaryAr, primaryCurrency)}
+              </StyledHeroSubValue>
+            </StyledHeroSub>
+            <StyledHeroSub>
+              <StyledHeroLabel>
+                <Trans>Outgoing (A/P)</Trans>
+              </StyledHeroLabel>
+              <StyledHeroSubValue style={{ color: '#b45309' }}>
+                {fmt(primaryAp, primaryCurrency)}
+              </StyledHeroSubValue>
+            </StyledHeroSub>
+          </StyledHeroSplit>
+        </StyledHero>
+
         <StyledSection>
           <StyledSectionHeader>
             <div>
@@ -559,7 +717,7 @@ export const FinanceDashboard = () => {
             </div>
           </StyledSectionHeader>
           <StyledKPIGrid>
-            <StyledKPI>
+            <StyledKPI style={{ '--accent': '#3b82f6' } as CSSProperties}>
               <StyledKPILabel>
                 <Trans>Cash on hand</Trans>
               </StyledKPILabel>
@@ -568,7 +726,7 @@ export const FinanceDashboard = () => {
                 <Trans>Sum of your bank balances</Trans>
               </StyledKPIHint>
             </StyledKPI>
-            <StyledKPI>
+            <StyledKPI style={{ '--accent': '#10b981' } as CSSProperties}>
               <StyledKPILabel>
                 <Trans>Money owed to you</Trans>
               </StyledKPILabel>
@@ -577,7 +735,7 @@ export const FinanceDashboard = () => {
                 <Trans>Unpaid customer invoices (A/R)</Trans>
               </StyledKPIHint>
             </StyledKPI>
-            <StyledKPI>
+            <StyledKPI style={{ '--accent': '#f59e0b' } as CSSProperties}>
               <StyledKPILabel>
                 <Trans>You owe</Trans>
               </StyledKPILabel>
@@ -586,7 +744,13 @@ export const FinanceDashboard = () => {
                 <Trans>Unpaid supplier bills (A/P)</Trans>
               </StyledKPIHint>
             </StyledKPI>
-            <StyledKPI>
+            <StyledKPI
+              style={
+                {
+                  '--accent': primaryOverdue > 0 ? '#ef4444' : '#94a3b8',
+                } as CSSProperties
+              }
+            >
               <StyledKPILabel>
                 <Trans>Overdue receivables</Trans>
               </StyledKPILabel>
@@ -709,6 +873,7 @@ export const FinanceDashboard = () => {
             </div>
           </StyledSectionHeader>
           <StyledCard>
+            <StyledTableScroll>
             <StyledTable>
               <thead>
                 <tr>
@@ -762,6 +927,7 @@ export const FinanceDashboard = () => {
                 )}
               </tbody>
             </StyledTable>
+            </StyledTableScroll>
           </StyledCard>
         </StyledSection>
 
@@ -781,6 +947,7 @@ export const FinanceDashboard = () => {
             </div>
           </StyledSectionHeader>
           <StyledCard>
+            <StyledTableScroll>
             <StyledTable>
               <thead>
                 <tr>
@@ -834,10 +1001,10 @@ export const FinanceDashboard = () => {
                 )}
               </tbody>
             </StyledTable>
+            </StyledTableScroll>
           </StyledCard>
         </StyledSection>
 
-        <FinanceRemindersSettings />
       </StyledContainer>
     </>
   );

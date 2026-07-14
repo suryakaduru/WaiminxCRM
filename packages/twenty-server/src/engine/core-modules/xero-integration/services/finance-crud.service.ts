@@ -3,10 +3,19 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 
+import { WiseSyncService } from 'src/engine/core-modules/xero-integration/services/wise-sync.service';
+
 import {
   WaiminBankAccountEntity,
   type WaiminBankSource,
+  type WaiminBankRole,
 } from 'src/engine/core-modules/xero-integration/entities/waimin-bank-account.entity';
+import {
+  WaiminManualAdjustmentEntity,
+  type WaiminAdjustmentDirection,
+} from 'src/engine/core-modules/xero-integration/entities/waimin-manual-adjustment.entity';
+import { WaiminMandatoryPaymentEntity } from 'src/engine/core-modules/xero-integration/entities/waimin-mandatory-payment.entity';
+import { type FinanceReminderType } from 'src/engine/core-modules/xero-integration/entities/waimin-finance-reminder.entity';
 import { WaiminPaymentPlanLineEntity } from 'src/engine/core-modules/xero-integration/entities/waimin-payment-plan-line.entity';
 import { WaiminPaymentPlanEntity } from 'src/engine/core-modules/xero-integration/entities/waimin-payment-plan.entity';
 import { WaiminPaymentPriorityEntity } from 'src/engine/core-modules/xero-integration/entities/waimin-payment-priority.entity';
@@ -20,6 +29,7 @@ export type UpsertBankAccountInput = {
   currencyCode: string;
   balance: number;
   source?: WaiminBankSource;
+  bankRole?: WaiminBankRole;
   xeroAccountId?: string | null;
   isActive?: boolean;
   sortOrder?: number;
@@ -33,6 +43,32 @@ export type UpsertPriorityInput = {
   mustPay?: boolean;
   note?: string | null;
   updatedByUserId?: string | null;
+};
+
+export type UpsertAdjustmentInput = {
+  id?: string;
+  workspaceId: string;
+  fridayDate: string;
+  direction: WaiminAdjustmentDirection;
+  label: string;
+  currencyCode: string;
+  amount: number;
+  bankAccountId?: string | null;
+  note?: string | null;
+  createdByUserId?: string | null;
+};
+
+export type UpsertMandatoryPaymentInput = {
+  id?: string;
+  workspaceId: string;
+  type: FinanceReminderType;
+  label: string;
+  currencyCode: string;
+  amount: number;
+  frequencyCron: string;
+  nextDueDate: string;
+  bankAccountId?: string | null;
+  isActive?: boolean;
 };
 
 export type SavePlanInput = {
@@ -63,7 +99,126 @@ export class FinanceCrudService {
     private readonly planLineRepository: Repository<WaiminPaymentPlanLineEntity>,
     @InjectRepository(XeroInvoiceEntity)
     private readonly invoiceRepository: Repository<XeroInvoiceEntity>,
+    @InjectRepository(WaiminManualAdjustmentEntity)
+    private readonly adjustmentRepository: Repository<WaiminManualAdjustmentEntity>,
+    @InjectRepository(WaiminMandatoryPaymentEntity)
+    private readonly mandatoryPaymentRepository: Repository<WaiminMandatoryPaymentEntity>,
+    private readonly wiseSync: WiseSyncService,
   ) {}
+
+  listMandatoryPayments(workspaceId: string) {
+    return this.mandatoryPaymentRepository.find({
+      where: { workspaceId },
+      order: { nextDueDate: 'ASC' },
+    });
+  }
+
+  async upsertMandatoryPayment(input: UpsertMandatoryPaymentInput) {
+    const bankAccountId =
+      input.bankAccountId && input.bankAccountId.trim() !== ''
+        ? input.bankAccountId
+        : null;
+
+    if (input.id) {
+      const existing = await this.mandatoryPaymentRepository.findOne({
+        where: { id: input.id, workspaceId: input.workspaceId },
+      });
+
+      if (!existing) throw new NotFoundException('Mandatory payment not found');
+
+      Object.assign(existing, {
+        type: input.type,
+        label: input.label,
+        currencyCode: input.currencyCode,
+        amount: String(input.amount),
+        frequencyCron: input.frequencyCron,
+        nextDueDate: input.nextDueDate,
+        bankAccountId,
+        isActive: input.isActive ?? existing.isActive,
+      });
+
+      return this.mandatoryPaymentRepository.save(existing);
+    }
+
+    return this.mandatoryPaymentRepository.save(
+      this.mandatoryPaymentRepository.create({
+        workspaceId: input.workspaceId,
+        type: input.type,
+        label: input.label,
+        currencyCode: input.currencyCode,
+        amount: String(input.amount),
+        frequencyCron: input.frequencyCron,
+        nextDueDate: input.nextDueDate,
+        bankAccountId,
+        isActive: input.isActive ?? true,
+      }),
+    );
+  }
+
+  async deleteMandatoryPayment(workspaceId: string, id: string) {
+    const result = await this.mandatoryPaymentRepository.delete({
+      id,
+      workspaceId,
+    });
+
+    if (result.affected === 0) {
+      throw new NotFoundException('Mandatory payment not found');
+    }
+  }
+
+  listAdjustments(workspaceId: string, fridayDate: string) {
+    return this.adjustmentRepository.find({
+      where: { workspaceId, fridayDate },
+      order: { createdAt: 'ASC' },
+    });
+  }
+
+  async upsertAdjustment(input: UpsertAdjustmentInput) {
+    const bankAccountId =
+      input.bankAccountId && input.bankAccountId.trim() !== ''
+        ? input.bankAccountId
+        : null;
+
+    if (input.id) {
+      const existing = await this.adjustmentRepository.findOne({
+        where: { id: input.id, workspaceId: input.workspaceId },
+      });
+
+      if (!existing) throw new NotFoundException('Adjustment not found');
+
+      Object.assign(existing, {
+        fridayDate: input.fridayDate,
+        direction: input.direction,
+        label: input.label,
+        currencyCode: input.currencyCode,
+        amount: String(input.amount),
+        bankAccountId,
+        note: input.note ?? null,
+      });
+
+      return this.adjustmentRepository.save(existing);
+    }
+
+    return this.adjustmentRepository.save(
+      this.adjustmentRepository.create({
+        workspaceId: input.workspaceId,
+        fridayDate: input.fridayDate,
+        direction: input.direction,
+        label: input.label,
+        currencyCode: input.currencyCode,
+        amount: String(input.amount),
+        bankAccountId,
+        note: input.note ?? null,
+        createdByUserId: input.createdByUserId ?? null,
+      }),
+    );
+  }
+
+  async deleteAdjustment(workspaceId: string, id: string) {
+    const result = await this.adjustmentRepository.delete({ id, workspaceId });
+
+    if (result.affected === 0) throw new NotFoundException('Adjustment not found');
+  }
 
   listBankAccounts(workspaceId: string) {
     return this.bankAccountRepository.find({
@@ -87,6 +242,7 @@ export class FinanceCrudService {
         balance: String(input.balance),
         balanceAsOf: new Date(),
         source: input.source ?? existing.source,
+        bankRole: input.bankRole ?? existing.bankRole,
         xeroAccountId: input.xeroAccountId ?? existing.xeroAccountId,
         isActive: input.isActive ?? existing.isActive,
         sortOrder: input.sortOrder ?? existing.sortOrder,
@@ -104,6 +260,7 @@ export class FinanceCrudService {
         balance: String(input.balance),
         balanceAsOf: new Date(),
         source: input.source ?? 'manual',
+        bankRole: input.bankRole ?? 'other',
         xeroAccountId: input.xeroAccountId ?? null,
         isActive: input.isActive ?? true,
         sortOrder: input.sortOrder ?? 0,
@@ -235,7 +392,12 @@ export class FinanceCrudService {
       amount: number;
     }> = [];
 
-    // Validate every line has a bank and funds before mutating anything.
+    // Amount (in the paying bank's currency) to deduct per line. When the bank
+    // holds a different currency (route-by-provider: NZD→BNZ, other currencies
+    // →Wise/Statrys), convert the bill via the live FX rate.
+    const lineDeduct = new Map<string, number>();
+
+    // Validate every line has a bank before mutating anything.
     for (const line of includedLines) {
       if (!line.bankAccountId) {
         throw new NotFoundException(
@@ -252,27 +414,38 @@ export class FinanceCrudService {
           `Bank account for bill ${line.xeroInvoiceId} not found`,
         );
       }
+
+      let deductAmount = Number(line.amount);
+
       if (bank.currencyCode !== line.currencyCode) {
-        throw new NotFoundException(
-          `Currency mismatch: bill ${line.xeroInvoiceId} is ${line.currencyCode} but bank is ${bank.currencyCode}`,
+        const fx = await this.wiseSync.getRate(
+          workspaceId,
+          line.currencyCode,
+          bank.currencyCode,
         );
+
+        deductAmount = Number(line.amount) * fx.rate;
       }
+
+      lineDeduct.set(line.xeroInvoiceId, deductAmount);
 
       deductions.push({
         bankAccountId: bank.id,
-        currencyCode: line.currencyCode,
-        amount: Number(line.amount),
+        currencyCode: bank.currencyCode,
+        amount: deductAmount,
       });
     }
 
-    // Apply: deduct balances.
+    // Apply: deduct balances (converted amount in the bank's currency).
     for (const line of includedLines) {
       const bank = await this.bankAccountRepository.findOne({
         where: { id: line.bankAccountId!, workspaceId },
       });
 
       if (bank) {
-        bank.balance = String(Number(bank.balance) - Number(line.amount));
+        const deduct = lineDeduct.get(line.xeroInvoiceId) ?? Number(line.amount);
+
+        bank.balance = String(Number(bank.balance) - deduct);
         bank.balanceAsOf = new Date();
         await this.bankAccountRepository.save(bank);
       }

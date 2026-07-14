@@ -20,6 +20,8 @@ import { XeroSyncCursorEntity } from 'src/engine/core-modules/xero-integration/e
 import { WiseConnectionEntity } from 'src/engine/core-modules/xero-integration/entities/wise-connection.entity';
 import { WaiminFinanceReminderEntity } from 'src/engine/core-modules/xero-integration/entities/waimin-finance-reminder.entity';
 import { WaiminNotificationSettingEntity } from 'src/engine/core-modules/xero-integration/entities/waimin-notification-setting.entity';
+import { WaiminManualAdjustmentEntity } from 'src/engine/core-modules/xero-integration/entities/waimin-manual-adjustment.entity';
+import { WaiminMandatoryPaymentEntity } from 'src/engine/core-modules/xero-integration/entities/waimin-mandatory-payment.entity';
 import { NotificationService } from 'src/engine/core-modules/xero-integration/services/notification.service';
 import { FinanceReminderCronJob } from 'src/engine/core-modules/xero-integration/jobs/finance-reminder-cron.job';
 import { XeroSyncCronJob } from 'src/engine/core-modules/xero-integration/jobs/xero-sync-cron.job';
@@ -52,6 +54,8 @@ import { TwentyORMModule } from 'src/engine/twenty-orm/twenty-orm.module';
       WiseConnectionEntity,
       WaiminFinanceReminderEntity,
       WaiminNotificationSettingEntity,
+      WaiminManualAdjustmentEntity,
+      WaiminMandatoryPaymentEntity,
       WorkspaceEntity,
     ]),
     TwentyConfigModule,

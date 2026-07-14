@@ -94,6 +94,11 @@ const STANDARD_PERMISSION_FLAG_METADATA: Record<
     description: 'Create and configure AI agents',
     icon: 'IconSparkles',
   },
+  [PermissionFlagType.AUDIT_LOGS]: {
+    label: 'Audit Logs',
+    description: 'View the workspace activity audit trail',
+    icon: 'IconHistory',
+  },
   [PermissionFlagType.AI]: {
     label: 'Ask AI',
     description: 'Chat with AI agents and use AI features',

@@ -80,15 +80,38 @@ export class NotificationService {
         body: JSON.stringify(card),
       });
 
-      if (!res.ok) {
-        const body = await res.text();
+      if (res.ok) return true;
 
-        this.logger.warn(`Teams webhook failed: ${res.status} ${body.slice(0, 300)}`);
+      const body = await res.text();
 
-        return false;
-      }
+      this.logger.warn(
+        `Teams MessageCard post failed: ${res.status} ${body.slice(0, 300)}. Retrying as plain payload.`,
+      );
 
-      return true;
+      // Power Automate "Workflows" webhooks (the new Teams model) reject the
+      // legacy MessageCard schema. Retry with the simple shapes those flows
+      // and Adaptive-Card flows accept.
+      const plain = {
+        text: `**${title}**\n\n${text}`,
+        title,
+        summary: title,
+      };
+
+      const retry = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(plain),
+      });
+
+      if (retry.ok) return true;
+
+      const retryBody = await retry.text();
+
+      this.logger.warn(
+        `Teams webhook failed (both formats): ${retry.status} ${retryBody.slice(0, 300)}`,
+      );
+
+      return false;
     } catch (err) {
       this.logger.error(
         `Teams webhook error: ${err instanceof Error ? err.message : String(err)}`,

@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Cron, CronExpression } from '@nestjs/schedule';
+import { Cron } from '@nestjs/schedule';
 
 import { Repository } from 'typeorm';
-import { parseExpression } from 'cron-parser';
+import { CronExpressionParser } from 'cron-parser';
 
 import { GlobalWorkspaceOrmManager } from 'src/engine/twenty-orm/global-workspace-datasource/global-workspace-orm.manager';
 import { WaiminFinanceReminderEntity } from 'src/engine/core-modules/xero-integration/entities/waimin-finance-reminder.entity';
@@ -25,7 +25,18 @@ export class FinanceReminderCronJob {
     private readonly notificationService: NotificationService,
   ) {}
 
-  @Cron(CronExpression.EVERY_DAY_AT_8AM)
+  // Runs every 15 min so reminders fire near their chosen send time
+  // (nextDueDate carries the time-of-day). Each due reminder fires once,
+  // then advances to its next occurrence.
+  @Cron('*/15 * * * *')
+  async scheduledRun() {
+    // Only the server registers crons; the worker sets this flag. Guard here
+    // too so the reminder dispatch doesn't fire twice (server + worker).
+    if (process.env.DISABLE_CRON_JOBS_REGISTRATION === 'true') return;
+
+    await this.handleCron();
+  }
+
   async handleCron() {
     this.logger.log('Running finance reminders cron job...');
 
@@ -57,35 +68,43 @@ export class FinanceReminderCronJob {
   }
 
   private async processReminder(reminder: WaiminFinanceReminderEntity) {
-    await this.globalWorkspaceOrmManager.executeInWorkspaceContext(
-      async () => {
-        const taskRepo = await this.globalWorkspaceOrmManager.getRepository<TaskWorkspaceEntity>(
-          reminder.workspaceId,
-          'task',
-        );
+    // Best-effort CRM task creation — the workspace permission model can reject
+    // the system context. Don't let that block the Teams notification below.
+    try {
+      await this.globalWorkspaceOrmManager.executeInWorkspaceContext(
+        async () => {
+          const taskRepo = await this.globalWorkspaceOrmManager.getRepository<TaskWorkspaceEntity>(
+            reminder.workspaceId,
+            'task',
+          );
 
-        const taskToCreate = taskRepo.create({
-          title: reminder.title,
-          dueAt: reminder.nextDueDate,
-          status: 'TODO',
-          assigneeId: reminder.assigneeId,
-          bodyV2: {
-            blocknote: JSON.stringify([
-              {
-                id: 'finance-reminder',
-                type: 'paragraph',
-                props: { textColor: 'default', backgroundColor: 'default', textAlignment: 'left' },
-                content: [{ type: 'text', text: `Auto-generated reminder: ${reminder.title}`, styles: {} }],
-              },
-            ]),
-            markdown: `Auto-generated reminder: ${reminder.title}`,
-          },
-        });
+          const taskToCreate = taskRepo.create({
+            title: reminder.title,
+            dueAt: reminder.nextDueDate,
+            status: 'TODO',
+            assigneeId: reminder.assigneeId,
+            bodyV2: {
+              blocknote: JSON.stringify([
+                {
+                  id: 'finance-reminder',
+                  type: 'paragraph',
+                  props: { textColor: 'default', backgroundColor: 'default', textAlignment: 'left' },
+                  content: [{ type: 'text', text: `Auto-generated reminder: ${reminder.title}`, styles: {} }],
+                },
+              ]),
+              markdown: `Auto-generated reminder: ${reminder.title}`,
+            },
+          });
 
-        await taskRepo.save(taskToCreate);
-      },
-      buildSystemAuthContext(reminder.workspaceId),
-    );
+          await taskRepo.save(taskToCreate);
+        },
+        buildSystemAuthContext(reminder.workspaceId),
+      );
+    } catch (err) {
+      this.logger.warn(
+        `Reminder task creation skipped for ${reminder.id}: ${String(err)}`,
+      );
+    }
 
     // Fire a Teams notification if a webhook is configured (best-effort).
     await this.notificationService.sendTeams(
@@ -97,7 +116,12 @@ export class FinanceReminderCronJob {
     reminder.lastCreatedTaskAt = new Date();
 
     try {
-      const interval = parseExpression(reminder.frequencyCron);
+      // Compute the next occurrence in the reminder's own timezone so it keeps
+      // firing at the chosen wall-clock time regardless of server tz.
+      const interval = CronExpressionParser.parse(reminder.frequencyCron, {
+        tz: reminder.timezone || 'UTC',
+      });
+
       reminder.nextDueDate = interval.next().toDate();
     } catch {
       // Fallback if cron is invalid

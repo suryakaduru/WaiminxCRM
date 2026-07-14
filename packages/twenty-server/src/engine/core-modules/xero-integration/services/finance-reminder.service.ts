@@ -17,6 +17,7 @@ export type UpsertReminderInput = {
   type: FinanceReminderType;
   frequencyCron: string;
   nextDueDate: string;
+  timezone?: string;
   isActive?: boolean;
   assigneeId?: string | null;
 };
@@ -73,6 +74,7 @@ export class FinanceReminderService {
         title: input.title,
         type: input.type,
         frequencyCron: input.frequencyCron,
+        timezone: input.timezone ?? existing.timezone,
         nextDueDate: new Date(input.nextDueDate),
         isActive: input.isActive ?? existing.isActive,
         assigneeId: input.assigneeId ?? existing.assigneeId,
@@ -86,6 +88,7 @@ export class FinanceReminderService {
       title: input.title,
       type: input.type,
       frequencyCron: input.frequencyCron,
+      timezone: input.timezone ?? 'UTC',
       nextDueDate: new Date(input.nextDueDate),
       isActive: input.isActive ?? true,
       assigneeId: input.assigneeId ?? null,

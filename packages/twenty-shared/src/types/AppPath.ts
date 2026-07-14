@@ -28,6 +28,9 @@ export enum AppPath {
   FinanceDashboard = '/finance',
   FinanceWeeklyPlanner = '/finance/weekly-planner',
   FinanceBanks = '/finance/banks',
+  FinanceReminders = '/finance/reminders-hub',
+
+  AuditLog = '/audit-log',
 
   Settings = `settings`,
   SettingsCatchAll = `/${Settings}/*`,

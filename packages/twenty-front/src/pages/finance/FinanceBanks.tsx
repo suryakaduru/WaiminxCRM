@@ -10,6 +10,14 @@ import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 const CURRENCIES = ['NZD', 'HKD', 'MYR', 'INR', 'USD', 'AUD', 'SGD', 'GBP', 'EUR'];
 const SOURCES = ['manual', 'wise', 'statrys', 'xero'] as const;
+const BANK_ROLES: Array<{ value: BankRole; label: string }> = [
+  { value: 'main', label: 'Main (BNZ — fallback & top-up source)' },
+  { value: 'international', label: 'International (Wise / Statrys)' },
+  { value: 'expense', label: 'Expense (UOB / BNZ)' },
+  { value: 'other', label: 'Other' },
+];
+
+type BankRole = 'main' | 'international' | 'expense' | 'other';
 
 type BankAccount = {
   id: string;
@@ -19,6 +27,7 @@ type BankAccount = {
   balance: string;
   balanceAsOf: string | null;
   source: 'manual' | 'xero' | 'wise' | 'statrys';
+  bankRole: BankRole;
   isActive: boolean;
   sortOrder: number;
 };
@@ -210,6 +219,7 @@ type FormState = {
   currencyCode: string;
   balance: string;
   source: BankAccount['source'];
+  bankRole: BankRole;
 };
 
 const emptyForm: FormState = {
@@ -218,6 +228,7 @@ const emptyForm: FormState = {
   currencyCode: 'NZD',
   balance: '0',
   source: 'manual',
+  bankRole: 'other',
 };
 
 const fmt = (amount: number, currency: string): string => {
@@ -273,6 +284,7 @@ export const FinanceBanks = () => {
       currencyCode: row.currencyCode,
       balance: String(row.balance),
       source: row.source,
+      bankRole: row.bankRole ?? 'other',
     });
 
   const closeModal = () => setModal(null);
@@ -293,6 +305,7 @@ export const FinanceBanks = () => {
         currencyCode: modal.currencyCode,
         balance: !isNaN(parsedBalance) ? parsedBalance : 0,
         source: modal.source,
+        bankRole: modal.bankRole,
       };
 
       const path = modal.id
@@ -317,7 +330,7 @@ export const FinanceBanks = () => {
   const handleDelete = async (row: BankAccount) => {
     if (!tokenPair) return;
     // eslint-disable-next-line no-alert
-    if (!window.confirm(t`Delete ${row.bankName} · ${row.currencyCode}?`)) return;
+    if (!window.confirm(`Delete ${row.bankName} · ${row.currencyCode}?`)) return;
     try {
       await xeroFetch(`/finance/bank-accounts/${row.id}`, tokenPair, {
         method: 'DELETE',
@@ -476,6 +489,9 @@ export const FinanceBanks = () => {
                   <th>
                     <Trans>Source</Trans>
                   </th>
+                  <th>
+                    <Trans>Role</Trans>
+                  </th>
                   <th></th>
                 </tr>
               </thead>
@@ -497,6 +513,11 @@ export const FinanceBanks = () => {
                     </td>
                     <td>
                       <StyledPill>{row.source}</StyledPill>
+                    </td>
+                    <td>
+                      <StyledPill>
+                        {BANK_ROLES.find((r) => r.value === (row.bankRole ?? 'other'))?.value ?? 'other'}
+                      </StyledPill>
                     </td>
                     <td>
                       <div style={{ display: 'flex', gap: 8 }}>
@@ -635,6 +656,24 @@ export const FinanceBanks = () => {
                 {SOURCES.map((s) => (
                   <option key={s} value={s}>
                     {s}
+                  </option>
+                ))}
+              </StyledSelect>
+            </StyledFormRow>
+
+            <StyledFormRow>
+              <span>
+                <Trans>Routing role</Trans>
+              </span>
+              <StyledSelect
+                value={modal.bankRole}
+                onChange={(e) =>
+                  setModal({ ...modal, bankRole: e.target.value as BankRole })
+                }
+              >
+                {BANK_ROLES.map((r) => (
+                  <option key={r.value} value={r.value}>
+                    {r.label}
                   </option>
                 ))}
               </StyledSelect>

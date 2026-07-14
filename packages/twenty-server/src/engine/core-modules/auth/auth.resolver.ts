@@ -14,6 +14,7 @@ import { ApiKeyService } from 'src/engine/core-modules/api-key/services/api-key.
 import { AppTokenEntity } from 'src/engine/core-modules/app-token/app-token.entity';
 import { AuditService } from 'src/engine/core-modules/audit/services/audit.service';
 import { MONITORING_EVENT } from 'src/engine/core-modules/audit/utils/events/workspace-event/monitoring/monitoring';
+import { AuditLogService } from 'src/engine/core-modules/audit-log/services/audit-log.service';
 import {
   AuthException,
   AuthExceptionCode,
@@ -126,6 +127,7 @@ export class AuthResolver {
     private emailVerificationTokenService: EmailVerificationTokenService,
     private ssoService: SSOService,
     private readonly auditService: AuditService,
+    private readonly auditLogService: AuditLogService,
     private readonly permissionsService: PermissionsService,
   ) {}
 
@@ -603,6 +605,14 @@ export class AuthResolver {
       );
     } else {
       await this.validateRegularAuthentication(workspace, userWorkspace);
+
+      await this.auditLogService.record({
+        workspaceId: workspace.id,
+        userId: user.id,
+        userEmail: user.email,
+        action: 'login',
+        context: { authProvider: tokenPayload.authProvider },
+      });
 
       return await this.authService.verify(
         user.email,

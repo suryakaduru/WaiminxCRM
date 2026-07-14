@@ -11,6 +11,7 @@ import { ConnectionProviderModule } from 'src/engine/core-modules/application/co
 import { ConnectionProviderOAuthController } from 'src/engine/core-modules/application/connection-provider/connection-provider-oauth.controller';
 import { ApplicationConnectionsModule } from 'src/engine/core-modules/application/connection-provider/connections/application-connections.module';
 import { AuditModule } from 'src/engine/core-modules/audit/audit.module';
+import { AuditLogModule } from 'src/engine/core-modules/audit-log/audit-log.module';
 import { GoogleAPIsAuthController } from 'src/engine/core-modules/auth/controllers/google-apis-auth.controller';
 import { GoogleAuthController } from 'src/engine/core-modules/auth/controllers/google-auth.controller';
 import { MicrosoftAPIsAuthController } from 'src/engine/core-modules/auth/controllers/microsoft-apis-auth.controller';
@@ -114,6 +115,7 @@ import { JwtAuthStrategy } from './strategies/jwt.auth.strategy';
     TwoFactorAuthenticationModule,
     ApiKeyModule,
     AuditModule,
+    AuditLogModule,
     SubdomainManagerModule,
     DomainServerConfigModule,
     ApplicationRegistrationModule,

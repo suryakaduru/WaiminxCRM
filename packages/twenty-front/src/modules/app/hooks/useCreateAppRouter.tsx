@@ -118,6 +118,18 @@ const FinanceBanks = lazy(() =>
   })),
 );
 
+const FinanceReminders = lazy(() =>
+  import('~/pages/finance/FinanceReminders').then((module) => ({
+    default: module.FinanceReminders,
+  })),
+);
+
+const AuditLog = lazy(() =>
+  import('~/pages/audit-log/AuditLog').then((module) => ({
+    default: module.AuditLog,
+  })),
+);
+
 const NotFound = lazy(() =>
   import('~/pages/not-found/NotFound').then((module) => ({
     default: module.NotFound,
@@ -273,6 +285,22 @@ export const useCreateAppRouter = (
             element={
               <LazyRoute>
                 <FinanceBanks />
+              </LazyRoute>
+            }
+          />
+          <Route
+            path={AppPath.FinanceReminders}
+            element={
+              <LazyRoute>
+                <FinanceReminders />
+              </LazyRoute>
+            }
+          />
+          <Route
+            path={AppPath.AuditLog}
+            element={
+              <LazyRoute>
+                <AuditLog />
               </LazyRoute>
             }
           />

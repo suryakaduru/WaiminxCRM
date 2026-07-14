@@ -111,6 +111,125 @@ export class WiseSyncService {
     return { synced: syncedCurrencies.length, currencies: syncedCurrencies };
   }
 
+  // Short-lived in-memory FX cache. Keyed by "SOURCE->TARGET".
+  // 60s TTL keeps the planner effectively real-time without hammering Wise
+  // on every re-render.
+  private readonly rateCache = new Map<
+    string,
+    { rate: number; provider: string; asOf: string; fetchedAtMs: number }
+  >();
+  private static readonly RATE_TTL_MS = 60_000;
+
+  async getRate(
+    workspaceId: string,
+    source: string,
+    target: string,
+  ): Promise<{ rate: number; provider: string; asOf: string }> {
+    const src = source?.toUpperCase();
+    const tgt = target?.toUpperCase();
+
+    if (!src || !tgt) {
+      throw new Error('source and target currency codes are required');
+    }
+    if (src === tgt) {
+      return { rate: 1, provider: 'identity', asOf: new Date().toISOString() };
+    }
+
+    const cacheKey = `${src}->${tgt}`;
+    const cached = this.rateCache.get(cacheKey);
+
+    if (
+      cached &&
+      Date.now() - cached.fetchedAtMs < WiseSyncService.RATE_TTL_MS
+    ) {
+      return { rate: cached.rate, provider: cached.provider, asOf: cached.asOf };
+    }
+
+    const result =
+      (await this.fetchWiseRate(workspaceId, src, tgt)) ??
+      (await this.fetchFallbackRate(src, tgt));
+
+    if (!result) {
+      throw new Error(`No exchange rate available for ${src} → ${tgt}`);
+    }
+
+    this.rateCache.set(cacheKey, { ...result, fetchedAtMs: Date.now() });
+
+    return result;
+  }
+
+  // Live mid-market rate from Wise, using the workspace's connected token.
+  // Returns null (not throws) so the caller can fall back cleanly.
+  private async fetchWiseRate(
+    workspaceId: string,
+    source: string,
+    target: string,
+  ): Promise<{ rate: number; provider: string; asOf: string } | null> {
+    try {
+      const connection = await this.wiseConnectionRepository.findOne({
+        where: { workspaceId },
+      });
+
+      if (!connection?.apiTokenCiphertext) return null;
+
+      const token = this.secretEncryptionService.decryptVersioned(
+        connection.apiTokenCiphertext as EncryptedString,
+        { workspaceId },
+      );
+
+      const res = await fetch(
+        `https://api.wise.com/v1/rates?source=${source}&target=${target}`,
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+
+      if (!res.ok) return null;
+
+      const data = await res.json();
+      const entry = Array.isArray(data) ? data[0] : data;
+
+      if (!entry || typeof entry.rate !== 'number') return null;
+
+      return {
+        rate: entry.rate,
+        provider: 'wise',
+        asOf: entry.time ?? new Date().toISOString(),
+      };
+    } catch (error) {
+      this.logger.warn(`Wise rate lookup failed: ${String(error)}`);
+
+      return null;
+    }
+  }
+
+  // Free fallback when Wise isn't connected or errors.
+  private async fetchFallbackRate(
+    source: string,
+    target: string,
+  ): Promise<{ rate: number; provider: string; asOf: string } | null> {
+    try {
+      const res = await fetch(
+        `https://api.exchangerate.host/latest?base=${source}&symbols=${target}`,
+      );
+
+      if (!res.ok) return null;
+
+      const data = await res.json();
+      const rate = data?.rates?.[target];
+
+      if (typeof rate !== 'number') return null;
+
+      return {
+        rate,
+        provider: 'exchangerate.host',
+        asOf: data.date ?? new Date().toISOString(),
+      };
+    } catch (error) {
+      this.logger.warn(`Fallback rate lookup failed: ${String(error)}`);
+
+      return null;
+    }
+  }
+
   private async fetchProfileId(token: string): Promise<string> {
     const res = await fetch('https://api.wise.com/v1/profiles', {
       headers: {

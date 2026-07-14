@@ -1,10 +1,12 @@
 import { useLingui } from '@lingui/react/macro';
 import { useNavigate } from 'react-router-dom';
 import { AppPath, SettingsPath } from 'twenty-shared/types';
-import { IconMoneybag, IconCalendarDue, IconCoins, IconHelpCircle, IconSettings } from 'twenty-ui/display';
+import { IconMoneybag, IconCalendarDue, IconCoins, IconBell, IconHelpCircle, IconHistory, IconSettings } from 'twenty-ui/display';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
 
 import { currentWorkspaceMemberState } from '@/auth/states/currentWorkspaceMemberState';
+import { usePermissionFlagMap } from '@/settings/roles/hooks/usePermissionFlagMap';
+import { PermissionFlagType } from '~/generated-metadata/graphql';
 import { getDocumentationUrl } from '@/support/utils/getDocumentationUrl';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 
@@ -22,6 +24,8 @@ export const NavigationDrawerOtherSection = () => {
   const navigate = useNavigate();
   const navigateSettings = useNavigateSettings();
   const currentWorkspaceMember = useAtomStateValue(currentWorkspaceMemberState);
+  const permissionFlags = usePermissionFlagMap();
+  const canViewAuditLog = permissionFlags[PermissionFlagType.AUDIT_LOGS];
 
   const { toggleNavigationSection } = useNavigationSection('Other');
   const isNavigationSectionOpen = useAtomFamilyStateValue(
@@ -64,6 +68,18 @@ export const NavigationDrawerOtherSection = () => {
           Icon={IconMoneybag}
           onClick={() => navigate(AppPath.FinanceBanks)}
         />
+        <NavigationDrawerItem
+          label={t`Reminders`}
+          Icon={IconBell}
+          onClick={() => navigate(AppPath.FinanceReminders)}
+        />
+        {canViewAuditLog === true && (
+          <NavigationDrawerItem
+            label={t`Audit Log`}
+            Icon={IconHistory}
+            onClick={() => navigate(AppPath.AuditLog)}
+          />
+        )}
         <NavigationDrawerItem
           label={t`Settings`}
           Icon={IconSettings}

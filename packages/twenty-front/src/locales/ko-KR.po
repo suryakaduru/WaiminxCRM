@@ -34,6 +34,11 @@ msgstr " {ratingValues} 값 중 하나여야 합니다."
 msgid "—"
 msgstr ""
 
+#. js-lingui-id: Xv4RL6
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "— optional —"
+msgstr ""
+
 #. js-lingui-id: ypz2+E
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
 msgid ": Empty"
@@ -79,6 +84,11 @@ msgstr ": 오늘{timeZoneAbbreviationSuffix}"
 msgid ". The change will be applied the {beautifiedRenewDate}."
 msgstr ". 변경 사항은 {beautifiedRenewDate}에 적용됩니다."
 
+#. js-lingui-id: YIDRsn
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "…"
+msgstr ""
+
 #. js-lingui-id: 4tCM3o
 #: src/modules/views/components/ViewBarFilterDropdownAnyFieldSearchButtonMenuItem.tsx
 msgid "· {objectFilterDropdownSearchInput}"
@@ -101,12 +111,12 @@ msgid "(selected: {selectedIconKey})"
 msgstr "(선택됨: {selectedIconKey})"
 
 #. js-lingui-id: ZBGbuw
-#: src/pages/settings/security/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepOutputDetail.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -173,6 +183,12 @@ msgstr "{0, plural, other {귀하는 {fieldsList} 필드를 액세스할 권한�
 msgid "{0} - Config"
 msgstr ""
 
+#. js-lingui-id: btO9EA
+#. placeholder {0}: row.bankCount
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "{0} account(s)"
+msgstr ""
+
 #. js-lingui-id: stCODw
 #. placeholder {0}: appObject.fields.length
 #: src/modules/settings/applications/hooks/useComputeObjectAndFieldsContentForApplication.ts
@@ -189,6 +205,12 @@ msgstr ""
 #. placeholder {0}: recordPageLayoutObject.labelPlural
 #: src/modules/layout-customization/components/LayoutCustomizationBar.tsx
 msgid "{0} layout edition"
+msgstr ""
+
+#. js-lingui-id: LSuMte
+#. placeholder {0}: records.length
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
+msgid "{0} of {totalCount}"
 msgstr ""
 
 #. js-lingui-id: peiknr
@@ -466,11 +488,6 @@ msgstr ""
 msgid "{positionLabel} record holds priority"
 msgstr "{positionLabel} 레코드가 우선순위를 가집니다"
 
-#. js-lingui-id: Sxx5Hr
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "{recordCount} of {totalCount} records"
-msgstr "{totalCount}개 레코드 중 {recordCount}개"
-
 #. js-lingui-id: 5d0hY6
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
@@ -571,6 +588,22 @@ msgstr "{workspaceMemberName}님이 다음 역할에서 재할당 해제됩니�
 #. js-lingui-id: XxzXhf
 #: src/pages/settings/layout/SettingsLayoutViewDetail.tsx
 msgid "#"
+msgstr ""
+
+#. js-lingui-id: cw6eUV
+#: src/pages/auth/SignInUp.tsx
+msgid "© Waimin · wai-min.com"
+msgstr ""
+
+#. js-lingui-id: 2ygf/L
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "← Back"
+msgstr ""
+
+#. js-lingui-id: 6lMQjH
+#: src/pages/finance/FinanceBanks.tsx
+msgid "↻ Sync Wise"
 msgstr ""
 
 #. js-lingui-id: n9nj+X
@@ -723,6 +756,11 @@ msgstr "500 오류 - {duration}ms"
 msgid "7d"
 msgstr ""
 
+#. js-lingui-id: gR4WtD
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "a currency goes negative"
+msgstr ""
+
 #. js-lingui-id: 43TqJC
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
 msgid "A display name for this provider"
@@ -752,6 +790,16 @@ msgstr "팀과 함께 고객 관계를 관리할 수 있는 공유 환경입니�
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "A verification email has been sent to"
 msgstr "확인 이메일이 전송되었습니다"
+
+#. js-lingui-id: yqbblo
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "A/P aging — what you owe"
+msgstr ""
+
+#. js-lingui-id: aRb3br
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "A/R aging — who owes you"
+msgstr ""
 
 #. js-lingui-id: DqlQy+
 #: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldMaxValuesForm.tsx
@@ -871,6 +919,11 @@ msgstr "계정이 성공적으로 추가되었습니다. 동기화가 시작되�
 msgid "Account Deletion"
 msgstr "계정 삭제"
 
+#. js-lingui-id: FbnkwO
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Account label (optional)"
+msgstr ""
+
 #. js-lingui-id: bPwFdf
 #: src/pages/settings/accounts/SettingsNewAccount.tsx
 #: src/pages/settings/accounts/SettingsAccountsEmails.tsx
@@ -933,6 +986,7 @@ msgstr "사용자가 이 객체에서 수행할 수 있는 작업"
 #: src/pages/settings/ai/components/SettingsAiUsageTab.tsx
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
 #: src/modules/settings/security/components/SSO/SettingsSecuritySSORowDropdownMenu.tsx
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
 #: src/modules/settings/data-model/objects/components/SettingsObjectInactiveMenuDropDown.tsx
 #: src/modules/settings/data-model/object-details/components/SettingsObjectFieldDisabledActionDropdown.tsx
 #: src/modules/settings/admin-panel/ai/components/SettingsAdminAI.tsx
@@ -953,6 +1007,8 @@ msgstr "활성화 중..."
 #: src/pages/settings/profile/SettingsProfile.tsx
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
 #: src/modules/settings/domains/components/SettingsWorkspaceDomainCard.tsx
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
@@ -964,6 +1020,11 @@ msgstr "활성"
 #: src/pages/settings/api-webhooks/SettingsApiWebhooks.tsx
 msgid "Active API keys created by you or your team."
 msgstr "본인 또는 팀이 생성한 활성 API 키입니다."
+
+#. js-lingui-id: HGOB83
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Active from (first due)"
+msgstr ""
 
 #. js-lingui-id: A7Ks+i
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralStats.tsx
@@ -1032,6 +1093,23 @@ msgstr "계정 추가"
 msgid "Add Approved Access Domain"
 msgstr "승인된 액세스 도메인 추가"
 
+#. js-lingui-id: NNv4Ob
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Add bank →"
+msgstr ""
+
+#. js-lingui-id: jpNk2r
+#: src/pages/finance/FinanceBanks.tsx
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Add bank account"
+msgstr ""
+
+#. js-lingui-id: 5tnHxS
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Add banks on the Bank Accounts page."
+msgstr ""
+
 #. js-lingui-id: Qi4JMf
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionEmailBase.tsx
 msgid "Add BCC"
@@ -1063,6 +1141,11 @@ msgstr "사용자 지정 엔드포인트, 프라이빗 게이트웨이 또는 �
 #: src/modules/settings/admin-panel/ai/components/SettingsAdminAiProviderListCard.tsx
 msgid "Add Custom Provider"
 msgstr "사용자 지정 공급자 추가"
+
+#. js-lingui-id: uL7inB
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Add each bank + currency combo you hold (e.g. BNZ NZD, UOB HKD, UOB MYR, Wise USD)."
+msgstr ""
 
 #. js-lingui-id: +Gf1IN
 #: src/modules/settings/workspace/components/SettingsWorkspaceEmailGroupSection.tsx
@@ -1139,6 +1222,12 @@ msgstr "항목 추가"
 #: src/modules/navigation-menu-item/edit/side-panel/components/SidePanelNavigationMenuItemEditPage.tsx
 msgid "Add item to folder"
 msgstr "항목을 폴더에 추가"
+
+#. js-lingui-id: KC7HEx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Add Mandatory Payment"
+msgstr ""
 
 #. js-lingui-id: gaZXkv
 #: src/modules/side-panel/utils/getSidePanelSubPageTitle.ts
@@ -1231,6 +1320,12 @@ msgstr "퍼블릭 도메인 추가"
 msgid "Add relation"
 msgstr "관계 추가"
 
+#. js-lingui-id: Yayg31
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Add Reminder"
+msgstr ""
+
 #. js-lingui-id: 32bGrY
 #: src/modules/workflow/workflow-steps/workflow-actions/if-else-action/components/WorkflowEditActionIfElseBody.tsx
 msgid "Add route"
@@ -1300,6 +1395,11 @@ msgstr "즐겨찾기에 추가"
 msgid "Add Twenty as a Model Context Protocol (MCP) server. Paste this config into Claude Desktop, Cursor, Cline, Continue, Zed, or any other MCP-aware client."
 msgstr ""
 
+#. js-lingui-id: /R+u1y
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Add unexpected cash movements Xero doesn't know about yet — an urgent supplier invoice, emergency transfer, or a customer paying early/late. These flow straight into the position above for {friday}."
+msgstr ""
+
 #. js-lingui-id: XnwceV
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationRedirectURIsInput.tsx
 msgid "Add URI"
@@ -1337,6 +1437,11 @@ msgstr ""
 #: src/modules/object-record/record-table/empty-state/utils/getEmptyStateTitle.ts
 msgid "Add your first {objectLabel}"
 msgstr "첫 번째 {objectLabel} 추가"
+
+#. js-lingui-id: bO6J8k
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Add your first bank"
+msgstr ""
 
 #. js-lingui-id: vLO+NG
 #: src/modules/ui/layout/show-page/components/ShowPageSummaryCard.tsx
@@ -1523,6 +1628,12 @@ msgstr "에이전트들"
 msgid "Aggregate Chart"
 msgstr ""
 
+#. js-lingui-id: v5xnow
+#: src/pages/finance/FinanceDashboard.tsx
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Aging distribution"
+msgstr ""
+
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/members/roles/SettingsRoleAddObjectLevel.tsx
 #: src/pages/settings/logic-functions/SettingsLogicFunctionDetail.tsx
@@ -1530,12 +1641,12 @@ msgstr ""
 #: src/pages/settings/ai/SettingsSkillForm.tsx
 #: src/pages/settings/ai/SettingsAiUsageUserDetail.tsx
 #: src/pages/settings/ai/SettingsAiPrompts.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/side-panel/pages/workflow/action/components/SidePanelWorkflowSelectAction.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useSettingsRolePermissionFlagConfig.ts
@@ -1699,6 +1810,11 @@ msgstr "모든 앱 등록"
 msgid "All application registrations across the platform, including orphaned marketplace apps"
 msgstr "고아 상태의 마켓플레이스 앱을 포함해 플랫폼 전체의 모든 앱 등록"
 
+#. js-lingui-id: oneztz
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "All currencies"
+msgstr ""
+
 #. js-lingui-id: 1kLn6M
 #: src/modules/activities/calendar/components/CalendarEventRow.tsx
 msgid "All day"
@@ -1735,7 +1851,7 @@ msgid "All lines"
 msgstr "모든 줄"
 
 #. js-lingui-id: c3lkKf
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "All Members"
 msgstr "모든 구성원"
 
@@ -1750,8 +1866,8 @@ msgid "All objects"
 msgstr ""
 
 #. js-lingui-id: aFE/OW
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsTableHeader.tsx
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 #: src/modules/settings/developers/components/WebhookEntitySelect.tsx
 #: src/modules/settings/developers/components/WebhookEntitySelect.tsx
 msgid "All Objects"
@@ -1898,6 +2014,17 @@ msgstr "이미 내비게이션 바에 있음"
 msgid "Amber"
 msgstr "앰버"
 
+#. js-lingui-id: hehnjM
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Amount"
+msgstr ""
+
 #. js-lingui-id: s46CyD
 #: src/modules/object-record/record-field/ui/form-types/components/FormCurrencyFieldInput.tsx
 msgid "Amount Micros"
@@ -1983,11 +2110,6 @@ msgstr "내부 오류가 발생하여 변경 사항을 검증할 수 없습니�
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectAboutForm.tsx
 msgid "An object with this name already exists"
 msgstr "이 이름을 가진 객체가 이미 존재합니다"
-
-#. js-lingui-id: byKna+
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "An unexpected error occurred. Please try again."
-msgstr "예기치 않은 오류가 발생했습니다. 다시 시도해 주세요."
 
 #. js-lingui-id: HZFm5R
 #: src/utils/date-utils.ts
@@ -2185,12 +2307,12 @@ msgid "Application installed successfully."
 msgstr "응용 프로그램이 성공적으로 설치되었습니다."
 
 #. js-lingui-id: LllWIc
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 msgid "Application Logs"
 msgstr ""
 
 #. js-lingui-id: l/T809
-#: src/pages/settings/applications/components/SettingsApplicationDetailTitle.tsx
+#: src/pages/settings/applications/SettingsAvailableApplicationDetails.tsx
 msgid "Application not listed on the marketplace. It was shared via a direct link"
 msgstr ""
 
@@ -2361,6 +2483,11 @@ msgstr "확실합니까? 현재 정보는 저장되지 않습니다."
 msgid "As it will be displayed in the workspace"
 msgstr ""
 
+#. js-lingui-id: Ir3DTR
+#: src/pages/finance/FinanceBanks.tsx
+msgid "As of"
+msgstr ""
+
 #. js-lingui-id: 54PdN4
 #: src/modules/side-panel/pages/page-layout/utils/getSortLabelSuffixForFieldType.ts
 #: src/modules/side-panel/pages/page-layout/utils/getSortLabelSuffixForFieldType.ts
@@ -2396,9 +2523,25 @@ msgstr "무엇이든 질문하고, 검색하거나, 생성해 보세요..."
 msgid "Assign {roleTargetName}?"
 msgstr "{roleTargetName}님에게 할당하시겠습니까?"
 
+#. js-lingui-id: pQlR0P
+#. placeholder {0}: unassigned.length
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Assign a \"Pay from\" bank to every selected bill before committing ({0} missing)."
+msgstr ""
+
+#. js-lingui-id: rAcNTw
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Assign banks, top up, commit"
+msgstr ""
+
 #. js-lingui-id: nerbkq
 #: src/modules/settings/roles/components/SettingsRolesList.tsx
 msgid "Assign roles to specify access permissions"
+msgstr ""
+
+#. js-lingui-id: ITczKe
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Assign To"
 msgstr ""
 
 #. js-lingui-id: krsgB0
@@ -2488,6 +2631,7 @@ msgstr "매 시 정각 1분 후에"
 
 #. js-lingui-id: ooA+hm
 #: src/pages/settings/ai/components/SettingsAiOverviewTab.tsx
+#: src/pages/finance/FinanceDashboard.tsx
 msgid "At a glance"
 msgstr ""
 
@@ -2544,20 +2688,15 @@ msgid "Audit logs"
 msgstr "감사 로그"
 
 #. js-lingui-id: EPEFrH
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
+#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
 msgid "Audit Logs"
 msgstr "감사 로그"
 
-#. js-lingui-id: X0+U3u
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "Audit logs are available with an Enterprise subscription. Please upgrade to access this feature."
-msgstr "감사 로그는 Enterprise 구독에서만 사용할 수 있습니다. 이 기능을 사용하려면 업그레이드해 주세요."
-
-#. js-lingui-id: rNQ4RB
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "Audit logs require ClickHouse to be configured. Please contact your administrator to set up ClickHouse."
-msgstr "감사 로그를 사용하려면 ClickHouse 구성이 필요합니다. ClickHouse 설정을 위해 관리자에게 문의해 주세요."
+#. js-lingui-id: WlRN59
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
+msgid "Audit logs require ClickHouse to be configured. Please contact your administrator."
+msgstr ""
 
 #. js-lingui-id: kIuOL4
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerWebhookForm.tsx
@@ -2619,6 +2758,11 @@ msgstr "승인된 URL이 클립보드에 복사되었습니다"
 msgid "Authorizing..."
 msgstr "승인 중..."
 
+#. js-lingui-id: lOgh++
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Auto-assign banks"
+msgstr ""
+
 #. js-lingui-id: 2zJkmL
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelDetails.tsx
 msgid "Auto-creation"
@@ -2627,6 +2771,11 @@ msgstr "자동 생성"
 #. js-lingui-id: HX/jD4
 #: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/hooks/useWorkflowAiAgentPermissionActions.ts
 msgid "Auto-generated role for {agentDisplayName}"
+msgstr ""
+
+#. js-lingui-id: 6nvats
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Automated Reminders"
 msgstr ""
 
 #. js-lingui-id: YRT7ZW
@@ -2718,6 +2867,49 @@ msgstr "배경"
 msgid "Background Colors"
 msgstr "배경색"
 
+#. js-lingui-id: fsBGk0
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Balance"
+msgstr ""
+
+#. js-lingui-id: kjrXYb
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Bank"
+msgstr ""
+
+#. js-lingui-id: UXz2/a
+#: src/pages/finance/FinanceBanks.tsx
+#: src/modules/navigation/components/NavigationDrawerOtherSection.tsx
+msgid "Bank Accounts"
+msgstr ""
+
+#. js-lingui-id: XBvDLQ
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Bank Accounts | Waimin"
+msgstr ""
+
+#. js-lingui-id: ROPK7D
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Bank name"
+msgstr ""
+
+#. js-lingui-id: kyMDOh
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Bank name and currency required"
+msgstr ""
+
+#. js-lingui-id: 01akL3
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Banks"
+msgstr ""
+
+#. js-lingui-id: qR3i3y
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Banks & commit"
+msgstr ""
+
 #. js-lingui-id: EbQe8o
 #: src/modules/settings/billing/components/SettingsBillingCreditsSection.tsx
 msgid "Base Credits"
@@ -2733,6 +2925,11 @@ msgstr "기본 URL"
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
 msgid "Base URL is required"
 msgstr "기본 URL이 필요합니다"
+
+#. js-lingui-id: Bl0aLy
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Based on each bank's role — international payments route to Wise / Statrys, expenses to UOB / BNZ, BNZ is the fallback. \"Auto-assign banks\" fills the Pay-from column for selected bills. When a bank can't cover its assigned total, top up from BNZ:"
+msgstr ""
 
 #. js-lingui-id: /xLNEx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsEmailDetail.tsx
@@ -2787,6 +2984,11 @@ msgstr "{start}분에서 {end}분 사이에"
 msgid "between the {startOrdinal} and {endOrdinal} of the month"
 msgstr "매달의 {startOrdinal}일에서 {endOrdinal}일까지"
 
+#. js-lingui-id: tayO0A
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "bill(s) selected for {friday}."
+msgstr ""
+
 #. js-lingui-id: R+w/Va
 #: src/pages/settings/billing/SettingsUsageUserDetail.tsx
 #: src/pages/settings/billing/SettingsUsage.tsx
@@ -2809,6 +3011,16 @@ msgstr "청구 내역"
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
 msgid "Billing interval"
 msgstr "청구 주기"
+
+#. js-lingui-id: b492j0
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Bills due but not included in your Friday payment run."
+msgstr ""
+
+#. js-lingui-id: 0RE/C2
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Bills you have selected to pay this Friday. Review your selection before saving."
+msgstr ""
 
 #. js-lingui-id: K1172m
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistSection.tsx
@@ -2952,10 +3164,10 @@ msgstr ""
 msgid "by {author}"
 msgstr "제작: {author}"
 
-#. js-lingui-id: 8Pfllj
+#. js-lingui-id: GfVFhM
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "By using Twenty, you agree to the"
-msgstr "Twenty를 사용함으로써 귀하는 다음에 동의합니다"
+msgid "By using Waimin, you agree to the"
+msgstr ""
 
 #. js-lingui-id: Yx41df
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -3090,6 +3302,10 @@ msgstr "스캔이 불가능합니까?"
 #. js-lingui-id: dEgA5A
 #: src/pages/settings/applications/components/SettingsApplicationConnectScopePickerModal.tsx
 #: src/pages/settings/admin-panel/SettingsAdminApplicationRegistrationDangerZone.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/ui/layout/modal/components/ConfirmationModal.tsx
 #: src/modules/ui/feedback/snack-bar-manager/components/SnackBar.tsx
 #: src/modules/spreadsheet-import/steps/components/ImportDataStep.tsx
@@ -3220,6 +3436,26 @@ msgstr "Captcha (봇 방지 검사)가 여전히 로딩 중입니다. 다시 시
 msgid "Card"
 msgstr ""
 
+#. js-lingui-id: UZAUPA
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Cash by currency"
+msgstr ""
+
+#. js-lingui-id: xvBb3T
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Cash on hand"
+msgstr ""
+
+#. js-lingui-id: D+Vyav
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Cash you have + money coming in − bills you've ticked = balance left. Red border means you'd go negative."
+msgstr ""
+
+#. js-lingui-id: 9lUIrD
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Cash, incoming & adjustments"
+msgstr ""
+
 #. js-lingui-id: M1RLfx
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Catalan"
@@ -3245,6 +3481,12 @@ msgstr "CC"
 #. js-lingui-id: Dgsw8A
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
 msgid "Cc/Bcc"
+msgstr ""
+
+#. js-lingui-id: 9SJ3LZ
+#: src/pages/finance/FinanceDashboard.tsx
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "CCY"
 msgstr ""
 
 #. js-lingui-id: tHntRt
@@ -3315,6 +3557,11 @@ msgstr ""
 msgid "Chart"
 msgstr "차트"
 
+#. js-lingui-id: sUPCA+
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Chase these first"
+msgstr ""
+
 #. js-lingui-id: AHZflp
 #: src/modules/navigation/components/MainNavigationDrawerTabsRow.tsx
 msgid "Chat"
@@ -3364,6 +3611,11 @@ msgstr "확인 확인"
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "Check your Emails"
 msgstr "이메일을 확인하세요"
+
+#. js-lingui-id: 5IXWmO
+#: src/pages/auth/SignInUp.tsx
+msgid "Check your inbox"
+msgstr ""
 
 #. js-lingui-id: hXXBiE
 #: src/modules/settings/profile/hooks/useUpdateEmail.ts
@@ -3450,6 +3702,7 @@ msgid "City"
 msgstr "도시"
 
 #. js-lingui-id: xCJdfg
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
 #: src/modules/ui/input/components/internal/date/components/DateTimePicker.tsx
 #: src/modules/ui/input/components/internal/date/components/DatePicker.tsx
 msgid "Clear"
@@ -3507,7 +3760,6 @@ msgid "ClickHouse is required for audit logs. Contact your administrator."
 msgstr "감사 로그에는 ClickHouse가 필요합니다. 관리자에게 문의하세요."
 
 #. js-lingui-id: CTdw8/
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
 #: src/pages/settings/ai/components/SettingsAiUsageTab.tsx
 #: src/modules/settings/usage/components/SettingsUsageAnalyticsSection.tsx
 msgid "ClickHouse Not Configured"
@@ -3588,12 +3840,12 @@ msgid "Code your function"
 msgstr "함수 코딩하기"
 
 #. js-lingui-id: H86f9p
-#: src/pages/settings/security/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepOutputDetail.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -3706,6 +3958,17 @@ msgstr ""
 #. js-lingui-id: NBdIgR
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 msgid "Comment"
+msgstr ""
+
+#. js-lingui-id: 4ozVlM
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Commit payment run"
+msgstr ""
+
+#. js-lingui-id: KjcP+i
+#. placeholder {1}: total.toFixed(0)
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Commit this payment run? This deducts {selectedCount} bill(s) totalling about {1} from the chosen bank balances and marks the bills paid. This cannot be undone from the app."
 msgstr ""
 
 #. js-lingui-id: chL5IG
@@ -3836,6 +4099,11 @@ msgstr "날짜, 시간, 숫자, 시간대 및 캘린더 시작일 구성"
 msgid "Configure fallback login methods for users with SSO bypass permissions"
 msgstr "SSO 우회 권한이 있는 사용자를 위한 대체 로그인 방법 구성"
 
+#. js-lingui-id: zXzR4W
+#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
+msgid "Configure how long audit logs are retained"
+msgstr ""
+
 #. js-lingui-id: OLqG0t
 #: src/modules/settings/data-model/object-details/components/tabs/ObjectSettings.tsx
 msgid "Configure how this object appears in search results"
@@ -3850,6 +4118,11 @@ msgstr "캘린더에 이벤트를 어떻게 표시할지 구성합니다"
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "Configure IMAP settings to receive and sync your emails."
 msgstr "IMAP 설정을 구성하여 이메일을 수신하고 동기화하세요."
+
+#. js-lingui-id: jdS1B6
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Configure recurring finance tasks like Payroll, GST, or Rent. They will automatically appear in your native task list before they are due."
+msgstr ""
 
 #. js-lingui-id: gk/8eh
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -3939,6 +4212,11 @@ msgstr ""
 msgid "Connect {providerDisplayName}"
 msgstr ""
 
+#. js-lingui-id: Ax3hQw
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Connect & Sync"
+msgstr ""
+
 #. js-lingui-id: D8ATlr
 #: src/modules/settings/accounts/components/SettingsNewAccountSection.tsx
 msgid "Connect a new account to your workspace"
@@ -3954,6 +4232,12 @@ msgstr ""
 msgid "Connect via IMAP/SMTP"
 msgstr ""
 
+#. js-lingui-id: LDBTig
+#: src/pages/finance/FinanceBanks.tsx
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Connect Wise"
+msgstr ""
+
 #. js-lingui-id: Zgi9Fd
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx
 msgid "Connect with Google"
@@ -3964,9 +4248,19 @@ msgstr "Google과 연결"
 msgid "Connect with Microsoft"
 msgstr "Microsoft와 연결"
 
+#. js-lingui-id: HI5GVL
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Connect Xero"
+msgstr ""
+
 #. js-lingui-id: iZWbGJ
 #: src/modules/settings/playground/components/SettingsMcpSetup.tsx
 msgid "Connect your AI assistant"
+msgstr ""
+
+#. js-lingui-id: lzxFHs
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Connect your Xero organisation to sync invoices, bills, payments and contacts into Waimin."
 msgstr ""
 
 #. js-lingui-id: QHcLEN
@@ -3979,6 +4273,16 @@ msgstr ""
 #: src/pages/settings/accounts/SettingsAccounts.tsx
 msgid "Connected accounts"
 msgstr "연결된 계정"
+
+#. js-lingui-id: +XnA4c
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Connected organisations"
+msgstr ""
+
+#. js-lingui-id: JrFTcr
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Connecting…"
+msgstr ""
 
 #. js-lingui-id: exyUec
 #: src/pages/settings/applications/SettingsApplicationConnectionDetail.tsx
@@ -4388,6 +4692,11 @@ msgstr "생성"
 msgid "Create"
 msgstr "생성"
 
+#. js-lingui-id: QLFQ/7
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Create a <0>Read-Only</0> API token in your Wise account settings and paste it here. We will securely store this token and use it to sync your multi-currency balances automatically."
+msgstr ""
+
 #. js-lingui-id: 8aATyU
 #: src/modules/ai/components/suggested-prompts/default-suggested-prompts.ts
 msgid "Create a dashboard"
@@ -4680,6 +4989,9 @@ msgid "currencies"
 msgstr "통화"
 
 #. js-lingui-id: Q2lUR2
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/CurrencyFieldInput.tsx
 msgid "Currency"
 msgstr "통화"
@@ -4690,11 +5002,18 @@ msgid "Currency Code"
 msgstr "통화 코드"
 
 #. js-lingui-id: Hp1l6f
+#: src/pages/finance/FinanceDashboard.tsx
+#: src/pages/finance/FinanceDashboard.tsx
 #: src/modules/settings/billing/components/internal/SubscriptionInfoRowContainer.tsx
 #: src/modules/settings/applications/components/SettingsApplicationAboutSidebar.tsx
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
 msgid "Current"
 msgstr "현재"
+
+#. js-lingui-id: PxMcud
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Current balance"
+msgstr ""
 
 #. js-lingui-id: nSK0mT
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
@@ -4781,8 +5100,24 @@ msgid "Custom View"
 msgstr "사용자 정의 보기"
 
 #. js-lingui-id: 876pfE
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
 msgid "Customer"
+msgstr ""
+
+#. js-lingui-id: JGRkiO
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Customer invoices (A/R) with a due date on or before {friday}. Only what customers are supposed to have paid you."
+msgstr ""
+
+#. js-lingui-id: JTFZGn
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Customer invoices grouped by how overdue they are. Green = not-yet-due, red = 90+ days overdue. Chase the red first."
+msgstr ""
+
+#. js-lingui-id: x7F7Vp
+#: src/pages/auth/SignInUp.tsx
+msgid "Customer pipeline + deal tracking"
 msgstr ""
 
 #. js-lingui-id: MNGIVW
@@ -5116,6 +5451,11 @@ msgstr "디버그 정보"
 msgid "Decide which Sub-address fields you want to display"
 msgstr "표시할 하위 주소 필드를 선택하세요"
 
+#. js-lingui-id: vudAcT
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Deducts selected bills from bank balances and marks them paid"
+msgstr ""
+
 #. js-lingui-id: Bn9+El
 #: src/modules/ai/hooks/useAiModelOptions.ts
 msgid "default"
@@ -5252,6 +5592,9 @@ msgstr "삭제"
 #: src/pages/settings/ai/components/SettingsAgentEvalsTab.tsx
 #: src/pages/settings/ai/components/SettingsAgentEvalsTab.tsx
 #: src/pages/settings/admin-panel/SettingsAdminApplicationRegistrationDangerZone.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/workflow/workflow-steps/filters/components/WorkflowStepFilterOptionsDropdown.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowStepFooter.tsx
 #: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
@@ -5282,6 +5625,13 @@ msgstr "삭제"
 #: src/modules/activities/files/components/AttachmentDropdown.tsx
 msgid "Delete"
 msgstr "삭제"
+
+#. js-lingui-id: sQ1H60
+#. placeholder {0}: row.bankName
+#. placeholder {1}: row.currencyCode
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Delete {0} · {1}?"
+msgstr ""
 
 #. js-lingui-id: EsGY/k
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx
@@ -5423,6 +5773,16 @@ msgstr ""
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 msgid "Delete this integration"
 msgstr "이 통합 삭제"
+
+#. js-lingui-id: brQhBs
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Delete this mandatory payment?"
+msgstr ""
+
+#. js-lingui-id: KlCAJz
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Delete this reminder?"
+msgstr ""
 
 #. js-lingui-id: c0vHQI
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettings.tsx
@@ -5573,11 +5933,11 @@ msgid "Detail per workspace"
 msgstr ""
 
 #. js-lingui-id: URmyfc
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/pages/settings/layout/components/SettingsLayoutDetailScaffold.tsx
 #: src/pages/settings/applications/SettingsApplicationConnectionDetail.tsx
 #: src/pages/settings/applications/tabs/SettingsApplicationFrontComponentSettingsTab.tsx
 #: src/pages/settings/applications/tabs/SettingsApplicationCommandMenuItemSettingsTab.tsx
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/modules/ai/components/RoutingDebugDisplay.tsx
 msgid "Details"
 msgstr "세부정보"
@@ -5604,6 +5964,7 @@ msgstr "개발자 링크"
 
 #. js-lingui-id: MRB7nI
 #: src/pages/settings/layout/SettingsLayoutViewDetail.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
 msgid "Direction"
 msgstr ""
 
@@ -5613,6 +5974,7 @@ msgid "Disabled"
 msgstr ""
 
 #. js-lingui-id: +K0AvT
+#: src/pages/settings/integrations/SettingsXero.tsx
 #: src/pages/settings/applications/SettingsApplicationConnectionDetail.tsx
 #: src/pages/settings/applications/SettingsApplicationConnectionDetail.tsx
 msgid "Disconnect"
@@ -5813,6 +6175,13 @@ msgstr "필드를 여기에 드롭하세요"
 msgid "Drop file here..."
 msgstr "파일을 여기에 드롭하세요..."
 
+#. js-lingui-id: Gpfctt
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Due"
+msgstr ""
+
 #. js-lingui-id: euc6Ns
 #: src/modules/side-panel/pages/page-layout/components/RegularTabSettingsContent.tsx
 msgid "Duplicate"
@@ -5908,6 +6277,11 @@ msgstr "예: my-workspace"
 msgid "e.g. OpenAI EU"
 msgstr "예: OpenAI EU"
 
+#. js-lingui-id: VnXHun
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "e.g. Urgent supplier invoice"
+msgstr ""
+
 #. js-lingui-id: p5P8NB
 #: src/pages/settings/ai/components/SettingsAiOverviewTab.tsx
 msgid "E.g., \"We are a B2B SaaS company. Always use formal language...\""
@@ -5918,6 +6292,16 @@ msgstr "예: \"당사는 B2B SaaS 회사입니다. 항상 격식을 갖춘 언�
 msgid "e.g., summary, status, count"
 msgstr "예: 요약, 상태, 수"
 
+#. js-lingui-id: 5Qc7QM
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Each bank grouped with its currency accounts. Real banks often hold multiple currencies — track them separately here."
+msgstr ""
+
+#. js-lingui-id: AbRg4R
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Each bank's balance after the bills, mandatory payments and adjustments you assigned to it. Change a bill's \"Pay from\" bank and that bank's projection moves."
+msgstr ""
+
 #. js-lingui-id: npNQJR
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
 msgid "Each index speeds up reads on the fields it covers, but slows down every insert and update, and uses disk space. Only add an index when you know which queries it serves."
@@ -5927,6 +6311,11 @@ msgstr ""
 #: src/modules/side-panel/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 msgid "Each slice represents"
 msgstr "각 조각은"
+
+#. js-lingui-id: 9EKdZL
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Each Xero organisation authorized for this workspace."
+msgstr ""
 
 #. js-lingui-id: tOkc8o
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -5949,6 +6338,9 @@ msgid "eddy@gmail.com, @apple.com"
 msgstr "eddy@gmail.com, @apple.com"
 
 #. js-lingui-id: ePK91l
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
 #: src/modules/side-panel/hooks/useSidePanelMenu.ts
 #: src/modules/settings/roles/role-permissions/object-level-permissions/field-permissions/components/SettingsRolePermissionsObjectLevelObjectFieldPermissionTable.tsx
@@ -5978,6 +6370,11 @@ msgstr "계정 편집"
 #: src/modules/command-menu-item/edit/components/CommandMenuItemEditButton.tsx
 #: src/modules/command-menu-item/edit/components/CommandMenuItemEditButton.tsx
 msgid "Edit actions"
+msgstr ""
+
+#. js-lingui-id: H+y9X2
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Edit bank account"
 msgstr ""
 
 #. js-lingui-id: DMIYL8
@@ -6021,6 +6418,11 @@ msgstr "iFrame 편집"
 msgid "Edit link"
 msgstr "링크 편집"
 
+#. js-lingui-id: 3nb8vf
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Edit Mandatory Payment"
+msgstr ""
+
 #. js-lingui-id: IaSCqp
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useActionRolePermissionFlagConfig.ts
 msgid "Edit own profile information"
@@ -6047,6 +6449,11 @@ msgstr "레코드 테이블 편집"
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsSection.tsx
 msgid "Edit Records on All Objects"
 msgstr "모든 객체의 기록 편집"
+
+#. js-lingui-id: kprSMv
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Edit Reminder"
+msgstr ""
 
 #. js-lingui-id: eMFB6/
 #: src/modules/views/view-picker/components/ViewPickerContentEditMode.tsx
@@ -6262,12 +6669,12 @@ msgid "Empty"
 msgstr "비어 있음"
 
 #. js-lingui-id: OMbipf
-#: src/pages/settings/security/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepOutputDetail.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -6286,12 +6693,12 @@ msgid "Empty Inbox"
 msgstr "받은 편지함 비우기"
 
 #. js-lingui-id: 3hSGoJ
-#: src/pages/settings/security/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepOutputDetail.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -6321,14 +6728,10 @@ msgid "Enable model-specific features"
 msgstr "모델별 기능 활성화"
 
 #. js-lingui-id: IrI9pg
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
 msgid "End date"
 msgstr ""
-
-#. js-lingui-id: VFv2ZC
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "End Date"
-msgstr "종료 날짜"
 
 #. js-lingui-id: Fqu/aC
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
@@ -6344,6 +6747,11 @@ msgstr "체험 기간 종료"
 #: src/modules/information-banner/components/billing/InformationBannerEndTrialPeriod.tsx
 msgid "End trial period to continue using Workflow or AI features."
 msgstr "워크플로 또는 AI 기능을 계속 사용하려면 체험 기간을 종료하세요."
+
+#. js-lingui-id: byp2s6
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Ending balance"
+msgstr ""
 
 #. js-lingui-id: T3juzf
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
@@ -6380,6 +6788,11 @@ msgstr "30일 무료 체험을 이용해 보세요"
 #: src/modules/object-record/record-field/ui/form-types/components/FormRawJsonFieldInput.tsx
 msgid "Enter a JSON object"
 msgstr "JSON 객체를 입력하세요"
+
+#. js-lingui-id: FX549R
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Enter a label and a positive amount for the adjustment."
+msgstr ""
 
 #. js-lingui-id: peBb6B
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableValueInput.tsx
@@ -6540,6 +6953,11 @@ msgstr "텍스트를 입력하거나 명령을 사용하려면 '/'를 입력하�
 msgid "Enter text or Type '/' for commands"
 msgstr ""
 
+#. js-lingui-id: oIn7d4
+#: src/pages/auth/SignInUp.tsx
+msgid "Enter the 6-digit code from your authenticator app."
+msgstr ""
+
 #. js-lingui-id: XJU8BD
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
 msgid "Enter the credentials to set the connection"
@@ -6592,14 +7010,10 @@ msgstr "엔터프라이즈"
 #. js-lingui-id: rmZVdg
 #: src/pages/settings/ai/components/SettingsAiUsageTab.tsx
 #: src/modules/settings/security/components/SettingsSecuritySettings.tsx
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
 #: src/modules/settings/admin-panel/ai/components/SettingsAdminAI.tsx
 msgid "Enterprise feature"
 msgstr ""
-
-#. js-lingui-id: Kjjkt3
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "Enterprise Feature"
-msgstr "Enterprise 기능"
 
 #. js-lingui-id: S5c4pl
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
@@ -6697,11 +7111,6 @@ msgstr "SSO ID 공급자 편집 오류"
 #: src/modules/error-handler/components/AppRootErrorFallback.tsx
 msgid "Error illustration"
 msgstr "오류 일러스트레이션"
-
-#. js-lingui-id: UJr0dl
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "Error Loading Audit Logs"
-msgstr "감사 로그 로드 오류"
 
 #. js-lingui-id: 9e/9KK
 #: src/modules/activities/timeline-activities/rows/calendar/components/EventCardCalendarEvent.tsx
@@ -6845,16 +7254,16 @@ msgid "Evaluations"
 msgstr ""
 
 #. js-lingui-id: 0pC/y6
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/modules/activities/calendar/components/CalendarEventDetails.tsx
 msgid "Event"
 msgstr "이벤트"
 
-#. js-lingui-id: ailPEn
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "Event Type"
-msgstr "이벤트 유형"
+#. js-lingui-id: cW8SdW
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
+msgid "Event type"
+msgstr ""
 
 #. js-lingui-id: poC90w
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelDetails.tsx
@@ -6971,7 +7380,7 @@ msgid "Exclude the following people and domains from my email sync. Internal con
 msgstr "다음 사람들과 도메인을 이메일 동기화에서 제외합니다. 내부 대화는 가져오지 않습니다"
 
 #. js-lingui-id: B0clc7
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Execution ID"
 msgstr ""
 
@@ -7001,12 +7410,12 @@ msgid "Exit Settings"
 msgstr "설정 종료"
 
 #. js-lingui-id: 1A3EXy
-#: src/pages/settings/security/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepOutputDetail.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogJsonCell.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -7099,6 +7508,7 @@ msgid "Export ({percentageValue}%)"
 msgstr "내보내기({percentageValue}%)"
 
 #. js-lingui-id: 2KAI4N
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useActionRolePermissionFlagConfig.ts
 msgid "Export CSV"
 msgstr "CSV 내보내기"
@@ -7230,6 +7640,11 @@ msgstr "프런트 컴포넌트 로드에 실패했습니다: {errorMessage}"
 #: src/modules/settings/developers/hooks/useWebhookForm.ts
 msgid "Failed to load webhook"
 msgstr "웹훅을 불러오지 못했습니다"
+
+#. js-lingui-id: MucUuN
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Failed to load Xero status: {error}"
+msgstr ""
 
 #. js-lingui-id: TZV+Pv
 #: src/modules/object-record/record-merge/hooks/useMergeRecordsActions.ts
@@ -7620,7 +8035,7 @@ msgid "Filter"
 msgstr "필터"
 
 #. js-lingui-id: LjNPDA
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Filter by event"
 msgstr "이벤트로 필터링"
 
@@ -7630,7 +8045,7 @@ msgid "Filter by object type"
 msgstr ""
 
 #. js-lingui-id: gVEHcL
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Filter by record ID"
 msgstr "레코드 ID로 필터링"
 
@@ -7656,6 +8071,21 @@ msgstr ""
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
 msgid "Filters"
 msgstr "필터"
+
+#. js-lingui-id: 8V6XO3
+#: src/modules/navigation/components/NavigationDrawerOtherSection.tsx
+msgid "Finance"
+msgstr ""
+
+#. js-lingui-id: UHsg3v
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Finance Dashboard"
+msgstr ""
+
+#. js-lingui-id: sGJpnV
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Finance Dashboard | Waimin"
+msgstr ""
 
 #. js-lingui-id: JmZ/+d
 #: src/pages/onboarding/InviteTeam.tsx
@@ -7825,6 +8255,13 @@ msgstr "무료 체험 크레딧이 소진되었습니다. AI 기능을 계속 �
 msgid "French"
 msgstr "프랑스어"
 
+#. js-lingui-id: wtuVU4
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Frequency"
+msgstr ""
+
 #. js-lingui-id: ejVYRQ
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
 msgid "From"
@@ -7877,7 +8314,7 @@ msgid "Full tab widget"
 msgstr ""
 
 #. js-lingui-id: YMZBxa
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Function"
 msgstr ""
 
@@ -7972,11 +8409,6 @@ msgstr ""
 #: src/modules/settings/data-model/object-details/components/tabs/SettingsObjectSearchSection.tsx
 msgid "Global search"
 msgstr ""
-
-#. js-lingui-id: sr0UJD
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
-msgid "Go Back"
-msgstr "뒤로 가기"
 
 #. js-lingui-id: Hb4Cgz
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
@@ -8169,6 +8601,11 @@ msgstr ""
 #. js-lingui-id: oEpvJo
 #: src/pages/settings/applications/tabs/SettingsApplicationFrontComponentPreviewTab.tsx
 msgid "Headless component"
+msgstr ""
+
+#. js-lingui-id: hLe/l4
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Headline numbers in your primary currency. Full multi-currency breakdown is below."
 msgstr ""
 
 #. js-lingui-id: UPqS9C
@@ -8795,6 +9232,12 @@ msgstr "지침"
 msgid "Instructions Editor"
 msgstr "지침 편집기"
 
+#. js-lingui-id: nbfdhU
+#: src/pages/settings/integrations/SettingsXero.tsx
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
+msgid "Integrations"
+msgstr ""
+
 #. js-lingui-id: RGm66q
 #: src/utils/title-utils.ts
 msgid "Integrations - Settings"
@@ -8804,6 +9247,11 @@ msgstr "통합 - 설정"
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "Interval switching has been cancelled."
 msgstr "간격 전환이 취소되었습니다."
+
+#. js-lingui-id: b8PKL3
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Into"
+msgstr ""
 
 #. js-lingui-id: ggS/0k
 #: src/modules/settings/two-factor-authentication/components/DeleteTwoFactorAuthenticationMethod.tsx
@@ -8962,6 +9410,11 @@ msgstr "사용자 초대"
 #: src/pages/onboarding/InviteTeam.tsx
 msgid "Invite your team"
 msgstr "팀 초대"
+
+#. js-lingui-id: IuMGvq
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Invoice"
+msgstr ""
 
 #. js-lingui-id: CUvG5b
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
@@ -9204,6 +9657,11 @@ msgstr "한국어"
 #: src/pages/settings/applications/tabs/SettingsApplicationCommandMenuItemSettingsTab.tsx
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsText.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsSelect.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsRecordPicker.tsx
@@ -9211,6 +9669,11 @@ msgstr "한국어"
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormFieldSettingsDate.tsx
 msgid "Label"
 msgstr "라벨"
+
+#. js-lingui-id: T2SpXt
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Label and currency required"
+msgstr ""
 
 #. js-lingui-id: w8Rv8T
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
@@ -9526,7 +9989,7 @@ msgid "Less than or equal"
 msgstr "이하"
 
 #. js-lingui-id: oCHfGC
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Level"
 msgstr ""
 
@@ -9643,6 +10106,11 @@ msgstr "목록"
 msgid "Listings"
 msgstr "목록"
 
+#. js-lingui-id: qL4+JQ
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Live snapshot of your cash, receivables and payables. Data comes from Xero (invoices, contacts) and manual bank balances. Use this to answer \"how are we doing right now?\" — for \"what should we pay Friday?\" open the Weekly Planner."
+msgstr ""
+
 #. js-lingui-id: C5bVie
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerWebhookForm.tsx
 #: src/modules/settings/logic-functions/components/triggers/SettingsLogicFunctionHttpTriggerSection.tsx
@@ -9701,8 +10169,8 @@ msgid "Loading metrics data..."
 msgstr "메트릭스 데이터 로딩 중..."
 
 #. js-lingui-id: tVSmFT
-#: src/pages/settings/security/event-logs/components/EventLogResultsTable.tsx
 #: src/modules/ui/input/components/IconPicker.tsx
+#: src/modules/settings/event-logs/components/EventLogResultsTable.tsx
 #: src/modules/object-record/record-picker/multiple-record-picker/components/MultipleRecordPickerFetchMoreLoader.tsx
 #: src/modules/activities/components/CustomResolverFetchMoreLoader.tsx
 msgid "Loading more..."
@@ -9736,6 +10204,11 @@ msgstr "로딩 중..."
 #: src/pages/settings/ai/SettingsAiPrompts.tsx
 msgid "Locale"
 msgstr "로케일"
+
+#. js-lingui-id: bVHUpk
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Lock as must-pay"
+msgstr ""
 
 #. js-lingui-id: B6ANJW
 #: src/modules/ai/components/suggested-prompts/default-suggested-prompts.ts
@@ -9795,6 +10268,7 @@ msgid "Logout"
 msgstr "로그아웃"
 
 #. js-lingui-id: w/bY7R
+#: src/pages/settings/general/SettingsGeneral.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/side-panel/pages/workflow/step/view-run/components/SidePanelWorkflowRunViewStepContent.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
@@ -9847,6 +10321,11 @@ msgstr ""
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useSettingsRolePermissionFlagConfig.ts
 msgid "Manage API keys and webhooks"
 msgstr "API 키 및 웹훅 관리"
+
+#. js-lingui-id: HZclxY
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Manage banks →"
+msgstr ""
 
 #. js-lingui-id: IT5nsa
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useSettingsRolePermissionFlagConfig.ts
@@ -9927,11 +10406,26 @@ msgstr "인터넷 계정을 관리하세요."
 msgid "Managed"
 msgstr ""
 
+#. js-lingui-id: HJlBRm
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Mandatory payments"
+msgstr ""
+
+#. js-lingui-id: eUSLfv
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Mandatory Payments"
+msgstr ""
+
 #. js-lingui-id: BWTzAb
 #: src/modules/side-panel/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 #: src/modules/side-panel/pages/page-layout/hooks/useGraphGroupBySortOptionLabels.ts
 msgid "Manual"
 msgstr "수동"
+
+#. js-lingui-id: wbjisW
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Manual adjustments"
+msgstr ""
 
 #. js-lingui-id: Zt5PUS
 #: src/pages/settings/applications/SettingsApplications.tsx
@@ -10092,7 +10586,7 @@ msgid "Merging..."
 msgstr "병합 중..."
 
 #. js-lingui-id: xDAtGP
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Message"
 msgstr ""
 
@@ -10147,6 +10641,11 @@ msgstr "방법"
 msgid "Microsoft"
 msgstr "마이크로소프트"
 
+#. js-lingui-id: 9k+MQi
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Microsoft Teams alerts"
+msgstr ""
+
 #. js-lingui-id: eTUF28
 #: src/modules/side-panel/pages/page-layout/constants/settings/RangeMinSetting.ts
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -10178,6 +10677,11 @@ msgstr "분"
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Minutes between triggers"
 msgstr "트리거 간의 분"
+
+#. js-lingui-id: pt8f/3
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Missing bank accounts"
+msgstr ""
 
 #. js-lingui-id: URVUmK
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionEmailBase.tsx
@@ -10244,6 +10748,26 @@ msgstr "이 공급자의 모델입니다. 토글하여 활성화하거나 비활
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
 msgid "Monday"
 msgstr "월요일"
+
+#. js-lingui-id: gk49HO
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Money coming in by Friday"
+msgstr ""
+
+#. js-lingui-id: tATjVL
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "money in"
+msgstr ""
+
+#. js-lingui-id: SBXndG
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "money out"
+msgstr ""
+
+#. js-lingui-id: YOjvox
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Money owed to you"
+msgstr ""
 
 #. js-lingui-id: 8g3Cgz
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminConnectedAccountHealthStatus.tsx
@@ -10745,11 +11269,32 @@ msgstr ""
 msgid "Next"
 msgstr "다음"
 
+#. js-lingui-id: dpDeSd
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Next Due"
+msgstr ""
+
+#. js-lingui-id: tDpF6n
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Next Due Date"
+msgstr ""
+
 #. js-lingui-id: AxNmtI
 #: src/modules/spreadsheet-import/steps/components/SelectSheetStep/SelectSheetStep.tsx
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
 msgid "Next Step"
 msgstr "다음 단계"
+
+#. js-lingui-id: aK8Msc
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Next: banks & commit →"
+msgstr ""
+
+#. js-lingui-id: /d6m4Y
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Next: pick bills →"
+msgstr ""
 
 #. js-lingui-id: ulck7h
 #: src/modules/object-record/record-merge/utils/getPositionWordLabel.ts
@@ -10767,6 +11312,12 @@ msgstr "아홉 번째"
 #: src/modules/settings/admin-panel/apps/components/SettingsAdminApps.tsx
 msgid "No"
 msgstr "아니요"
+
+#. js-lingui-id: Zao2J8
+#. placeholder {0}: row.currencyCode
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No {0} bank — add one"
+msgstr ""
 
 #. js-lingui-id: 7YGRoE
 #: src/modules/ui/input/components/SelectInput.tsx
@@ -10853,6 +11404,11 @@ msgstr ""
 msgid "No applications available"
 msgstr "사용 가능한 애플리케이션이 없습니다"
 
+#. js-lingui-id: o4fMVs
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "No automated reminders configured yet."
+msgstr ""
+
 #. js-lingui-id: tFxVHz
 #: src/modules/workflow/workflow-steps/filters/components/WorkflowStepFilterFieldSelect.tsx
 msgid "No available fields to select"
@@ -10863,9 +11419,35 @@ msgstr "선택할 수 있는 필드가 없습니다."
 msgid "No available tabs"
 msgstr ""
 
+#. js-lingui-id: rjks/B
+#. placeholder {0}: missingBankCurrencies.join(', ')
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No bank account for {0}"
+msgstr ""
+
+#. js-lingui-id: pX6XtM
+#: src/pages/finance/FinanceBanks.tsx
+msgid "No bank accounts yet."
+msgstr ""
+
+#. js-lingui-id: C8Ekck
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "No bank balances yet."
+msgstr ""
+
+#. js-lingui-id: wXcBXC
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "no bill #"
+msgstr ""
+
 #. js-lingui-id: 8whThc
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceBillingContent.tsx
 msgid "No billing data is available for this workspace."
+msgstr ""
+
+#. js-lingui-id: 7UqILz
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No bills selected for payment yet. Pick some from the list below."
 msgstr ""
 
 #. js-lingui-id: V/RzSE
@@ -10878,6 +11460,11 @@ msgstr "본문 없음"
 #: src/modules/object-record/record-field/ui/form-types/components/FormCallingCodeSelectInput.tsx
 msgid "No calling code"
 msgstr "국가 번호 없음"
+
+#. js-lingui-id: jj1uvn
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No cash, receipts, or payables loaded. Sync Xero and add bank balances first."
+msgstr ""
 
 #. js-lingui-id: d14J3J
 #: src/modules/ai/components/NavigationDrawerAiChatContent.tsx
@@ -10936,6 +11523,11 @@ msgstr "통화 없음"
 #: src/modules/navigation-menu-item/edit/side-panel/components/SidePanelNewSidebarItemViewPickerSubView.tsx
 msgid "No custom views available"
 msgstr "사용 가능한 사용자 지정 보기가 없습니다"
+
+#. js-lingui-id: YWG2SK
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No customer invoices due by {friday}. Either everyone paid on time, or invoices land later."
+msgstr ""
 
 #. js-lingui-id: plhHQt
 #: src/modules/page-layout/widgets/graph/graph-widget-pie-chart/components/PieChartCenterMetricLayer.tsx
@@ -11016,7 +11608,7 @@ msgid "No evaluations yet for this turn"
 msgstr ""
 
 #. js-lingui-id: SIR5Ix
-#: src/pages/settings/security/event-logs/components/EventLogResultsTable.tsx
+#: src/modules/settings/event-logs/components/EventLogResultsTable.tsx
 msgid "No event logs found"
 msgstr "이벤트 로그를 찾을 수 없습니다"
 
@@ -11122,6 +11714,21 @@ msgstr ""
 msgid "No logs yet"
 msgstr ""
 
+#. js-lingui-id: BVcTSk
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No main (BNZ) bank set"
+msgstr ""
+
+#. js-lingui-id: IQ2ns/
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "No mandatory payments configured yet."
+msgstr ""
+
+#. js-lingui-id: X18s6x
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No mandatory payments due by {friday}. Add them in Reminders settings."
+msgstr ""
+
 #. js-lingui-id: UwvrGq
 #: src/pages/settings/members/tabs/SettingsWorkspaceMembersTeamTab.tsx
 msgid "No members"
@@ -11178,6 +11785,11 @@ msgstr "보기가 있는 개체를 찾을 수 없습니다"
 msgid "No option found"
 msgstr "옵션을 찾을 수 없음"
 
+#. js-lingui-id: sVM+LW
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No other bills due by {friday}."
+msgstr ""
+
 #. js-lingui-id: XRc1G9
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsToolCallRow.tsx
 #: src/modules/ai/components/TerminalOutput.tsx
@@ -11193,6 +11805,11 @@ msgstr "사용 가능한 출력이 없습니다"
 #: src/pages/settings/ai/components/SettingsToolParameterTable.tsx
 msgid "No parameters"
 msgstr "매개변수 없음"
+
+#. js-lingui-id: eElLix
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "No payables."
+msgstr ""
 
 #. js-lingui-id: 5pSj4j
 #: src/modules/settings/billing/hooks/useEndSubscriptionTrialPeriod.ts
@@ -11213,6 +11830,11 @@ msgstr "이 애플리케이션에 대해 구성된 권한이 없습니다."
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelSection.tsx
 msgid "No permissions have been set for individual objects."
 msgstr "개별 객체에 대한 권한이 설정되지 않았습니다."
+
+#. js-lingui-id: AH9mlj
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "No receivables."
+msgstr ""
 
 #. js-lingui-id: V/+aTW
 #: src/modules/object-record/record-field/ui/form-types/components/FormSingleRecordPicker.tsx
@@ -11316,6 +11938,11 @@ msgstr "보기가 있는 시스템 개체를 찾을 수 없습니다"
 msgid "No tools were called"
 msgstr ""
 
+#. js-lingui-id: E12WLX
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "No top-ups needed — every assigned bank can cover its share, or nothing is selected yet."
+msgstr ""
+
 #. js-lingui-id: ZCTuAQ
 #: src/modules/settings/logic-functions/components/tabs/SettingsLogicFunctionTriggersTab.tsx
 msgid "No trigger is configured for this function."
@@ -11391,6 +12018,11 @@ msgstr "선택된 워크스페이스가 없습니다"
 #. js-lingui-id: TiRphK
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
 msgid "No workspaces found matching your search criteria."
+msgstr ""
+
+#. js-lingui-id: XQ8tbA
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "No Xero organisations connected yet."
 msgstr ""
 
 #. js-lingui-id: Ah7JCB
@@ -11477,6 +12109,11 @@ msgstr "{notSharedByFullName}에 의해 공유되지 않음"
 #: src/modules/settings/accounts/components/SettingsAccountsConnectedAccountsRowRightContainer.tsx
 msgid "Not synced"
 msgstr "동기화되지 않음"
+
+#. js-lingui-id: KiJn9B
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Note"
+msgstr ""
 
 #. js-lingui-id: VngD1z
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
@@ -11607,12 +12244,12 @@ msgid "Object destination"
 msgstr "개체 대상"
 
 #. js-lingui-id: /clmEa
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 msgid "Object Events"
 msgstr "객체 이벤트"
 
 #. js-lingui-id: 79D4Az
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Object ID"
 msgstr "객체 ID"
 
@@ -11631,10 +12268,10 @@ msgstr "객체 권한"
 msgid "Object permission options"
 msgstr "객체 권한 옵션"
 
-#. js-lingui-id: UGhVPl
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "Object Type"
-msgstr "객체 유형"
+#. js-lingui-id: gaqIMK
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
+msgid "Object type"
+msgstr ""
 
 #. js-lingui-id: rDycBw
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
@@ -11768,6 +12405,16 @@ msgstr "이 트리거는 어떤 개체에서 사용할 수 있습니까?"
 msgid "Onboarding call"
 msgstr "온보딩 전화"
 
+#. js-lingui-id: C9QqPD
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "One card per currency. Update balances on the Bank Accounts page."
+msgstr ""
+
+#. js-lingui-id: p4YNRD
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "One or more currencies go negative — review selection."
+msgstr ""
+
 #. js-lingui-id: zii2Qj
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarVisibilitySettingsCard.tsx
 msgid "Only date & participants will be shared with your team."
@@ -11868,6 +12515,11 @@ msgstr ""
 msgid "Open side panel"
 msgstr "사이드 패널 열기"
 
+#. js-lingui-id: u8VPPR
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Open Weekly Planner →"
+msgstr ""
+
 #. js-lingui-id: OV5wZZ
 #: src/modules/navigation-menu-item/display/sections/components/NavigationDrawerOpenedSection.tsx
 msgid "Opened"
@@ -11887,6 +12539,11 @@ msgstr "정상 운영"
 #: src/modules/settings/data-model/fields/forms/select/hooks/useSelectSettingsFormInitialValues.ts
 msgid "Option 1"
 msgstr "옵션 1"
+
+#. js-lingui-id: AWA6XY
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "optional"
+msgstr ""
 
 #. js-lingui-id: gUeG+X
 #: src/pages/settings/admin-panel/SettingsAdminNewAiProvider.tsx
@@ -11983,6 +12640,11 @@ msgstr "정리"
 msgid "Other"
 msgstr "기타"
 
+#. js-lingui-id: Svq4ct
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Other Due Bills"
+msgstr ""
+
 #. js-lingui-id: ggOXu2
 #: src/modules/settings/data-model/objects/components/SettingsDataModelObjectSummary.tsx
 msgid "Other objects"
@@ -12039,6 +12701,16 @@ msgstr "출력"
 #: src/modules/ai/components/internal/AiChatContextUsageButton.tsx
 msgid "Output tokens"
 msgstr "출력 토큰"
+
+#. js-lingui-id: MIFURj
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "overdue"
+msgstr ""
+
+#. js-lingui-id: DmEWyk
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Overdue receivables"
+msgstr ""
 
 #. js-lingui-id: in6CUw
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
@@ -12107,10 +12779,10 @@ msgstr "페이지 레이아웃 위젯"
 msgid "Page layouts"
 msgstr ""
 
-#. js-lingui-id: IVBjIH
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "Page Name"
-msgstr "페이지 이름"
+#. js-lingui-id: zQF6Kb
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
+msgid "Page name"
+msgstr ""
 
 #. js-lingui-id: NRvxzv
 #: src/pages/not-found/NotFound.tsx
@@ -12118,7 +12790,7 @@ msgid "Page Not Found | Twenty"
 msgstr "페이지를 찾을 수 없음 | Twenty"
 
 #. js-lingui-id: sF+Xp9
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 msgid "Page Views"
 msgstr "페이지 조회수"
 
@@ -12176,6 +12848,11 @@ msgstr ""
 msgid "Password reset link has been sent to the email"
 msgstr "비밀번호 재설정 링크가 이메일로 전송되었습니다"
 
+#. js-lingui-id: I4Ms0u
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Paste a Teams Incoming Webhook URL. When a reminder is due, we post a message to that Teams channel (in addition to creating a CRM task). In Teams: channel → ⋯ → Connectors → Incoming Webhook → Create → copy URL."
+msgstr ""
+
 #. js-lingui-id: cpStVq
 #: src/modules/auth/sign-in-up/components/internal/SignInUpTwoFactorAuthenticationVerification.tsx
 msgid "Paste the code below"
@@ -12196,10 +12873,38 @@ msgstr "여기에 엔터프라이즈 키를 붙여넣으세요"
 msgid "Path"
 msgstr "경로"
 
+#. js-lingui-id: URAE3q
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Paused"
+msgstr ""
+
+#. js-lingui-id: illYiU
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Pay date"
+msgstr ""
+
+#. js-lingui-id: 5sJuRp
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Pay from"
+msgstr ""
+
+#. js-lingui-id: qvtg1K
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Pay From Bank"
+msgstr ""
+
 #. js-lingui-id: QmXBEc
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 msgid "Payment issue"
 msgstr "결제 문제"
+
+#. js-lingui-id: XHtUmK
+#. placeholder {2}: res.billsPaid
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Payment run committed: {2} bill(s) paid, balances updated."
+msgstr ""
 
 #. js-lingui-id: CcK+Ft
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
@@ -12260,6 +12965,11 @@ msgstr "백분율"
 #. js-lingui-id: /YAKmj
 #: src/modules/settings/members/components/MemberInfosTab.tsx
 msgid "Perform administrative actions or permanently delete this user"
+msgstr ""
+
+#. js-lingui-id: NtQvjo
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
+msgid "Period"
 msgstr ""
 
 #. js-lingui-id: wSpwGR
@@ -12330,6 +13040,11 @@ msgstr "보기 선택"
 msgid "Pick an object"
 msgstr "개체 선택"
 
+#. js-lingui-id: TXDPo4
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Pick bills"
+msgstr ""
+
 #. js-lingui-id: JHXjkT
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
 msgid "Pick one or more fields. The order you select them in becomes the column order in the index — important for composite queries. For composite fields like Address, pick the specific sub-column to index."
@@ -12338,6 +13053,11 @@ msgstr ""
 #. js-lingui-id: X1kz7Q
 #: src/pages/settings/data-model/new-index/SettingsObjectNewIndex.tsx
 msgid "Pick the index type. BTREE covers most queries; GIN is for full-text and JSONB."
+msgstr ""
+
+#. js-lingui-id: h+4gMe
+#: src/pages/auth/SignInUp.tsx
+msgid "Pick the workspace you want to sign into."
 msgstr ""
 
 #. js-lingui-id: N0+GsR
@@ -12394,6 +13114,12 @@ msgstr ""
 msgid "Plan"
 msgstr "플랜"
 
+#. js-lingui-id: 37/ADc
+#. placeholder {0}: new Date(savedAt).toLocaleString()
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Plan saved — {0}"
+msgstr ""
+
 #. js-lingui-id: XduPHC
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "Plan switching has been cancelled."
@@ -12403,6 +13129,11 @@ msgstr "플랜 전환이 취소되었습니다."
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
 msgid "Planned for {formattedStartDate}"
+msgstr ""
+
+#. js-lingui-id: Sh/aa3
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Planned Payments"
 msgstr ""
 
 #. js-lingui-id: VUi6Nf
@@ -12492,6 +13223,11 @@ msgstr "포르투갈어 - 브라질"
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Portuguese — Portugal"
 msgstr "포르투갈어 - 포르투갈"
+
+#. js-lingui-id: +5qzKf
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Position after Friday — per currency"
+msgstr ""
 
 #. js-lingui-id: JQw9es
 #: src/modules/side-panel/pages/page-layout/utils/getSortLabelSuffixForFieldType.ts
@@ -12597,6 +13333,7 @@ msgid "Prioritized"
 msgstr "우선 순위"
 
 #. js-lingui-id: 1hKEom
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
 #: src/modules/settings/components/SettingsDnsRecordsTable.tsx
 msgid "Priority"
 msgstr "우선 순위"
@@ -12652,14 +13389,19 @@ msgstr "프로필 - 설정"
 msgid "Profile Picture"
 msgstr ""
 
+#. js-lingui-id: s7WCei
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Projected balance per bank"
+msgstr ""
+
 #. js-lingui-id: W9uQXX
 #: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowEditActionAiAgent.tsx
 msgid "Prompt"
 msgstr ""
 
 #. js-lingui-id: l/UFPv
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Properties"
 msgstr "속성"
 
@@ -12876,6 +13618,11 @@ msgstr ""
 msgid "Read-only {entityTypeLabel} definition shipped by this app"
 msgstr ""
 
+#. js-lingui-id: ufAr7N
+#: src/pages/auth/SignInUp.tsx
+msgid "Real-time finance dashboard"
+msgstr ""
+
 #. js-lingui-id: wUf2OL
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsAiAgentDetail.tsx
 msgid "Reasoning"
@@ -12916,6 +13663,11 @@ msgstr ""
 #: src/modules/workflow/workflow-run/observability/WorkflowRunStepLogsEmailDetail.tsx
 #: src/modules/activities/emails/components/EmailComposerFields.tsx
 msgid "Recipients"
+msgstr ""
+
+#. js-lingui-id: sUuixl
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Recommended bank transfers"
 msgstr ""
 
 #. js-lingui-id: b2+5uV
@@ -12974,8 +13726,8 @@ msgid "Record filter rule options"
 msgstr "레코드 필터 규칙 옵션"
 
 #. js-lingui-id: xSAYIn
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Record ID"
 msgstr "레코드 ID"
 
@@ -13029,6 +13781,16 @@ msgstr ""
 msgid "Records"
 msgstr "레코드"
 
+#. js-lingui-id: B9FiNM
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Recurring obligations (Payroll, GST, Loan, Rent, Credit Card, Trust Account, Inland Revenue) with a set amount. Any instance due by the planner's Friday shows as a locked outflow in the weekly position."
+msgstr ""
+
+#. js-lingui-id: 97qrCf
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Recurring obligations due on or before {friday} — payroll, GST, loan, rent, credit card, Trust Account, Inland Revenue. Always counted as outflow in the position above. Manage amounts and schedules in Reminders settings."
+msgstr ""
+
 #. js-lingui-id: wRTiSD
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Red"
@@ -13055,7 +13817,8 @@ msgid "Redirection URI"
 msgstr "리디렉션 URI"
 
 #. js-lingui-id: lCF0wC
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
+#: src/pages/settings/integrations/SettingsXero.tsx
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
 msgid "Refresh"
 msgstr "새로 고침"
 
@@ -13178,6 +13941,11 @@ msgstr "{1}개의 내비게이션 메뉴 항목을 제거하시겠습니까?"
 #: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
 msgid "Remove account"
 msgstr "계정 제거"
+
+#. js-lingui-id: B8BprU
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Remove adjustment"
+msgstr ""
 
 #. js-lingui-id: VjbCv0
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
@@ -13417,7 +14185,7 @@ msgid "Resource credits updated."
 msgstr ""
 
 #. js-lingui-id: esl+Tv
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 msgid "Resource Type"
 msgstr "리소스 유형"
 
@@ -13514,6 +14282,16 @@ msgstr "반환 값"
 msgid "reverse alphabetical"
 msgstr "알파벳 역순"
 
+#. js-lingui-id: 3v//tZ
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Review cash on hand, expected receipts, and choose which bills to pay this Friday. Save your plan then export a payment run CSV for your bank."
+msgstr ""
+
+#. js-lingui-id: 6pBbku
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Review money"
+msgstr ""
+
 #. js-lingui-id: GXsAby
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminRevokeSigningKeyConfirmationModal.tsx
@@ -13560,6 +14338,7 @@ msgstr "역할"
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/settings/members/components/MemberPermissionsTab.tsx
 #: src/modules/settings/developers/components/SettingsApiKeysTable.tsx
 msgid "Role"
@@ -13639,6 +14418,11 @@ msgstr "시크릿 재발급"
 msgid "Routing decision"
 msgstr "라우팅 결정"
 
+#. js-lingui-id: sWQabM
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Routing role"
+msgstr ""
+
 #. js-lingui-id: Sz0Ftu
 #: src/modules/ai/components/RoutingDebugDisplay.tsx
 msgid "Routing tokens"
@@ -13716,21 +14500,67 @@ msgid "Saturday"
 msgstr "토요일"
 
 #. js-lingui-id: tfDRzk
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/settings/components/SaveAndCancelButtons/SaveButton.tsx
 msgid "Save"
 msgstr "저장"
+
+#. js-lingui-id: YTZYCZ
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Save (empty)"
+msgstr ""
 
 #. js-lingui-id: apLRCm
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
 msgid "Save as new view"
 msgstr "새 보기로 저장"
 
+#. js-lingui-id: vgpfCi
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Save draft"
+msgstr ""
+
 #. js-lingui-id: 7byqGp
 #: src/modules/layout-customization/hooks/useEnterLayoutCustomizationMode.ts
 msgid "Save or cancel dashboard changes before editing the layout."
 msgstr ""
 
+#. js-lingui-id: vYM53+
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Save Reminder"
+msgstr ""
+
+#. js-lingui-id: Sqw2Ve
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Save the webhook first"
+msgstr ""
+
+#. js-lingui-id: h+QSs6
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Saving with nothing ticked clears this week's plan"
+msgstr ""
+
+#. js-lingui-id: XvjC4F
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Saving..."
+msgstr ""
+
+#. js-lingui-id: K/F6pa
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Saving…"
+msgstr ""
+
+#. js-lingui-id: g11vhE
+#: src/pages/auth/SignInUp.tsx
+msgid "Scan the QR code with your authenticator app."
+msgstr ""
+
 #. js-lingui-id: gmB6oO
+#: src/pages/finance/FinanceRemindersSettings.tsx
 #: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
 msgid "Schedule"
 msgstr "일정"
@@ -14010,6 +14840,11 @@ msgstr "레코드 검색..."
 msgid "Search registrations..."
 msgstr "등록 검색..."
 
+#. js-lingui-id: KdKe3+
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Search supplier or bill #"
+msgstr ""
+
 #. js-lingui-id: YIix5Y
 #: src/pages/settings/applications/tabs/SettingsApplicationDetailContentTab.tsx
 #: src/modules/settings/developers/components/WebhookEntitySelect.tsx
@@ -14092,7 +14927,6 @@ msgstr "비밀 액세스 키"
 
 #. js-lingui-id: a3LDKx
 #: src/pages/settings/security/SettingsSecuritySSOIdentifyProvider.tsx
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
 #: src/pages/settings/general/SettingsGeneral.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useSettingsRolePermissionFlagConfig.ts
 msgid "Security"
@@ -14390,6 +15224,11 @@ msgstr "이메일 보내기"
 #: src/modules/settings/roles/role-permissions/permission-flags/hooks/useActionRolePermissionFlagConfig.ts
 msgid "Send emails via connected accounts"
 msgstr "연결된 계정을 사용하여 이메일 전송 허용"
+
+#. js-lingui-id: eus61c
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Send test"
+msgstr ""
 
 #. js-lingui-id: asU5VT
 #: src/modules/workflow/workflow-steps/workflow-actions/http-request-action/components/HttpRequestExecutionResult.tsx
@@ -14694,6 +15533,11 @@ msgstr "로그인"
 msgid "Sign in or Create an account"
 msgstr "로그인 또는 계정 생성"
 
+#. js-lingui-id: Ynqpiw
+#: src/pages/auth/SignInUp.tsx
+msgid "Sign in with your work email to continue."
+msgstr ""
+
 #. js-lingui-id: e+RpCP
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
 msgid "Sign up"
@@ -14897,6 +15741,11 @@ msgstr ""
 msgid "Something went wrong"
 msgstr "문제가 발생했습니다"
 
+#. js-lingui-id: z+yMtp
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
+msgid "Something went wrong while loading audit logs. Please try again."
+msgstr ""
+
 #. js-lingui-id: yHwG3y
 #: src/modules/ui/navigation/navigation-drawer/components/NavigationDrawerItem.tsx
 #: src/modules/settings/components/SettingsCard.tsx
@@ -14919,8 +15768,8 @@ msgstr "죄송합니다, 문제가 발생했습니다"
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableColumnHeadDropdownMenu.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
 msgid "Sort"
 msgstr "정렬"
 
@@ -14951,6 +15800,8 @@ msgstr "정렬"
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
 #: src/pages/settings/applications/components/SettingsApplicationRegistrationGeneralInfo.tsx
+#: src/pages/finance/FinanceBanks.tsx
+#: src/pages/finance/FinanceBanks.tsx
 #: src/modules/side-panel/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
 #: src/modules/settings/workspace/components/SettingsWorkspaceEmailGroupSection.tsx
@@ -15052,14 +15903,10 @@ msgid "Start a new enterprise subscription."
 msgstr "새 엔터프라이즈 구독을 시작하세요."
 
 #. js-lingui-id: WAjFYI
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 #: src/modules/settings/admin-panel/health-status/maintenance-mode/components/SettingsAdminMaintenanceMode.tsx
 msgid "Start date"
 msgstr ""
-
-#. js-lingui-id: D3iCkb
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "Start Date"
-msgstr "시작 날짜"
 
 #. js-lingui-id: s+K73L
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
@@ -15093,6 +15940,8 @@ msgstr "상태"
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
 #: src/pages/settings/admin-panel/SettingsAdminInstanceStatus.tsx
 #: src/pages/settings/admin-panel/SettingsAdminIndicatorHealthStatus.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
 #: src/modules/settings/workspace/components/SettingsWorkspaceEmailingDomainsSection.tsx
 #: src/modules/settings/components/SettingsDnsRecordsTable.tsx
 #: src/modules/settings/admin-panel/signing-keys/components/SettingsAdminSigningKeysTable.tsx
@@ -15241,8 +16090,8 @@ msgstr "구독"
 
 #. js-lingui-id: ShbDuS
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
-#: src/modules/ai/components/AiChatCreditsExhaustedMessage.tsx
 #: src/modules/ai/components/AIChatNoMoreBillingCreditsBanner.tsx
+#: src/modules/ai/components/AiChatCreditsExhaustedMessage.tsx
 msgid "Subscribe Now"
 msgstr "지금 구독"
 
@@ -15309,11 +16158,26 @@ msgstr "추천"
 msgid "Sum"
 msgstr "합계"
 
+#. js-lingui-id: jyH6qM
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Sum of your bank balances"
+msgstr ""
+
 #. js-lingui-id: DBC3t5
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
 msgid "Sunday"
 msgstr "일요일"
+
+#. js-lingui-id: PYTEl0
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Supplier"
+msgstr ""
+
+#. js-lingui-id: J24Nho
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Supplier bills grouped by how overdue they are. Red totals = suppliers waiting on payment. Prioritise these in the Weekly Planner."
+msgstr ""
 
 #. js-lingui-id: XYLcNv
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownDefaultComponents.tsx
@@ -15382,6 +16246,11 @@ msgstr ""
 msgid "Sync lost with mailbox {mailboxHandle}. Please reconnect for updates:"
 msgstr "사서함 {mailboxHandle}와(과)의 동기화가 끊겼습니다. 업데이트하려면 다시 연결하세요:"
 
+#. js-lingui-id: lb/UU4
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Sync now"
+msgstr ""
+
 #. js-lingui-id: L4+l7C
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "Sync with Google"
@@ -15416,6 +16285,12 @@ msgstr "레이블과 API 이름 동기화"
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectAboutForm.tsx
 msgid "Synchronize Objects Labels and API Names"
 msgstr "객체 레이블과 API 이름 동기화"
+
+#. js-lingui-id: ZDY7Fy
+#: src/pages/finance/FinanceDashboard.tsx
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Syncing…"
+msgstr ""
 
 #. js-lingui-id: D+NlUC
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
@@ -15494,12 +16369,12 @@ msgid "Tab Settings"
 msgstr "탭 설정"
 
 #. js-lingui-id: 4hJhzz
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
 #: src/pages/settings/layout/SettingsLayoutViewDetail.tsx
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
 #: src/modules/side-panel/pages/page-layout/components/record-page/SidePanelRecordPageFieldSettings.tsx
 #: src/modules/side-panel/pages/page-layout/components/dropdown-content/FieldWidgetLayoutDropdownContent.tsx
 #: src/modules/side-panel/pages/page-layout/components/dashboard/SidePanelDashboardRecordTableSettings.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/keyboard-shortcut-menu/components/KeyboardShortcutMenuOpenContent.tsx
 msgid "Table"
@@ -15531,6 +16406,11 @@ msgstr "작업 제목"
 msgid "Team"
 msgstr ""
 
+#. js-lingui-id: W4C8dl
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Teams webhook saved."
+msgstr ""
+
 #. js-lingui-id: lKXcJz
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
 msgid "Temporary Failure"
@@ -15558,6 +16438,11 @@ msgstr "서비스 약관"
 #: src/modules/settings/logic-functions/components/tabs/SettingsLogicFunctionCodeEditorTab.tsx
 msgid "Test"
 msgstr "테스트"
+
+#. js-lingui-id: pwOF6+
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Test message sent — check your Teams channel."
+msgstr ""
 
 #. js-lingui-id: 3nWPN6
 #: src/modules/settings/logic-functions/components/tabs/SettingsLogicFunctionTestTab.tsx
@@ -15590,6 +16475,11 @@ msgstr "텍스트가 클립보드에 복사되었습니다"
 #: src/modules/object-record/record-field/ui/form-types/components/FormAdvancedTextFieldInput.tsx
 msgid "Text Editor"
 msgstr "텍스트 편집기"
+
+#. js-lingui-id: PDsrlO
+#: src/pages/finance/FinanceBanks.tsx
+msgid "That doesn't look like a Wise API token. Paste the full Read-Only token from your Wise settings."
+msgstr ""
 
 #. js-lingui-id: KJjmr/
 #: src/pages/settings/email/SettingsWorkspaceEmailGroupChannelDetail.tsx
@@ -15644,6 +16534,11 @@ msgid ""
 "```\n"
 "\n"
 "See the [Getting Started guide](https://twenty.com/developers/extend/apps/getting-started) for the full walkthrough, and [Building Apps](https://twenty.com/developers/extend/apps/building) for the `defineApplication` / `defineEntity` APIs."
+msgstr ""
+
+#. js-lingui-id: mUoP8j
+#: src/pages/auth/SignInUp.tsx
+msgid "The CRM built for Waimin — manage customers, sales, finance and tasks from a single, focused workspace."
 msgstr ""
 
 #. js-lingui-id: n+CCXl
@@ -16070,6 +16965,16 @@ msgstr "이 작업은 이중 인증 방법을 영구적으로 삭제합니다.<0
 msgid "Thought"
 msgstr "생각"
 
+#. js-lingui-id: zPzuVa
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Tick the bills you plan to pay, then save."
+msgstr ""
+
+#. js-lingui-id: Uhw109
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Tick what to pay this Friday"
+msgstr ""
+
 #. js-lingui-id: Vqn9Z1
 #: src/modules/workflow/workflow-diagram/components/WorkflowDiagramRightClickCommandMenu.tsx
 msgid "Tidy up workflow"
@@ -16105,10 +17010,10 @@ msgid "Timeout"
 msgstr "시간 제한"
 
 #. js-lingui-id: 8TMaZI
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "Timestamp"
 msgstr "타임스탬프"
@@ -16135,7 +17040,14 @@ msgstr "제목"
 
 #. js-lingui-id: MHrjPM
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
 msgid "Title"
+msgstr ""
+
+#. js-lingui-id: A6m5yw
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Title and cron required"
 msgstr ""
 
 #. js-lingui-id: /jQctM
@@ -16168,6 +17080,11 @@ msgstr "모든 객체의 권한 전환"
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsTableHeader.tsx
 msgid "Toggle all settings permissions"
 msgstr "모든 설정 권한 전환"
+
+#. js-lingui-id: WyZ1SI
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Token expires:"
+msgstr ""
 
 #. js-lingui-id: IHtFjq
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
@@ -16268,12 +17185,19 @@ msgstr "도구"
 msgid "Top 10 workspaces by number of users"
 msgstr ""
 
+#. js-lingui-id: qXScwn
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Top up from"
+msgstr ""
+
 #. js-lingui-id: A4dnvW
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
 msgid "Top Workspaces"
 msgstr ""
 
 #. js-lingui-id: 72c5Qo
+#: src/pages/finance/FinanceDashboard.tsx
+#: src/pages/finance/FinanceDashboard.tsx
 #: src/modules/page-layout/widgets/graph/graph-widget-pie-chart/hooks/usePieChartCenterMetricData.ts
 msgid "Total"
 msgstr ""
@@ -16304,6 +17228,11 @@ msgstr "총 시간"
 #: src/pages/settings/ai/components/SettingsAiUsageTab.tsx
 #: src/pages/settings/ai/components/SettingsAiUsageTab.tsx
 msgid "Track AI consumption across your workspace."
+msgstr ""
+
+#. js-lingui-id: GxO/vR
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Track balances across banks and currencies. Wise balances will sync automatically once connected. Enter other balances manually."
 msgstr ""
 
 #. js-lingui-id: YT/cKI
@@ -16506,6 +17435,11 @@ msgstr "이중 인증 설정이 성공적으로 완료되었습니다!"
 #: src/pages/settings/ai/constants/SettingsSkillTableMetadata.ts
 #: src/pages/settings/ai/constants/SettingsAiAgentTableMetadata.ts
 #: src/pages/settings/ai/components/SettingsToolParameterTable.tsx
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
+#: src/pages/finance/FinanceRemindersSettings.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowEditActionFormFieldSettings.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowOutputFieldTypeSelector.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOIdentitiesProvidersForm.tsx
@@ -16535,6 +17469,11 @@ msgstr ""
 #: src/modules/navigation-menu-item/edit/side-panel/components/SidePanelNewSidebarItemRecordSubPage.tsx
 msgid "Type to search records"
 msgstr "레코드를 검색하려면 입력하세요"
+
+#. js-lingui-id: lMdXuD
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Type:"
+msgstr ""
 
 #. js-lingui-id: D38O1A
 #: src/pages/settings/admin-panel/SettingsAdminNewAiModel.tsx
@@ -16569,6 +17508,11 @@ msgstr "백엔드에 연결할 수 없습니다"
 #. js-lingui-id: 5JOLV9
 #: src/modules/ai/components/AiChatThreadItemMenu.tsx
 msgid "Unarchive"
+msgstr ""
+
+#. js-lingui-id: EbMPZJ
+#: src/pages/finance/FinanceRemindersSettings.tsx
+msgid "Unassigned"
 msgstr ""
 
 #. js-lingui-id: EUHN7i
@@ -16729,6 +17673,16 @@ msgstr ""
 #. js-lingui-id: 9dX/SD
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Unordered list with bullets"
+msgstr ""
+
+#. js-lingui-id: PGW+6S
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Unpaid customer invoices (A/R)"
+msgstr ""
+
+#. js-lingui-id: DBikY+
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Unpaid supplier bills (A/P)"
 msgstr ""
 
 #. js-lingui-id: wja8aL
@@ -16925,6 +17879,11 @@ msgstr "접근하려면 업그레이드하세요."
 msgid "Upgrade to Enterprise to access audit logs."
 msgstr ""
 
+#. js-lingui-id: qkFzZV
+#: src/modules/settings/event-logs/components/SettingsLogs.tsx
+msgid "Upgrade to Enterprise to access this log type."
+msgstr ""
+
 #. js-lingui-id: +Gi3x1
 #: src/pages/settings/applications/tabs/SettingsApplicationDetailAboutTab.tsx
 #: src/pages/settings/applications/components/SettingsApplicationVersionContainer.tsx
@@ -17054,7 +18013,7 @@ msgid "Usage by User"
 msgstr "사용자별 사용량"
 
 #. js-lingui-id: CedRjP
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 msgid "Usage Events"
 msgstr "사용 이벤트"
 
@@ -17109,9 +18068,6 @@ msgid "Useful for pivot/junction tables"
 msgstr "피벗/정션 테이블에 유용합니다"
 
 #. js-lingui-id: 7PzzBU
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
-#: src/pages/settings/security/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/pages/settings/profile/SettingsTwoFactorAuthenticationMethod.tsx
 #: src/pages/settings/profile/SettingsProfile.tsx
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
@@ -17124,6 +18080,9 @@ msgstr "피벗/정션 테이블에 유용합니다"
 #: src/pages/settings/accounts/SettingsAccountsCalendars.tsx
 #: src/pages/settings/accounts/SettingsAccounts.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
+#: src/modules/settings/event-logs/utils/getColumnsForEventLogTable.ts
 #: src/modules/settings/accounts/components/SettingsAccountsNewImapSmtpCaldavConnection.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsEditImapSmtpCaldavConnection.tsx
 msgid "User"
@@ -17327,11 +18286,6 @@ msgstr ""
 msgid "View all evaluations"
 msgstr ""
 
-#. js-lingui-id: XVf/G7
-#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
-msgid "View and filter events, page views, object changes"
-msgstr "이벤트, 페이지 조회수, 객체 변경 사항 보기 및 필터링"
-
 #. js-lingui-id: KANz0G
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
@@ -17389,11 +18343,6 @@ msgstr "청구서 보기"
 msgid "View Jobs"
 msgstr "작업 보기"
 
-#. js-lingui-id: 923YyC
-#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
-msgid "View Logs"
-msgstr "로그 보기"
-
 #. js-lingui-id: sAPirx
 #: src/modules/object-record/record-index/components/RecordIndexEmptyStateNotShared.tsx
 msgid "View not shared"
@@ -17428,11 +18377,6 @@ msgstr "보기 유형"
 #: src/modules/settings/billing/components/SettingsBillingCreditsSection.tsx
 msgid "View usage"
 msgstr "사용량 보기"
-
-#. js-lingui-id: rWiqJF
-#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
-msgid "View workspace activity logs"
-msgstr "워크스페이스 활동 로그 보기"
 
 #. js-lingui-id: 1I6UoR
 #: src/pages/settings/layout/SettingsLayoutViewDetail.tsx
@@ -17570,6 +18514,11 @@ msgstr ""
 msgid "Watch members demo"
 msgstr ""
 
+#. js-lingui-id: mwpZrv
+#: src/pages/auth/SignInUp.tsx
+msgid "Water as nature intended."
+msgstr ""
+
 #. js-lingui-id: 6eMAkI
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "We encountered an issue verifying"
@@ -17579,6 +18528,11 @@ msgstr "인증하는 데 문제가 발생했습니다."
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
 msgid "We match on these fields. If a {objectLabelSingular} already exists, we update it. Otherwise, we create a new one."
 msgstr "우리는 이러한 필드에 일치시킵니다. {objectLabelSingular} 이미 있는 경우 업데이트하고, 그렇지 않으면 새로 만듭니다."
+
+#. js-lingui-id: g1RNOY
+#: src/pages/auth/SignInUp.tsx
+msgid "We sent a verification link to your email."
+msgstr ""
 
 #. js-lingui-id: id6ein
 #: src/modules/ui/input/components/ImageInput.tsx
@@ -17682,6 +18636,17 @@ msgstr "웹사이트"
 msgid "Week"
 msgstr "주"
 
+#. js-lingui-id: 7zBLrs
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Weekly Payment Planner"
+msgstr ""
+
+#. js-lingui-id: Tvo4aT
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+#: src/modules/navigation/components/NavigationDrawerOtherSection.tsx
+msgid "Weekly Planner"
+msgstr ""
+
 #. js-lingui-id: IAUiSh
 #: src/modules/side-panel/pages/page-layout/utils/getDateGranularityPluralLabel.ts
 msgid "weeks"
@@ -17692,10 +18657,10 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
-#. js-lingui-id: nTuObL
+#. js-lingui-id: 4GYbVi
 #: src/pages/auth/SignInUp.tsx
-msgid "Welcome to Twenty"
-msgstr "Twenty에 오신 것을 환영합니다"
+msgid "Welcome to Waimin"
+msgstr ""
 
 #. js-lingui-id: t8ZvkC
 #: src/pages/auth/SignInUp.tsx
@@ -17792,6 +18757,29 @@ msgstr ""
 msgid "Will continue to the next iteration even if the current one fails"
 msgstr "현재 반복이 실패해도 다음 반복으로 계속 진행합니다"
 
+#. js-lingui-id: fX2pXq
+#. placeholder {2}: res.synced
+#. placeholder {3}: res.currencies.join(', ')
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Wise connected — pulled {2} balance(s): {3}"
+msgstr ""
+
+#. js-lingui-id: mrZin0
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Wise connected, but no balances were found on this account."
+msgstr ""
+
+#. js-lingui-id: mCK4+1
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Wise Personal API Token"
+msgstr ""
+
+#. js-lingui-id: H569tW
+#. placeholder {4}: res.synced
+#: src/pages/finance/FinanceBanks.tsx
+msgid "Wise synced — {4} balance(s) updated."
+msgstr ""
+
 #. js-lingui-id: bB8dFW
 #: src/modules/settings/billing/components/TrialCard.tsx
 msgid "With Credit Card"
@@ -17841,7 +18829,6 @@ msgstr "Workflows"
 #. js-lingui-id: pmUArF
 #: src/pages/settings/security/SettingsSecuritySSOIdentifyProvider.tsx
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
-#: src/pages/settings/security/event-logs/SettingsEventLogs.tsx
 #: src/pages/settings/members/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/members/SettingsWorkspaceMember.tsx
 #: src/pages/settings/members/roles/SettingsRoleAddObjectLevel.tsx
@@ -17850,6 +18837,7 @@ msgstr "Workflows"
 #: src/pages/settings/logic-functions/SettingsLogicFunctionDetail.tsx
 #: src/pages/settings/layout/SettingsLayout.tsx
 #: src/pages/settings/layout/components/SettingsLayoutDetailScaffold.tsx
+#: src/pages/settings/integrations/SettingsXero.tsx
 #: src/pages/settings/general/SettingsGeneral.tsx
 #: src/pages/settings/enterprise/SettingsEnterprise.tsx
 #: src/pages/settings/emailing-domains/SettingsNewEmailingDomain.tsx
@@ -17885,11 +18873,11 @@ msgstr "Workflows"
 #: src/pages/settings/ai/SettingsSkillForm.tsx
 #: src/pages/settings/ai/SettingsAiUsageUserDetail.tsx
 #: src/pages/settings/ai/SettingsAiPrompts.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentTurnDetail.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceChatThread.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/BackgroundMockNavigationDrawer.tsx
@@ -17933,8 +18921,7 @@ msgid "Workspace Domain"
 msgstr "워크스페이스 도메인"
 
 #. js-lingui-id: J2q6WC
-#: src/pages/settings/security/event-logs/components/EventLogTableSelector.tsx
-#: src/modules/settings/security/components/SettingsSecuritySettings.tsx
+#: src/modules/settings/event-logs/components/EventLogTableSelector.tsx
 msgid "Workspace Events"
 msgstr "워크스페이스 이벤트"
 
@@ -17959,13 +18946,9 @@ msgstr ""
 msgid "Workspace logo"
 msgstr "워크스페이스 로고"
 
-#. js-lingui-id: qc38qR
-#: src/pages/settings/security/event-logs/components/EventLogFilters.tsx
-msgid "Workspace Member"
-msgstr "워크스페이스 멤버"
-
 #. js-lingui-id: wtxjAY
 #: src/pages/settings/admin-panel/SettingsAdminWorkspaceDetail.tsx
+#: src/modules/settings/event-logs/components/EventLogFilters.tsx
 msgid "Workspace members"
 msgstr ""
 
@@ -18046,6 +19029,33 @@ msgstr "X 축"
 #: src/modules/side-panel/pages/page-layout/utils/__tests__/shouldHideChartSetting.test.ts
 msgid "X Axis Data"
 msgstr "X 축 데이터"
+
+#. js-lingui-id: YowYEl
+#: src/pages/settings/integrations/SettingsXero.tsx
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Xero"
+msgstr ""
+
+#. js-lingui-id: 7s+fqd
+#. placeholder {0}: formatRelative(lastSyncedAt)
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "Xero {0}"
+msgstr ""
+
+#. js-lingui-id: RWrvvU
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Xero accounting"
+msgstr ""
+
+#. js-lingui-id: 1Ubyd2
+#: src/pages/settings/integrations/SettingsXero.tsx
+msgid "Xero integration is not enabled on this server. Set XERO_INTEGRATION_ENABLED=true and provide XERO_CLIENT_ID + XERO_CLIENT_SECRET in the server env."
+msgstr ""
+
+#. js-lingui-id: IOLh0v
+#: src/pages/auth/SignInUp.tsx
+msgid "Xero-ready accounting workflows"
+msgstr ""
 
 #. js-lingui-id: fplGg6
 #: src/modules/side-panel/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
@@ -18165,9 +19175,21 @@ msgstr "이 위젯을 볼 권한이 없습니다"
 msgid "You don't have access to this object."
 msgstr ""
 
+#. js-lingui-id: mdXFUW
+#. placeholder {0}: missingBankCurrencies.join(', ')
+#. placeholder {1}: missingBankCurrencies.length > 1 ? 'those currencies' : 'that currency'
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "You have invoices in {0} but no bank account in {1}. Add one so the Weekly Planner can show your real cash position."
+msgstr ""
+
 #. js-lingui-id: RDAH2t
 #: src/modules/settings/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "You have scheduled a credit pack change. Do you want to cancel it?"
+msgstr ""
+
+#. js-lingui-id: 7BoTS7
+#: src/pages/finance/FinanceDashboard.tsx
+msgid "You owe"
 msgstr ""
 
 #. js-lingui-id: z8eKS7
@@ -18277,6 +19299,12 @@ msgstr ""
 #. js-lingui-id: GJewTO
 #: src/modules/settings/logic-functions/components/triggers/SettingsLogicFunctionHttpTriggerSection.tsx
 msgid "Your handler receives this object. The body is empty because GET requests carry no payload."
+msgstr ""
+
+#. js-lingui-id: Btroti
+#. placeholder {0}: missingBankCurrencies.join(', ')
+#: src/pages/finance/FinanceWeeklyPlanner.tsx
+msgid "Your invoices are in {0} but you have no matching bank balance, so \"Starting Balance\" shows zero. Add a bank account in that currency to see your true position after Friday."
 msgstr ""
 
 #. js-lingui-id: 9ivpwk
