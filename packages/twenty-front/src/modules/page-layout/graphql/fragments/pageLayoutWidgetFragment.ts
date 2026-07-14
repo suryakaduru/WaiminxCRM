@@ -126,6 +126,7 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
         filter
         prefix
         suffix
+        color
         timezone
         firstDayOfTheWeek
         ratioAggregateConfig {
