@@ -34,6 +34,7 @@ import { WorkspaceCacheService } from 'src/engine/workspace-cache/services/works
 // visible only to roles that are explicitly given the flag.
 const NO_BASE_BYPASS_FLAGS = new Set<PermissionFlagType>([
   PermissionFlagType.FINANCE,
+  PermissionFlagType.AUDIT_LOGS,
 ]);
 
 @Injectable()

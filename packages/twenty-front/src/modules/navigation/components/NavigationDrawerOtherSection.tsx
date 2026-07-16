@@ -1,14 +1,11 @@
 import { useLingui } from '@lingui/react/macro';
 import { useNavigate } from 'react-router-dom';
 import { AppPath, SettingsPath } from 'twenty-shared/types';
-import { IconMoneybag, IconCalendarDue, IconCoins, IconBell, IconHelpCircle, IconHistory, IconSettings } from 'twenty-ui/display';
+import { IconMoneybag, IconCalendarDue, IconCoins, IconBell, IconHistory, IconSettings } from 'twenty-ui/display';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
 
-import { currentWorkspaceMemberState } from '@/auth/states/currentWorkspaceMemberState';
 import { usePermissionFlagMap } from '@/settings/roles/hooks/usePermissionFlagMap';
 import { PermissionFlagType } from '~/generated-metadata/graphql';
-import { getDocumentationUrl } from '@/support/utils/getDocumentationUrl';
-import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 
 import { NavigationDrawerAnimatedCollapseWrapper } from '@/ui/navigation/navigation-drawer/components/NavigationDrawerAnimatedCollapseWrapper';
 import { NavigationDrawerItem } from '@/ui/navigation/navigation-drawer/components/NavigationDrawerItem';
@@ -23,7 +20,6 @@ export const NavigationDrawerOtherSection = () => {
   const { t } = useLingui();
   const navigate = useNavigate();
   const navigateSettings = useNavigateSettings();
-  const currentWorkspaceMember = useAtomStateValue(currentWorkspaceMemberState);
   const permissionFlags = usePermissionFlagMap();
   const canViewAuditLog = permissionFlags[PermissionFlagType.AUDIT_LOGS];
   const canViewFinance = permissionFlags[PermissionFlagType.FINANCE];
@@ -89,13 +85,6 @@ export const NavigationDrawerOtherSection = () => {
           label={t`Settings`}
           Icon={IconSettings}
           onClick={handleSettingsClick}
-        />
-        <NavigationDrawerItem
-          label={t`Documentation`}
-          to={getDocumentationUrl({
-            locale: currentWorkspaceMember?.locale,
-          })}
-          Icon={IconHelpCircle}
         />
       </AnimatedExpandableContainer>
     </NavigationDrawerSection>
