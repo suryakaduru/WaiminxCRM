@@ -27,8 +27,9 @@ import { UserEntity } from 'src/engine/core-modules/user/user.entity';
 import { JwtAuthGuard } from 'src/engine/guards/jwt-auth.guard';
 
 import { WorkspaceAuthGuard } from 'src/engine/guards/workspace-auth.guard';
+import { FinancePermissionGuard } from 'src/engine/core-modules/xero-integration/guards/finance-permission.guard';
 
-const guards = [JwtAuthGuard, WorkspaceAuthGuard];
+const guards = [JwtAuthGuard, WorkspaceAuthGuard, FinancePermissionGuard];
 
 @Controller('finance')
 @UseGuards(...guards)

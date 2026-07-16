@@ -29,6 +29,13 @@ import { InjectWorkspaceScopedRepository } from 'src/engine/twenty-orm/workspace
 import { WorkspaceScopedRepository } from 'src/engine/twenty-orm/workspace-scoped-repository/workspace-scoped-repository';
 import { WorkspaceCacheService } from 'src/engine/workspace-cache/services/workspace-cache.service';
 
+// Flags that must be granted explicitly per role — the canUpdateAllSettings /
+// canAccessAllTools base bypass does NOT grant them. Used to keep Finance
+// visible only to roles that are explicitly given the flag.
+const NO_BASE_BYPASS_FLAGS = new Set<PermissionFlagType>([
+  PermissionFlagType.FINANCE,
+]);
+
 @Injectable()
 export class PermissionsService {
   constructor(
@@ -73,9 +80,13 @@ export class PermissionsService {
       this.getDefaultUserWorkspacePermissions().permissionFlags;
     const permissionFlags = Object.values(PermissionFlagType).reduce(
       (acc, feature) => {
-        const hasBasePermission = this.isToolPermission(feature)
-          ? roleOfUserWorkspace.canAccessAllTools
-          : roleOfUserWorkspace.canUpdateAllSettings;
+        // FINANCE must be granted explicitly per role — the canUpdateAllSettings
+        // base bypass would otherwise leak finance to PM/Sales/Marketing roles.
+        const hasBasePermission = NO_BASE_BYPASS_FLAGS.has(feature)
+          ? false
+          : this.isToolPermission(feature)
+            ? roleOfUserWorkspace.canAccessAllTools
+            : roleOfUserWorkspace.canUpdateAllSettings;
 
         return {
           ...acc,
@@ -116,6 +127,7 @@ export class PermissionsService {
         [PermissionFlagType.BILLING]: false,
         [PermissionFlagType.AI_SETTINGS]: false,
         [PermissionFlagType.AUDIT_LOGS]: false,
+        [PermissionFlagType.FINANCE]: false,
         [PermissionFlagType.AI]: false,
         [PermissionFlagType.UPLOAD_FILE]: false,
         [PermissionFlagType.DOWNLOAD_FILE]: false,
@@ -242,6 +254,12 @@ export class PermissionsService {
     role: RoleEntity,
     setting: PermissionFlagType,
   ): boolean {
+    // Bypass-free flags (e.g. FINANCE) must be granted explicitly, ignoring
+    // the canUpdateAllSettings/canAccessAllTools base permission.
+    if (NO_BASE_BYPASS_FLAGS.has(setting)) {
+      return this.roleHasPermissionFlag(role, setting);
+    }
+
     const hasBasePermission = this.isToolPermission(setting)
       ? role.canAccessAllTools
       : role.canUpdateAllSettings;

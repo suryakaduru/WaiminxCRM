@@ -7,6 +7,7 @@ import { SecretEncryptionModule } from 'src/engine/core-modules/secret-encryptio
 import { TwentyConfigModule } from 'src/engine/core-modules/twenty-config/twenty-config.module';
 import { XeroSyncCronCommand } from 'src/engine/core-modules/xero-integration/commands/xero-sync-cron.command';
 import { FinanceController } from 'src/engine/core-modules/xero-integration/controllers/finance.controller';
+import { FinancePermissionGuard } from 'src/engine/core-modules/xero-integration/guards/finance-permission.guard';
 import { XeroController } from 'src/engine/core-modules/xero-integration/controllers/xero.controller';
 import { WaiminBankAccountEntity } from 'src/engine/core-modules/xero-integration/entities/waimin-bank-account.entity';
 import { WaiminPaymentPlanLineEntity } from 'src/engine/core-modules/xero-integration/entities/waimin-payment-plan-line.entity';
@@ -80,6 +81,7 @@ import { TwentyORMModule } from 'src/engine/twenty-orm/twenty-orm.module';
     FinanceReminderService,
     FinanceReminderCronJob,
     NotificationService,
+    FinancePermissionGuard,
   ],
   controllers: [XeroController, FinanceController],
   exports: [XeroOAuthService, XeroConnectionService, XeroSyncService, WiseSyncService],

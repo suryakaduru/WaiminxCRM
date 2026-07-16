@@ -26,6 +26,7 @@ export const NavigationDrawerOtherSection = () => {
   const currentWorkspaceMember = useAtomStateValue(currentWorkspaceMemberState);
   const permissionFlags = usePermissionFlagMap();
   const canViewAuditLog = permissionFlags[PermissionFlagType.AUDIT_LOGS];
+  const canViewFinance = permissionFlags[PermissionFlagType.FINANCE];
 
   const { toggleNavigationSection } = useNavigationSection('Other');
   const isNavigationSectionOpen = useAtomFamilyStateValue(
@@ -53,26 +54,30 @@ export const NavigationDrawerOtherSection = () => {
         containAnimation
         initial={false}
       >
-        <NavigationDrawerItem
-          label={t`Finance`}
-          Icon={IconCoins}
-          onClick={() => navigate(AppPath.FinanceDashboard)}
-        />
-        <NavigationDrawerItem
-          label={t`Weekly Planner`}
-          Icon={IconCalendarDue}
-          onClick={() => navigate(AppPath.FinanceWeeklyPlanner)}
-        />
-        <NavigationDrawerItem
-          label={t`Bank Accounts`}
-          Icon={IconMoneybag}
-          onClick={() => navigate(AppPath.FinanceBanks)}
-        />
-        <NavigationDrawerItem
-          label={t`Reminders`}
-          Icon={IconBell}
-          onClick={() => navigate(AppPath.FinanceReminders)}
-        />
+        {canViewFinance === true && (
+          <>
+            <NavigationDrawerItem
+              label={t`Finance`}
+              Icon={IconCoins}
+              onClick={() => navigate(AppPath.FinanceDashboard)}
+            />
+            <NavigationDrawerItem
+              label={t`Weekly Planner`}
+              Icon={IconCalendarDue}
+              onClick={() => navigate(AppPath.FinanceWeeklyPlanner)}
+            />
+            <NavigationDrawerItem
+              label={t`Bank Accounts`}
+              Icon={IconMoneybag}
+              onClick={() => navigate(AppPath.FinanceBanks)}
+            />
+            <NavigationDrawerItem
+              label={t`Reminders`}
+              Icon={IconBell}
+              onClick={() => navigate(AppPath.FinanceReminders)}
+            />
+          </>
+        )}
         {canViewAuditLog === true && (
           <NavigationDrawerItem
             label={t`Audit Log`}

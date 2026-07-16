@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import {
   IconApps,
   IconCode,
+  IconCoins,
   IconCreditCard,
   IconHierarchy,
   IconHistory,
@@ -162,6 +163,15 @@ export const useSettingsRolePermissionFlagConfig = ({
         name: t`Audit Logs`,
         description: t`View the workspace activity audit trail`,
         Icon: IconHistory,
+        isRelevantForAgents: false,
+        isRelevantForApiKeys: false,
+        isRelevantForUsers: true,
+      },
+      {
+        key: PermissionFlagType.FINANCE,
+        name: t`Finance`,
+        description: t`Access the finance module (cash, banks, planner)`,
+        Icon: IconCoins,
         isRelevantForAgents: false,
         isRelevantForApiKeys: false,
         isRelevantForUsers: true,

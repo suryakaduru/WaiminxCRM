@@ -99,6 +99,11 @@ const STANDARD_PERMISSION_FLAG_METADATA: Record<
     description: 'View the workspace activity audit trail',
     icon: 'IconHistory',
   },
+  [PermissionFlagType.FINANCE]: {
+    label: 'Finance',
+    description: 'Access the finance module (cash, banks, planner, reminders)',
+    icon: 'IconCoins',
+  },
   [PermissionFlagType.AI]: {
     label: 'Ask AI',
     description: 'Chat with AI agents and use AI features',
