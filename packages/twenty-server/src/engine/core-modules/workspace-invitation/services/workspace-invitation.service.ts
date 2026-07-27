@@ -334,6 +334,7 @@ export class WorkspaceInvitationService {
             lastName: sender.name.lastName,
           },
           serverUrl: this.twentyConfigService.get('SERVER_URL'),
+          frontendUrl: this.twentyConfigService.get('FRONTEND_URL'),
           locale: sender.locale,
         };
 
@@ -343,12 +344,12 @@ export class WorkspaceInvitationService {
           plainText: true,
         });
 
-        const joinTeamMsg = msg`Join your team on Twenty`;
+        const joinTeamMsg = msg`Join our Waimin Team`;
         const i18n = this.i18nService.getI18nInstance(sender.locale);
         const subject = i18n._(joinTeamMsg);
 
         await this.emailService.send({
-          from: `${sender.name.firstName} ${sender.name.lastName} (via Twenty) <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
+          from: `${sender.name.firstName} ${sender.name.lastName} (via Waimin) <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
           to: invitation.value.email,
           subject,
           text,
