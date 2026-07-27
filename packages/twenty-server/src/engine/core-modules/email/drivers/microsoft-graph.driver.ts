@@ -1,6 +1,8 @@
 import { Logger } from '@nestjs/common';
 
-import { type Address, type SendMailOptions } from 'nodemailer';
+import { type SendMailOptions } from 'nodemailer';
+
+type EmailAddress = { address: string; name?: string };
 
 import { type EmailDriverInterface } from 'src/engine/core-modules/email/drivers/interfaces/email-driver.interface';
 
@@ -124,7 +126,7 @@ export class MicrosoftGraphDriver implements EmailDriverInterface {
   ): GraphRecipient[] {
     const addresses: string[] = [];
 
-    const push = (value: string | Address | undefined) => {
+    const push = (value: string | EmailAddress | undefined) => {
       if (!value) return;
 
       if (typeof value === 'string') {
