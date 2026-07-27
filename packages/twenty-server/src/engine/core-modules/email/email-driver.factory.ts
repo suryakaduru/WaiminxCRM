@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { type EmailDriverInterface } from 'src/engine/core-modules/email/drivers/interfaces/email-driver.interface';
 
 import { LoggerDriver } from 'src/engine/core-modules/email/drivers/logger.driver';
+import { MicrosoftGraphDriver } from 'src/engine/core-modules/email/drivers/microsoft-graph.driver';
 import { SmtpDriver } from 'src/engine/core-modules/email/drivers/smtp.driver';
 import { EmailDriver } from 'src/engine/core-modules/email/enums/email-driver.enum';
 import { DriverFactoryBase } from 'src/engine/core-modules/twenty-config/dynamic-factory.base';
@@ -26,12 +27,15 @@ export class EmailDriverFactory extends DriverFactoryBase<EmailDriverInterface> 
       return 'logger';
     }
 
-    if (driver === EmailDriver.SMTP) {
+    if (
+      driver === EmailDriver.SMTP ||
+      driver === EmailDriver.MICROSOFT_GRAPH
+    ) {
       const emailConfigHash = this.configGroupHashService.computeHash(
         ConfigVariablesGroup.EMAIL_SETTINGS,
       );
 
-      return `smtp|${emailConfigHash}`;
+      return `${driver.toLowerCase()}|${emailConfigHash}`;
     }
 
     throw new Error(`Unsupported email driver: ${driver}`);
@@ -74,6 +78,30 @@ export class EmailDriverFactory extends DriverFactoryBase<EmailDriverInterface> 
         }
 
         return new SmtpDriver(options);
+      }
+
+      case EmailDriver.MICROSOFT_GRAPH: {
+        const tenantId = this.twentyConfigService.get('EMAIL_GRAPH_TENANT_ID');
+        const clientId = this.twentyConfigService.get('EMAIL_GRAPH_CLIENT_ID');
+        const clientSecret = this.twentyConfigService.get(
+          'EMAIL_GRAPH_CLIENT_SECRET',
+        );
+        const sender = this.twentyConfigService.get('EMAIL_FROM_ADDRESS');
+        const senderName = this.twentyConfigService.get('EMAIL_FROM_NAME');
+
+        if (!tenantId || !clientId || !clientSecret) {
+          throw new Error(
+            'MICROSOFT_GRAPH driver requires EMAIL_GRAPH_TENANT_ID, EMAIL_GRAPH_CLIENT_ID and EMAIL_GRAPH_CLIENT_SECRET',
+          );
+        }
+
+        return new MicrosoftGraphDriver({
+          tenantId,
+          clientId,
+          clientSecret,
+          sender,
+          senderName,
+        });
       }
 
       default:

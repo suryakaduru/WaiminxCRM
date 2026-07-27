@@ -438,6 +438,31 @@ export class ConfigVariables {
   EMAIL_SMTP_PASSWORD: string;
 
   @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.EMAIL_SETTINGS,
+    description:
+      'Microsoft Entra tenant (directory) ID for the MICROSOFT_GRAPH email driver',
+    type: ConfigVariableType.STRING,
+  })
+  EMAIL_GRAPH_TENANT_ID: string;
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.EMAIL_SETTINGS,
+    description:
+      'Microsoft Entra application (client) ID for the MICROSOFT_GRAPH email driver',
+    type: ConfigVariableType.STRING,
+  })
+  EMAIL_GRAPH_CLIENT_ID: string;
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.EMAIL_SETTINGS,
+    isSensitive: true,
+    description:
+      'Microsoft Entra client secret for the MICROSOFT_GRAPH email driver',
+    type: ConfigVariableType.STRING,
+  })
+  EMAIL_GRAPH_CLIENT_SECRET: string;
+
+  @ConfigVariablesMetadata({
     group: ConfigVariablesGroup.ADVANCED_SETTINGS,
     description:
       'When enabled, only server admins can create new workspaces. Ignored during initial setup when no workspace exists.',
