@@ -10,8 +10,8 @@ type LogoProps = {
 };
 
 export const Logo = ({
-  src = 'https://app.twenty.com/images/icons/windows11/Square150x150Logo.scale-100.png',
-  alt = 'Logo',
+  src = 'https://waimincrm.duckdns.org/images/waimin-logo.png',
+  alt = 'Waimin',
 }: LogoProps) => {
   return <Img src={src} alt={alt} width="40" height="40" style={logoStyle} />;
 };
