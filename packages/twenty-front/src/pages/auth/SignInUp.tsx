@@ -34,147 +34,173 @@ import { isDefined } from 'twenty-shared/utils';
 import { Loader } from 'twenty-ui/feedback';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 
-const SPLIT_BREAKPOINT = '900px';
+const MOBILE_BREAKPOINT = '520px';
+const EASE_BRAND = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 
-const StyledSplitLayout = styled.div`
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
+const StyledBackgroundLayer = styled.div`
+  inset: 0;
+  position: fixed;
+  z-index: 0;
+`;
 
-  @media (max-width: ${SPLIT_BREAKPOINT}) {
-    flex-direction: column;
+const StyledBackgroundPhoto = styled.div`
+  animation: authKenBurns 28s ease-in-out infinite alternate;
+  background: url('/images/auth-hero.png') center / cover no-repeat;
+  inset: 0;
+  position: absolute;
+
+  @keyframes authKenBurns {
+    0% {
+      transform: scale(1) translate(0, 0);
+    }
+    100% {
+      transform: scale(1.06) translate(-0.5%, -0.5%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
   }
 `;
 
-const StyledBrandPanel = styled.div`
-  align-items: center;
+const StyledBackgroundScrim = styled.div`
   background:
     radial-gradient(
-      circle at 20% 20%,
-      rgba(255, 255, 255, 0.6) 0%,
-      transparent 55%
+      ellipse 70% 60% at 50% 50%,
+      rgba(20, 22, 24, 0.25) 0%,
+      rgba(20, 22, 24, 0.5) 100%
     ),
-    radial-gradient(
-      circle at 80% 80%,
-      rgba(255, 255, 255, 0.35) 0%,
-      transparent 55%
-    ),
-    linear-gradient(160deg, #cfe9ed 0%, #a8d4db 60%, #8cc6cf 100%);
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  padding: 64px 48px;
-  position: relative;
-
-  @media (max-width: ${SPLIT_BREAKPOINT}) {
-    flex: 0 0 auto;
-    min-height: 260px;
-    padding: 40px 24px;
-  }
+    linear-gradient(
+      180deg,
+      rgba(15, 17, 20, 0.15) 0%,
+      rgba(15, 17, 20, 0.45) 100%
+    );
+  inset: 0;
+  position: absolute;
 `;
 
-const StyledBrandContent = styled.div`
+const StyledPage = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  max-width: 440px;
-  text-align: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 32px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}) {
+    padding: 20px;
+  }
 `;
 
-const StyledBrandLogo = styled.button`
-  background: url('/images/waimin-logo.png') center/contain no-repeat;
+const StyledTopLogo = styled.button`
+  background: url('/images/waimin-logo-horizontal.png') center / contain
+    no-repeat;
   background-color: transparent;
   border: none;
-  border-radius: 28px;
   cursor: pointer;
-  height: 200px;
+  filter: brightness(0) invert(1);
+  height: 32px;
+  left: 50%;
+  opacity: 0.9;
   padding: 0;
-  width: 200px;
+  position: absolute;
+  top: clamp(24px, 3vh, 40px);
+  transform: translateX(-50%);
+  width: 150px;
 
-  @media (max-width: ${SPLIT_BREAKPOINT}) {
-    height: 120px;
+  @media (max-width: ${MOBILE_BREAKPOINT}) {
+    height: 26px;
     width: 120px;
   }
 `;
 
-const StyledBrandTagline = styled.h2`
-  color: #0e2a2f;
-  font-size: 32px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin: 0;
+// The auth form itself is rendered by shared components (MainButton, inputs).
+// Restyling those globally would affect the whole app, so the glass-card look
+// is applied here via descendant selectors scoped to this container only.
+const StyledGlassCard = styled.div`
+  backdrop-filter: blur(60px) saturate(1.6);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.18),
+    0 8px 20px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  max-width: 420px;
+  overflow: hidden;
+  padding: clamp(36px, 4.5vw, 48px);
+  position: relative;
+  width: 100%;
+  -webkit-backdrop-filter: blur(60px) saturate(1.6);
 
-  @media (max-width: ${SPLIT_BREAKPOINT}) {
-    font-size: 22px;
-  }
-`;
-
-const StyledBrandSubtitle = styled.p`
-  color: rgba(14, 42, 47, 0.7);
-  font-size: 16px;
-  line-height: 1.55;
-  margin: 0;
-  max-width: 380px;
-
-  @media (max-width: ${SPLIT_BREAKPOINT}) {
-    display: none;
-  }
-`;
-
-const StyledBrandValueList = styled.ul`
-  color: rgba(14, 42, 47, 0.78);
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-  gap: 10px;
-  list-style: none;
-  margin: 16px 0 0;
-  padding: 0;
-  text-align: left;
-
-  & > li {
-    align-items: center;
-    display: flex;
-    gap: 10px;
-  }
-
-  & > li::before {
-    background: #0e2a2f;
-    border-radius: 999px;
+  &::before {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      rgba(61, 155, 143, 0.15),
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
     content: '';
-    display: inline-block;
-    flex-shrink: 0;
-    height: 6px;
-    width: 6px;
+    height: 1px;
+    left: 8%;
+    position: absolute;
+    right: 8%;
+    top: 0;
   }
 
-  @media (max-width: ${SPLIT_BREAKPOINT}) {
-    display: none;
+  @media (max-width: ${MOBILE_BREAKPOINT}) {
+    border-radius: 16px;
+    padding: 28px;
+  }
+
+  /* Primary + secondary auth buttons */
+  button[type='button'],
+  button[type='submit'] {
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ${EASE_BRAND};
+  }
+
+  button:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
+
+  button:active:not(:disabled) {
+    transform: scale(0.985);
+  }
+
+  /* Text inputs sit on glass, so they need light-on-dark treatment */
+  input {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  a {
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  a:hover {
+    color: #ffffff;
   }
 `;
 
-const StyledFormPanel = styled.div`
-  align-items: center;
-  background: ${themeCssVariables.background.primary};
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  padding: 64px 24px;
-
-  @media (max-width: ${SPLIT_BREAKPOINT}) {
-    padding: 32px 20px 48px;
-  }
-`;
-
-const StyledFormCard = styled.div`
-  align-items: stretch;
+const StyledCardInner = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 380px;
-  width: 100%;
+  position: relative;
+  z-index: 2;
 `;
 
 const StyledFormHeader = styled.div`
@@ -182,24 +208,32 @@ const StyledFormHeader = styled.div`
   flex-direction: column;
   gap: 6px;
   margin-bottom: 4px;
+  text-align: center;
 `;
 
 const StyledFormTitle = styled.h1`
-  color: ${themeCssVariables.font.color.primary};
+  color: #ffffff;
   font-size: 26px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.01em;
   margin: 0;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}) {
+    font-size: 22px;
+  }
 `;
 
 const StyledFormSubtitle = styled.p`
-  color: ${themeCssVariables.font.color.tertiary};
+  color: rgba(255, 255, 255, 0.5);
   font-size: 14px;
+  line-height: 1.5;
   margin: 0;
 `;
 
 const StyledFormFooter = styled.div`
+  color: rgba(255, 255, 255, 0.35);
   margin-top: 12px;
+  text-align: center;
 `;
 
 const StyledLoaderContainer = styled.div`
@@ -211,18 +245,33 @@ const StyledLoaderContainer = styled.div`
   width: 100%;
 `;
 
-const StyledBrandFootnote = styled.p`
-  bottom: 24px;
-  color: rgba(14, 42, 47, 0.55);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  margin: 0;
+const StyledBottomBar = styled.div`
+  align-items: center;
+  bottom: clamp(20px, 2.5vh, 32px);
+  display: flex;
+  gap: 32px;
+  left: 50%;
   position: absolute;
-  text-transform: uppercase;
+  transform: translateX(-50%);
 
-  @media (max-width: ${SPLIT_BREAKPOINT}) {
+  & > span {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  @media (max-width: ${MOBILE_BREAKPOINT}) {
     display: none;
   }
+`;
+
+const StyledBottomBarLine = styled.div`
+  background: rgba(255, 255, 255, 0.1);
+  height: 1px;
+  width: 30px;
 `;
 
 type AuthShellProps = {
@@ -241,50 +290,36 @@ const AuthShell = ({
   footer,
 }: AuthShellProps) => {
   return (
-    <StyledSplitLayout>
-      <StyledBrandPanel>
-        <StyledBrandContent>
-          <StyledBrandLogo
-            type="button"
-            aria-label="Waimin"
-            onClick={() => onClickOnLogo?.()}
-          />
-          <StyledBrandTagline>
-            <Trans>Water as nature intended.</Trans>
-          </StyledBrandTagline>
-          <StyledBrandSubtitle>
-            <Trans>
-              The CRM built for Waimin — manage customers, sales, finance and
-              tasks from a single, focused workspace.
-            </Trans>
-          </StyledBrandSubtitle>
-          <StyledBrandValueList>
-            <li>
-              <Trans>Real-time finance dashboard</Trans>
-            </li>
-            <li>
-              <Trans>Xero-ready accounting workflows</Trans>
-            </li>
-            <li>
-              <Trans>Customer pipeline + deal tracking</Trans>
-            </li>
-          </StyledBrandValueList>
-        </StyledBrandContent>
-        <StyledBrandFootnote>
-          <Trans>© Waimin · wai-min.com</Trans>
-        </StyledBrandFootnote>
-      </StyledBrandPanel>
-      <StyledFormPanel>
-        <StyledFormCard>
-          <StyledFormHeader>
-            <StyledFormTitle>{title}</StyledFormTitle>
-            {subtitle && <StyledFormSubtitle>{subtitle}</StyledFormSubtitle>}
-          </StyledFormHeader>
-          {children}
-          {footer && <StyledFormFooter>{footer}</StyledFormFooter>}
-        </StyledFormCard>
-      </StyledFormPanel>
-    </StyledSplitLayout>
+    <>
+      <StyledBackgroundLayer>
+        <StyledBackgroundPhoto />
+        <StyledBackgroundScrim />
+      </StyledBackgroundLayer>
+      <StyledPage>
+        <StyledTopLogo
+          type="button"
+          aria-label="Waimin"
+          onClick={() => onClickOnLogo?.()}
+        />
+        <StyledGlassCard>
+          <StyledCardInner>
+            <StyledFormHeader>
+              <StyledFormTitle>{title}</StyledFormTitle>
+              {subtitle && <StyledFormSubtitle>{subtitle}</StyledFormSubtitle>}
+            </StyledFormHeader>
+            {children}
+            {footer && <StyledFormFooter>{footer}</StyledFormFooter>}
+          </StyledCardInner>
+        </StyledGlassCard>
+        <StyledBottomBar>
+          <span>
+            <Trans>© Waimin</Trans>
+          </span>
+          <StyledBottomBarLine />
+          <span>wai-min.com</span>
+        </StyledBottomBar>
+      </StyledPage>
+    </>
   );
 };
 

@@ -55,7 +55,10 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${themeCssVariables.spacing[6]};
-  height: 100%;
+  // flex sizing instead of height:100% — parent is unbounded, so a percentage
+  // height made the app shell clip the bottom of the dashboard
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
   padding: ${themeCssVariables.spacing[6]} ${themeCssVariables.spacing[8]}
     ${themeCssVariables.spacing[10]};

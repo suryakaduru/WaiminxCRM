@@ -1,3 +1,5 @@
+import { isDefined } from 'twenty-shared/utils';
+
 import { type FlatAgent } from 'src/engine/metadata-modules/flat-agent/types/flat-agent.type';
 import { createEmptyFlatEntityMaps } from 'src/engine/metadata-modules/flat-entity/constant/create-empty-flat-entity-maps.constant';
 import { type FlatEntityMaps } from 'src/engine/metadata-modules/flat-entity/types/flat-entity-maps.type';
@@ -10,7 +12,9 @@ export const buildStandardFlatAgentMetadataMaps = (
 ): FlatEntityMaps<FlatAgent> => {
   const allAgentMetadatas: FlatAgent[] = Object.values(
     STANDARD_FLAT_AGENT_METADATA_BUILDERS_BY_AGENT_NAME,
-  ).map((builder) => builder(args));
+  )
+    .filter(isDefined)
+    .map((builder) => builder(args));
 
   let flatAgentMetadataMaps = createEmptyFlatEntityMaps();
 
