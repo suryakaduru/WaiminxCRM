@@ -36,6 +36,7 @@ import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 const MOBILE_BREAKPOINT = '520px';
 const EASE_BRAND = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+const BRAND_ACCENT = '#3d9b8f';
 
 // The auth routes render inside AuthModal, whose `fullscreen` size paints an
 // opaque background at a high z-index. A position:fixed backdrop would sit
@@ -58,6 +59,38 @@ const StyledBackgroundPhoto = styled.div`
     }
     100% {
       transform: scale(1.06) translate(-0.5%, -0.5%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+`;
+
+// The design's slow light sweep across the photo. Cheap because it only
+// animates background-position on a single compositor layer.
+const StyledBackgroundShimmer = styled.div`
+  animation: authShimmer 24s ease-in-out infinite;
+  background: linear-gradient(
+    110deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.015) 45%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(255, 255, 255, 0.015) 55%,
+    transparent 60%
+  );
+  background-size: 300% 100%;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+
+  @keyframes authShimmer {
+    0% {
+      background-position: 300% 0;
+    }
+    100% {
+      background-position: -300% 0;
     }
   }
 
@@ -97,7 +130,10 @@ const StyledPage = styled.div`
   width: 100%;
 
   @media (max-width: ${MOBILE_BREAKPOINT}) {
-    padding: 20px;
+    // Leave room for the logo above the card instead of centring under it,
+    // and let the card scroll rather than being clipped on short screens.
+    justify-content: flex-start;
+    padding: 88px 16px 32px;
   }
 `;
 
@@ -194,7 +230,18 @@ const StyledGlassCard = styled.div`
 
   @media (max-width: ${MOBILE_BREAKPOINT}) {
     border-radius: 16px;
-    padding: 24px 20px;
+    padding: 24px 18px;
+  }
+
+  // Touch targets: the stock buttons are sized for a pointer.
+  @media (max-width: 900px) {
+    button {
+      min-height: 44px;
+    }
+
+    input {
+      font-size: 16px; /* iOS zooms the page on focus below 16px */
+    }
   }
 
   // Backdrop blur over a full-bleed photo is the most expensive thing on this
@@ -209,9 +256,7 @@ const StyledGlassCard = styled.div`
     opacity: 1;
   }
 
-  /* Primary + secondary auth buttons */
-  button[type='button'],
-  button[type='submit'] {
+  button {
     border-radius: 10px;
     font-weight: 600;
     transition: all 0.3s ${EASE_BRAND};
@@ -223,6 +268,19 @@ const StyledGlassCard = styled.div`
 
   button:active:not(:disabled) {
     transform: scale(0.985);
+  }
+
+  // The email submit button is the design's translucent third option, not the
+  // stock solid primary, which reads as a heavy black slab on glass.
+  form button[type='submit'] {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  form button[type='submit']:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
   }
 
   /* Text inputs sit on glass, so they need light-on-dark treatment */
@@ -248,9 +306,23 @@ const StyledGlassCard = styled.div`
 const StyledCardInner = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
   position: relative;
   z-index: 2;
+
+  // The shared sign-in form is laid out for a full-page column: its container
+  // carries 32px/16px outer margins and each SSO button is followed by an
+  // invisible separator with 12px margins top and bottom. Inside a 420px card
+  // that stacks up to a very tall, loose panel, so the rhythm is compacted here.
+  & > div:not(:first-child) {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  & > div:not(:first-child) > div {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
 
   // Stagger the header, then the auth buttons, then the footer. Targeting
   // direct children keeps this working whichever sign-in step is rendered.
@@ -300,6 +372,10 @@ const StyledFormHeader = styled.div`
   gap: 6px;
   margin-bottom: 4px;
   text-align: center;
+`;
+
+const StyledTitleAccent = styled.span`
+  color: ${BRAND_ACCENT};
 `;
 
 const StyledFormTitle = styled.h1`
@@ -380,7 +456,7 @@ const StyledBottomBarLine = styled.div`
 `;
 
 type AuthShellProps = {
-  title: string;
+  title: React.ReactNode;
   subtitle?: string;
   onClickOnLogo?: () => void;
   children: React.ReactNode;
@@ -398,6 +474,7 @@ const AuthShell = ({
     <StyledPage>
       <StyledBackgroundPhoto />
       <StyledBackgroundScrim />
+      <StyledBackgroundShimmer />
       <StyledTopLogo
         type="button"
         aria-label="Waimin"
@@ -448,8 +525,6 @@ export const SignInUp = () => {
     setSignInUpStep(SignInUpStep.Init);
   };
 
-  const isGlobalScope = isDefaultDomain && isMultiWorkspaceEnabled;
-
   const title = useMemo(() => {
     if (isDefined(workspaceInviteHash)) {
       const workspaceName = workspaceFromInviteHash?.displayName ?? '';
@@ -468,22 +543,16 @@ export const SignInUp = () => {
       return t`Verify code from the app`;
     }
 
-    if (isGlobalScope) {
-      return t`Welcome to Waimin`;
-    }
-
-    const workspaceName = workspacePublicData?.displayName;
-
-    if (!workspaceName) {
-      return t`Welcome to your workspace`;
-    }
-
-    return t`Welcome, ${workspaceName}.`;
+    // The sign-in screen greets returning users rather than naming the
+    // workspace, per the Waimin design.
+    return (
+      <>
+        <Trans>Welcome,</Trans> <StyledTitleAccent>again.</StyledTitleAccent>
+      </>
+    );
   }, [
     workspaceInviteHash,
     signInUpStep,
-    workspacePublicData?.displayName,
-    isGlobalScope,
     t,
     workspaceFromInviteHash?.displayName,
   ]);

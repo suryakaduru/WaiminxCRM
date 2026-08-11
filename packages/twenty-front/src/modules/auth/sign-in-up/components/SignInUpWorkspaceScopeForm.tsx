@@ -10,13 +10,14 @@ import { useWorkspaceBypass } from '@/auth/sign-in-up/hooks/useWorkspaceBypass';
 import { SignInUpStep } from '@/auth/states/signInUpStepState';
 import { workspaceAuthBypassProvidersState } from '@/workspace/states/workspaceAuthBypassProvidersState';
 import { workspaceAuthProvidersState } from '@/workspace/states/workspaceAuthProvidersState';
-import { Trans } from '@lingui/react/macro';
+import { Trans, useLingui } from '@lingui/react/macro';
 import { FormProvider } from 'react-hook-form';
 import { HorizontalSeparator } from 'twenty-ui/display';
 import { ClickToActionLink } from 'twenty-ui/navigation';
 import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 
 export const SignInUpWorkspaceScopeForm = () => {
+  const { t } = useLingui();
   const workspaceAuthProviders = useAtomStateValue(workspaceAuthProvidersState);
   const workspaceAuthBypassProviders = useAtomStateValue(
     workspaceAuthBypassProvidersState,
@@ -56,7 +57,7 @@ export const SignInUpWorkspaceScopeForm = () => {
           providers.microsoft ||
           providers.sso.length > 0) &&
         providers.password ? (
-          <HorizontalSeparator />
+          <HorizontalSeparator text={t`or`} />
         ) : null}
         {providers.password && (
           // oxlint-disable-next-line react/jsx-props-no-spreading
